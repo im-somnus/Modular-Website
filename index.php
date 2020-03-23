@@ -1,6 +1,8 @@
 <?php
 	session_start();
-	/* include_once(""); */
+	include_once("public/main/private/functionLibrary.php");
+	include_once("public/main/private/db_con.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
