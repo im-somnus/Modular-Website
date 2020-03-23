@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once("functionLibrary.php");
+    include_once("functionLibrary.php");
 
     // We set the user status from online (1) to offline (0)
     $user = $_SESSION['login']['user'];
@@ -12,6 +12,6 @@
     session_destroy();
     
     // Redirect to the login page:
-    header('Location: ../index.php');
+    header('location: ../../../index.php');
     exit();
 ?>

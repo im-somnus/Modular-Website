@@ -15,7 +15,7 @@ function dump($v)
 // Function to shorten the queries, sends 0 if the query failed, 1 if it worked.
 function verifyQuery($query)
 {
-    require_once("db_con.php");  
+    require("db_con.php");  
     
     if ($result = mysqli_query($link, $query)) 
     { 
@@ -36,7 +36,7 @@ function verifyQuery($query)
 // Set to 1 the user status (online)
 function setOnlineStatus($user)
 {
-    require_once("db_con.php");
+    require("db_con.php");
 
     $sql = "UPDATE accounts SET userStatus='1' where username='$user';";
     $result = mysqli_query($link, $sql);
@@ -47,7 +47,7 @@ function setOnlineStatus($user)
 // Function to update lastActivity timestamp in the database using $_SESSION when loading pages.
 function keepOnlineStatus($user)
 {
-    require_once("db_con.php");
+    require("db_con.php");
     // Set default timezone
     date_default_timezone_set('Europe/Madrid');
     // Store custom date format in a variable
@@ -64,7 +64,7 @@ function keepOnlineStatus($user)
 // Set to 0 the user status (offline).
 function setOfflineStatus($user)
 {
-    require_once("db_con.php");
+    require("db_con.php");
     // update status to 0 (offline)
     $sql = "UPDATE accounts SET userStatus='0' where username='$user';";
     mysqli_query($link, $sql);
@@ -85,7 +85,7 @@ function logout($user)
     session_destroy();
     
     // Redirect to the login page:
-    header('Location: ../index.php');
+    header('Location: ../../../index.php');
     exit();
 }
 
@@ -104,8 +104,6 @@ function logout($user)
 
 
 
-
-z
 
 
 
