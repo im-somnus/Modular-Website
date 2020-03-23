@@ -1,0 +1,357 @@
+body
+{
+  background-color:#7779;
+}
+
+
+/* adding some border for debugging */
+body > *, article, body header > div > *
+{
+    border: 1px solid black;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header > div
+{
+    display: flex;
+}
+
+header > div > div
+{
+    flex: 1;
+    height: 200px;
+}
+
+/* menu horizontal list */
+.menu ol
+{
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+    
+}
+.menu li
+{
+    display: inline-block;
+    
+}
+
+.menu .separator
+{
+    width: 2%;
+}
+
+
+
+.bottomList ol
+{
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+#image
+{
+    width: 80%;
+}
+
+/* .bottomList .li
+{
+    
+
+} */
+
+.thread
+{
+    border-top: 1px solid black; 
+    border-bottom: 1px solid black; 
+    padding: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+} 
+
+#postTiOw
+{
+ 
+  margin-left: 10px;
+  display: inline-block;
+}
+
+#postDate
+{
+  float:right;
+  margin-right: 10%;
+
+}
+
+.post
+{
+    border-top: 1px solid black; 
+    border-bottom: 1px solid black; 
+    min-height: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+} 
+
+#userInfo
+{ 
+ margin-left: 10px;
+} 
+
+.pfpic
+{
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+.postPart
+{
+    width: 50%;
+    margin:auto;
+}
+
+.rightCornerPanel
+{
+  text-align:center;
+}
+
+#userPanel
+{
+  width: 100%;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 20px;
+}
+
+#credentials
+{
+  width: 35%;
+  float: left;
+} 
+
+#profilePicturelogin
+{
+  margin-top: 5%;
+  width: 65%;
+  float: right;
+}
+
+.clearfix
+{
+  clear:both
+}
+
+
+
+#downloadButton
+{
+  position: relative;
+}
+
+#downloadButton
+{
+  margin: 0;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+/*
+ #downloadButton .a
+{
+   
+}
+
+
+
+*/
+
+ul
+{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+
+  text-align: center;
+}
+  
+li a, .dropdown > a
+{
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 15px 20px;
+  text-decoration: none;
+}
+
+li a:hover, .dropdown:hover > a
+{
+  background-color: grey;
+  border-radius: 5px;
+}
+
+li.dropdown
+{
+  display: inline-block;
+}
+
+.dropdown div 
+{
+  display: none;
+  position: absolute;
+  background-color: #f9f9f96e;
+  min-width: 160px;
+  z-index: 1;
+}
+
+.dropdown div a
+{
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown div a:hover
+{
+  background-color: #8d8d8d;
+  border-radius: 5px;
+}
+
+.dropdown:hover div
+{
+  display: block;
+}
+
+.right
+{
+    float: right;
+}
+
+footer
+{
+  margin-top: 10px;
+}
+
+main
+{
+  margin-top: 10px;
+}
+
+nav
+{
+  margin-top: 10px;
+}
+
+/* Create two equal columns that floats next to each other */
+.column
+{
+  float: left;
+  width: 20%;
+}
+
+.column li
+{
+  list-style-type: none;
+}
+
+/* Clear floats after the columns */
+.row:after
+{
+  content: "";
+  display: table;
+  clear: both;
+  text-decoration: none;
+}
+
+
+textarea, #postTitle
+{
+  resize: none;
+  width: 80%;
+  margin: 10px;
+}
+
+.postFormWrapper
+{
+  text-align: center;
+  margin: 10px;
+}
+
+
+table
+{
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
+
+th,td
+{
+  border: 1px solid black;
+  padding: 10px;
+  text-align: left;
+  
+}
+
+
+tr:nth-child(even)
+{
+  background-color: #dddddd;
+}
+
+/* Pagination section
+
+*/
+#pagination
+{
+  text-align: right;  
+  padding-right: 10px; 
+ 
+}
+
+#pagination a:link
+{
+  text-decoration: none;
+  color: black; 
+}
+
+#pagination a:visited
+{
+  color: black; 
+}
+
+
+#pagination a:hover
+{
+  color: blue; 
+}
+
+
+
+.faIcon a:link
+{
+  text-decoration: none;
+  color: black;
+}
+
+.faIcon a:active
+{
+  text-decoration: none;
+  color: red;
+}
+
+.faIcon a:visited
+{
+  text-decoration: none;
+  color: black;
+}
+
