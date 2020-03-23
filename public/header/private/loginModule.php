@@ -9,9 +9,9 @@
             <div class="rightCornerPanel">	
             <h3>Log in</h3>
                   <form action="public/header/private/validateLogin.php" method="post">
-                    Username <input type="text" name="user" placeholder="Username">
+                    Username <input type="text" name="user" placeholder="Username" required>
                             <br>		
-                        Password <input type="password" name="pass" placeholder="Password">
+                        Password <input type="password" name="pass" placeholder="Password" required>
                             <br>
                         <input type="submit" name="Login" value="Log in"> 
                     </form>
@@ -23,7 +23,7 @@
         }   
         else
         {
-            
+            include("public/header/private/registerModule.php");
         }
     } 
    // If we are logged in, show the user panel.
