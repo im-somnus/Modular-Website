@@ -11,6 +11,7 @@
     // If connection gave an error / was false
     if (!$link)
     {
+        header('location: ../../../index.php');
         // We store the error message to be printed on main module
         $_SESSION['error'] = 'Connect Error: ' . mysqli_connect_error();
     }

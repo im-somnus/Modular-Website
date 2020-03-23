@@ -1,6 +1,6 @@
 <?php
     // If session is set, redirect to index (so the user panel is shown)
-    if (isset($_SESSION['login']))  
+    if (isset($_SESSION['login']['user']))  
     {
         header("location: ../../../index.php");
         exit();
@@ -28,9 +28,6 @@
 <?php 
             }
         }
-        else
-        {   
-            include("public/header/private/loginModule.php");
-        }
+
     }
 ?>

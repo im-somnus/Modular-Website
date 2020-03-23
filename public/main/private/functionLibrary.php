@@ -48,6 +48,7 @@ function setOnlineStatus($user)
 function keepOnlineStatus($user)
 {
     require("db_con.php");
+    
     // Set default timezone
     date_default_timezone_set('Europe/Madrid');
     // Store custom date format in a variable
@@ -65,12 +66,73 @@ function keepOnlineStatus($user)
 function setOfflineStatus($user)
 {
     require("db_con.php");
+
     // update status to 0 (offline)
     $sql = "UPDATE accounts SET userStatus='0' where username='$user';";
     mysqli_query($link, $sql);
 
     mysqli_close($link);
 }
+
+// Function to register an account 
+function register($user, $pass)
+{
+    require("db_con.php");
+
+    $sql = "INSERT INTO accounts (username, password) 
+                      VALUES ('$user', md5('$pass'))";
+        mysqli_close($link);
+
+        // Verifying the query from the function verifyQuery
+        if (!verifyQuery($sql))
+        {
+            // Store the error in the session variable to display in main
+            $_SESSION['error'] = "ERROR! The username you entered is already in use.";
+
+            header("location: ../../../index.php");
+            exit();
+        }
+       
+        header("location: ../../../index.php");
+        exit;
+}
+
+// Function that verifies user login information and logs in the database.
+function login($user, $pass)
+{
+    require("db_con.php");
+    
+    // Check the data against the database
+    $sql = "Select * from accounts where username='$user' and password=md5('$pass')";
+    $result = mysqli_query($link, $sql);
+   
+    // Check if there are any results in the query
+    $row = mysqli_fetch_assoc($result);
+   
+    // If there's a result, means login is succesful (pass and user are valid)
+    if ($row)
+    {
+        // Store the user and rank data in the session to use it later on
+        $_SESSION['login']['user'] = $_POST['user'];
+        $_SESSION['rank'] = $row["rank"];
+
+        // We set the status online and update the online timer to keep the online session up
+        setOnlineStatus($_SESSION['login']['user']);
+        keepOnlineStatus($_SESSION['login']['user']);
+
+        // Redirect the user to the home page, since its valid.
+        header("location: ../../../index.php");
+        exit();
+    }
+    // If login is not valid, redirect to form.
+    else
+    {
+        $_SESSION['error'] = "Login error, try again.";
+        // We call logout.php to kill all session variables etc.
+        header("location: ../../../public/main/private/logout.php"); 
+    }
+}
+
 
 // Function to logout the users, destroy all session variables etc.
 function logout($user)
@@ -80,6 +142,7 @@ function logout($user)
     setOfflineStatus($user);
 
     // Unset the session variables.
+    unset($_SESSION['login']['user']);
     unset($_SESSION['login']);
     unset($_SESSION["rank"]);
     session_destroy();

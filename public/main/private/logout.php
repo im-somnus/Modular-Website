@@ -7,6 +7,7 @@
     setOfflineStatus($user);
 
     // Unset the session variables.
+    unset($_SESSION['login']['user']);
     unset($_SESSION['login']);
     unset($_SESSION["rank"]);
     session_destroy();
