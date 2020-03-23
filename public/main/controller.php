@@ -26,6 +26,7 @@
         </nav>
         <main>
 			<?php
+					include("public/main/private/errorModule.php");
 					include("public/main/mainModule.php");
             ?>
         </main>
