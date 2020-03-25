@@ -1,6 +1,3 @@
-<?php
-    include_once("public/main/private/functionLibrary.php");
-?>
 <ul>
     <li class="dropdown">
         <a href='index.php'>Home</a>

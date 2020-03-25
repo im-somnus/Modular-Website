@@ -1,5 +1,4 @@
 <?php
-include("public/main/private/functionLibrary.php");
     // If we left the form in blank or credentials weren't validated, we won't be able to access home.php.
     if (empty($_SESSION['login']))
     { 
@@ -44,7 +43,7 @@ include("public/main/private/functionLibrary.php");
             <div id="profilePicturelogin">
                 <img src="<?php echo checkPFPByUsername($user, $userRank); ?>" width="30%"/>
             </div>
-            <br><a href='include/logout.php' id="logoutButton"><button>Logout</button></a>
+            <br><a href='public/main/private/logout.php' id="logoutButton"><button>Logout</button></a>
             <div class="clearfix"></div>
          </div>
 <?php
