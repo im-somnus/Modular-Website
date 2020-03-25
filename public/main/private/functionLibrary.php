@@ -13,7 +13,7 @@ function dump($v)
 /* ####################################### QUERY/SQL FUNCTIONS ####################################### */
 
 // Function to shorten the queries, sends 0 if the query failed, 1 if it worked.
-function verifyQuery($query)
+function executeQuery($query)
 {
     require("db_con.php");  
     
@@ -30,6 +30,7 @@ function verifyQuery($query)
         return 0;
     }
 }
+
 
 /* ####################################### USERS FUNCTIONS ####################################### */
 
@@ -81,10 +82,9 @@ function register($user, $pass)
 
     $sql = "INSERT INTO accounts (username, password) 
                       VALUES ('$user', md5('$pass'))";
-        mysqli_close($link);
 
-        // Verifying the query from the function verifyQuery
-        if (!verifyQuery($sql))
+        // Verifying the query from the function executeQuery
+        if (!executeQuery($sql))
         {
             // Store the error in the session variable to display in main
             $_SESSION['error'] = "ERROR! The username you entered is already in use.";
@@ -94,7 +94,7 @@ function register($user, $pass)
         }
        
         header("location: ../../../index.php");
-        exit;
+        exit;   
 }
 
 // Function that verifies user login information and logs in the database.
@@ -110,8 +110,14 @@ function login($user, $pass)
     $row = mysqli_fetch_assoc($result);
    
     // If there's a result, means login is succesful (pass and user are valid)
-    if ($row)
+    if (!$row)
     {
+        $_SESSION['error'] = "Login error, try again.";
+
+        header("location: ../../../index.php");
+        exit();
+    }
+
         // Store the user and rank data in the session to use it later on
         $_SESSION['login']['user'] = $_POST['user'];
         $_SESSION['rank'] = $row["rank"];
@@ -120,17 +126,11 @@ function login($user, $pass)
         setOnlineStatus($_SESSION['login']['user']);
         keepOnlineStatus($_SESSION['login']['user']);
 
+        $_SESSION['success'] = "You have successfully created your account.";
+
         // Redirect the user to the home page, since its valid.
         header("location: ../../../index.php");
         exit();
-    }
-    // If login is not valid, redirect to form.
-    else
-    {
-        $_SESSION['error'] = "Login error, try again.";
-        // We call logout.php to kill all session variables etc.
-        header("location: ../../../public/main/private/logout.php"); 
-    }
 }
 
 
