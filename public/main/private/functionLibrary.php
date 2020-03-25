@@ -93,6 +93,8 @@ function register($user, $pass)
             exit();
         }
        
+        $_SESSION['success'] = "You have successfully created your account.";
+
         header("location: ../../../index.php");
         exit;   
 }
@@ -126,8 +128,7 @@ function login($user, $pass)
         setOnlineStatus($_SESSION['login']['user']);
         keepOnlineStatus($_SESSION['login']['user']);
 
-        $_SESSION['success'] = "You have successfully created your account.";
-
+    
         // Redirect the user to the home page, since its valid.
         header("location: ../../../index.php");
         exit();
