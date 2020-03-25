@@ -414,23 +414,163 @@ function countPostsByID($id)
 }
 
 
+function countOnlineUsers()
+{
+    include("db_con.php");
+    $sql = "SELECT count(username) FROM accounts where userStatus='1';";  
+
+    $result = mysqli_query($link, $sql);
+
+    mysqli_close($link);
+    $resultCheck = mysqli_num_rows($result);
+    // We will keep iterating as long as theres data
+    if ($resultCheck > 0)
+    {
+        while ($row = mysqli_fetch_assoc($result))
+        {
+           return $row['count(username)'];
+        }
+    }
+}
+
+function displayOnlineUsers()
+{
+    include("db_con.php");
+    $sql = "SELECT username FROM accounts where userStatus='1';";  
+
+    $result = mysqli_query($link, $sql);
+
+    mysqli_close($link);
+    echo "<h2>Who's online?</h2>";
+    echo "Total number of users online: " . countOnlineUsers() . "<br><br> <b>Users:</b><br><br> ";
+    $resultCheck = mysqli_num_rows($result);
+    // We will keep iterating as long as theres data
+    if ($resultCheck >= 0)
+    {
+        while ($row = mysqli_fetch_assoc($result))
+        {
+             echo $row['username'] . ", ";
+        }
+    }
+}
+
+
 
 /*  ####################################### POST FUNCTIONS ####################################### */
+
+
+function displayLastPosts()
+{
+    echo "<h2> Last Posts</h2>";
+    include("db_con.php");
+
+    // We display all posts, ordered by last posted and limit of 10
+    $sql = "select DISTINCT thread_id from (select * from post group by postDate order by postDate desc) alias limit 7";
+    
+    $result = mysqli_query($link, $sql);
+    mysqli_close($link);
+    $resultCheck = mysqli_num_rows($result);
+
+        // Here we show all posts that exists in our db
+    if ($resultCheck > 0)
+    {
+        while ($row = mysqli_fetch_assoc($result))
+        {
+            $threadID = $row['thread_id'];
+            $threadTitle = getThreadTitleById($threadID);
+            $category = getCategoryIDbyThreadID($threadID);
+?>
+                        <div class="thread">
+                           <div class="postPart">
+                               <?php
+                                   echo "<a href='index.php?thread=$category&viewtopic=$threadID'>". $threadTitle . "</a><br>";
+                                   displayPostDateByThreadID($threadID);
+                               ?>
+                           <br><br>
+                        </div>
+                       </div>
+<?php
+        }
+    }
+}
+
+
+// Function to display the date of a post from a thread id
+function displayPostDateByThreadID($threadID)
+{
+    include("db_con.php");
+    $sql = "SELECT postDate FROM post where thread_id='$threadID' ORDER BY postDate desc limit 1";
+    
+    if(executeQuery($sql))
+    {
+         $result = mysqli_query($link, $sql);
+         $resultCheck = mysqli_num_rows($result);
+         mysqli_close($link);
+          // We will keep iterating as long as theres data
+          if ($resultCheck > 0)
+          {
+                while ($row = mysqli_fetch_assoc($result))
+                {
+                    echo $row['postDate'];
+                }
+            
+          }
+    }
+}
 
 
 
 /*  ####################################### THREAD FUNCTIONS ####################################### */
 
+// Function to get the thread title by id
+function getThreadTitleById($id)
+{
+    include("db_con.php");
 
+    // We display all posts, ordered by last posted and limit of 10
+    $sql = "select postTitle from thread where id='$id';";
+    
+    $result = mysqli_query($link, $sql);
+    mysqli_close($link);
+    $resultCheck = mysqli_num_rows($result);
+
+        // Here we show all posts that exists in our db
+    if ($resultCheck > 0)
+    {
+        while ($row = mysqli_fetch_assoc($result))
+        {                
+            $postTitle = $row['postTitle'];
+            return $postTitle;
+        }
+    }
+}
 
 
 /*  ####################################### CATEGORIES FUNCTIONS ####################################### */
 
 
+// Function to get the category id by thread_id
+function getCategoryIDbyThreadID($threadID)
+{
+    include("db_con.php");
 
+    // We display all posts, ordered by last posted and limit of 10
+    $sql = "select category_id from thread where id='$threadID';";
+    
+    $result = mysqli_query($link, $sql);
+    mysqli_close($link);
+    $resultCheck = mysqli_num_rows($result);
 
-
-
+        // Here we show all posts that exists in our db
+    if ($resultCheck > 0)
+    {
+        while ($row = mysqli_fetch_assoc($result))
+        {
+           $category = $row['category_id'];
+           return $category;
+        }
+    }
+}
 
 
 

@@ -28,6 +28,7 @@ elseif (isset($_GET['download']))
     include('downloadModule.php');
 else
 {   
- 
+    displayLastPosts();
+    displayOnlineUsers();
 }
 ?>
