@@ -1,4 +1,5 @@
 <?php
+include("public/main/private/functionLibrary.php");
     // If we left the form in blank or credentials weren't validated, we won't be able to access home.php.
     if (empty($_SESSION['login']))
     { 
@@ -35,13 +36,15 @@
 ?>
          <div id="userPanel">
             <div id="credentials">
-                <p><?php echo $user ?></p>  
-                
+                <p><b><?php echo $user ?></b></p>  
+                <p>Points: <b><?php echo checkPoints($user) ?></b></p>
+                <p><?php echo "Posts: <b>". countPostsByUsername($user); ?></b></p>
                 <p><a href="index.php?profile">Edit Profile</a></p> 
             </div>
             <div id="profilePicturelogin">
+                <img src="<?php echo checkPFPByUsername($user, $userRank); ?>" width="30%"/>
             </div>
-            <br><a href='public/main/private/logout.php' id="logoutButton"><button>Logout</button></a>
+            <br><a href='include/logout.php' id="logoutButton"><button>Logout</button></a>
             <div class="clearfix"></div>
          </div>
 <?php
