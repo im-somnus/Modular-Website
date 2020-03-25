@@ -25,10 +25,16 @@
             </div>
         </nav>
         <main>
-			<?php
-					include("public/main/private/alertMessageModule.php");
-					include("public/main/mainModule.php");
-            ?>
+			<div class="menu">
+				<?php
+						include("public/main/private/alertMessageModule.php");
+				?>
+			</div>
+			<div class="menu">
+				<?php
+						include("public/main/mainModule.php");
+				?>
+			</div>
         </main>
 		<footer>
 			<?php

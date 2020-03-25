@@ -5,9 +5,38 @@
 // function to dump all variables (test)
 function dump($v)
 {
-    echo '<pre>';
+    echo "<pre>";
         var_dump($v);
-    echo '<pre>';
+    echo "<pre>";
+}
+
+/* ####################################### GENERIC FUNCTIONS ####################################### */
+
+// Validate the user input from login/register modules.
+function validateUserInput($user, $pass)
+{
+    $pattern = "/^[A-Za-z0-9][A-Za-z0-9_-]{4,21}$/";
+    // Check if username meets the minimum requirements.
+    if (!preg_match($pattern, $user))
+    {
+        $_SESSION['error'] = "Username does not meet the requirements, try again";
+
+        header("location: ../../../index.php");
+        exit();
+    }
+    else
+    {
+        // Check if password meets the next pattern;
+        $pattern = "/[@$%&.,A-Za-zçñ0-9_-]{6,20}$/";
+
+        if (!preg_match($pattern, $pass))
+        {
+            $_SESSION['error'] = "Password does not meet the requirements, try again";
+
+            header("location: ../../../index.php");
+            exit();
+        }
+    }
 }
 
 /* ####################################### QUERY/SQL FUNCTIONS ####################################### */
@@ -15,17 +44,17 @@ function dump($v)
 // Function to shorten the queries, sends 0 if the query failed, 1 if it worked.
 function executeQuery($query)
 {
-    require("db_con.php");  
-    
-    if ($result = mysqli_query($link, $query)) 
-    { 
+    require("db_con.php");
+
+    if ($result = mysqli_query($link, $query))
+    {
         mysqli_close($link);
         // Returns true if success Query
         return 1;
     }
     else
     {
-        mysqli_close($link); 
+        mysqli_close($link);
         // Returns false if failed Query
         return 0;
     }
@@ -49,7 +78,7 @@ function setOnlineStatus($user)
 function keepOnlineStatus($user)
 {
     require("db_con.php");
-    
+
     // Set default timezone
     date_default_timezone_set('Europe/Madrid');
     // Store custom date format in a variable
@@ -75,12 +104,15 @@ function setOfflineStatus($user)
     mysqli_close($link);
 }
 
-// Function to register an account 
+// Function to register an account
 function register($user, $pass)
 {
     require("db_con.php");
 
-    $sql = "INSERT INTO accounts (username, password) 
+     // Validate if that user input was valid before doing any queries.
+     validateUserInput($user, $pass);
+     
+    $sql = "INSERT INTO accounts (username, password)
                       VALUES ('$user', md5('$pass'))";
 
         // Verifying the query from the function executeQuery
@@ -92,25 +124,28 @@ function register($user, $pass)
             header("location: ../../../index.php");
             exit();
         }
-       
+
         $_SESSION['success'] = "You have successfully created your account.";
 
         header("location: ../../../index.php");
-        exit;   
+        exit;
 }
 
 // Function that verifies user login information and logs in the database.
 function login($user, $pass)
 {
     require("db_con.php");
-    
+
+    // Validate if that user input was valid before doing any queries.
+    validateUserInput($user, $pass);
+
     // Check the data against the database
     $sql = "Select * from accounts where username='$user' and password=md5('$pass')";
     $result = mysqli_query($link, $sql);
-   
+
     // Check if there are any results in the query
     $row = mysqli_fetch_assoc($result);
-   
+
     // If there's a result, means login is succesful (pass and user are valid)
     if (!$row)
     {
@@ -128,7 +163,7 @@ function login($user, $pass)
         setOnlineStatus($_SESSION['login']['user']);
         keepOnlineStatus($_SESSION['login']['user']);
 
-    
+
         // Redirect the user to the home page, since its valid.
         header("location: ../../../index.php");
         exit();
@@ -149,7 +184,7 @@ function logout($user)
     unset($_SESSION['success']);
     unset($_SESSION["rank"]);
     session_destroy();
-    
+
     // Redirect to the login page:
     header('Location: ../../../index.php');
     exit();
