@@ -2,11 +2,11 @@
     <li class="dropdown">
         <a href='index.php'>Home</a>
         <?php
-            if (isset($_SESSION['login']))
+            if (!isset($_SESSION['login']))
             {
         ?>
                 <div>
-                    <a href="index.php?profile">Profile</a>
+                    <a href="index.php?login">Profile</a>
                 </div>
         <?php
             }

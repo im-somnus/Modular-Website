@@ -8,6 +8,8 @@ elseif (isset($_GET['thread']))
     include('threadsModule.php');
 elseif (isset($_GET['code']))
     include('cocModule.php');
+elseif (isset($_GET['login']))
+    echo "You must be logged in to view this content.";
 elseif (isset($_GET['shop']))
     include('shopModule.php');
 elseif (isset($_GET['points']))
