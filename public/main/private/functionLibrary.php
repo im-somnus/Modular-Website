@@ -40,7 +40,7 @@ function setOnlineStatus($user)
     require("db_con.php");
 
     $sql = "UPDATE accounts SET userStatus='1' where username='$user';";
-    $result = mysqli_query($link, $sql);
+    mysqli_query($link, $sql);
 
     mysqli_close($link);
 }
@@ -145,6 +145,8 @@ function logout($user)
     // Unset the session variables.
     unset($_SESSION['login']['user']);
     unset($_SESSION['login']);
+    unset($_SESSION['error']);
+    unset($_SESSION['success']);
     unset($_SESSION["rank"]);
     session_destroy();
     

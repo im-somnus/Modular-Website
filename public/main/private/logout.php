@@ -10,6 +10,8 @@
     unset($_SESSION['login']['user']);
     unset($_SESSION['login']);
     unset($_SESSION["rank"]);
+    unset($_SESSION['error']);
+    unset($_SESSION['success']);
     session_destroy();
     
     // Redirect to the login page:
