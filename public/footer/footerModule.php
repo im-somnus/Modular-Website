@@ -3,7 +3,18 @@
   <div class="column">
       <ol>
         <li><b><a href='index.php'>Home</a></b></li>
-        <li><a href="index.php?profile">Profile</a></li>
+        <li>
+        <?php
+            if (isset($_SESSION['login']))
+            {
+        ?>
+                <div>
+                    <a href="index.php?profile">Profile</a>
+                </div>
+        <?php
+            }
+        ?>
+        </li>
       </ol>
   </div>
   <div class="column">

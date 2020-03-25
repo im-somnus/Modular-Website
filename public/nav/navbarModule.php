@@ -1,9 +1,19 @@
+<?php
+    include_once("public/main/private/functionLibrary.php");
+?>
 <ul>
     <li class="dropdown">
         <a href='index.php'>Home</a>
-        <div>
-            <a href="index.php?profile">Profile</a>
-        </div>
+        <?php
+            if (isset($_SESSION['login']))
+            {
+        ?>
+                <div>
+                    <a href="index.php?profile">Profile</a>
+                </div>
+        <?php
+            }
+        ?>
     </li>
 <li class="separator"></li>
     <li class="dropdown">
