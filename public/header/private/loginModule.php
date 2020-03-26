@@ -35,9 +35,9 @@
 ?>
         <div id="userPanel">
             <div id="credentials">
-                <p><?php echo $user ?></p>  
-                <p><?php echo checkPoints($user).'$' ?></p>
-                <p><?php echo "Posts: ". countPostsByUsername($user); ?></p>
+                <p><b><?php echo $user ?></b></p>  
+                <p>Points: <b><?php echo checkPoints($user) ?></b></p>
+                <p><?php echo "Posts: <b>". countPostsByUsername($user); ?></b></p>
                 <p><a href="index.php?profile">Edit Profile</a></p> 
                 <p><?php adminPanel($user, $userRank) ?></p>
             </div>
