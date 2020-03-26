@@ -522,13 +522,13 @@ function checkPFPById($id)
     {
          $result = mysqli_query($link, $sql);
          $resultCheck = mysqli_num_rows($result);
-        mysqli_close($link);
+         mysqli_close($link);
           // We will keep iterating as long as theres data
           if ($resultCheck > 0)
           {
               while ($row = mysqli_fetch_assoc($result))
                   {
-                    echo "../../assets/images/users/profilePictures/$username".$row['pfpicture'];
+                    echo "../../../assets/images/users/profilePictures/$username" . $row['pfpicture'];
                   }
           }
     }
