@@ -29,7 +29,7 @@ function rankCheck($rank)
 // Validate the user input from login/register modules.
 function validateUserInput($user, $pass)
 {
-    $pattern = "/^[A-Za-z0-9][A-Za-z0-9_-]{4,21}$/";
+    $pattern = "/^[A-Za-z0-9][A-Za-z0-9_-]{3,21}$/";
     // Check if username meets the minimum requirements.
     if (!preg_match($pattern, $user))
     {
@@ -41,7 +41,7 @@ function validateUserInput($user, $pass)
     else
     {
         // Check if password meets the next pattern;
-        $pattern = "/[@$%&A-Za-zçñ0-9_-]{4,20}$/";
+        $pattern = "/[@$%&A-Za-zçñ0-9_-]{3,20}$/";
 
         if (!preg_match($pattern, $pass))
         {
@@ -52,6 +52,8 @@ function validateUserInput($user, $pass)
         }
     }
 }
+
+
 
 /* ####################################### QUERY/SQL FUNCTIONS ####################################### */
 

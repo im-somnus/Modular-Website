@@ -44,7 +44,7 @@
             <div id="profilePicturelogin">
                 <img src="<?php echo checkPFPByUsername($user, $userRank); ?>" width="30%"/>
             </div>
-            <br><a href='include/logout.php' id="logoutButton"><button>Logout</button></a>
+            <br><a href='public/main/private/logout.php' id="logoutButton"><button>Logout</button></a>
             <div class="clearfix"></div>
          </div>
 <?php

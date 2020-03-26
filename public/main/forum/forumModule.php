@@ -1,7 +1,6 @@
 <?php
 rankCheck(2);
 keepOnlineStatus($_SESSION['login']['user']);
-// We insert post if theres any submited
 
 echo '
 <div>
