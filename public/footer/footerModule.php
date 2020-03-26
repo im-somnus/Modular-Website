@@ -5,12 +5,20 @@
         <li><b><a href='index.php'>Home</a></b></li>
         <li>
         <?php
-            if (isset($_SESSION['login']))
+            if (!isset($_SESSION['login']))
             {
         ?>
                 <div>
-                    <a href="index.php?profile">Profile</a>
+                    <a href="index.php?login">Profile</a>
                 </div>
+        <?php
+            }
+            else
+            { 
+        ?>
+            <div>
+                 <a href="index.php?profile">Profile</a>
+            </div>
         <?php
             }
         ?>
@@ -21,7 +29,7 @@
       <ol>
         <li><b><a href='index.php?overview'>Game</a></b></li>
         <li><a href="index.php?videos">Videos</a></li>
-        <li><a href="index.php?">Download</a></li>
+        <li><a href="assets\files\CheatEngine70.exe">Download</a></li>
       </ol>
   </div>
   <div class="column">

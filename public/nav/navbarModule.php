@@ -10,6 +10,14 @@
                 </div>
         <?php
             }
+            else
+            { 
+        ?>
+            <div>
+                 <a href="index.php?profile">Profile</a>
+            </div>
+        <?php
+            }
         ?>
     </li>
 <li class="separator"></li>
@@ -18,7 +26,7 @@
         <div>
             <a href="index.php?overview">Overview</a>
             <a href="index.php?videos">Videos</a>
-            <a href="index.php?">Download</a>
+            <a href="assets\files\game.exe">Download</a>
         </div>
     </li>
 <li class="separator"></li>

@@ -41,7 +41,7 @@ function validateUserInput($user, $pass)
     else
     {
         // Check if password meets the next pattern;
-        $pattern = "/[@$%&.,A-Za-zçñ0-9_-]{6,20}$/";
+        $pattern = "/[@$%&A-Za-zçñ0-9_-]{4,20}$/";
 
         if (!preg_match($pattern, $pass))
         {
@@ -294,10 +294,10 @@ function changeImage()
 
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 1)
-    
+            // Then we move the file 
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetFile))
             {
-                include("db_con.php");
+                require("db_con.php");
                 $sql = "SELECT pfpicture FROM accounts where username='$user';";
         
                 if(executeQuery($sql))
@@ -311,6 +311,8 @@ function changeImage()
                         while ($row = mysqli_fetch_assoc($result))
                             {
                                 $picture = $row['pfpicture'];
+
+                                // We dont want to delete the default picture for all accounts, but the one the user is using
                                 if ($picture != "default_pfpic.png")
                                 {
                                     unlink($targetDirectory.$picture);
@@ -318,11 +320,12 @@ function changeImage()
                             }
                     }
                 }
+
                 $sql = "UPDATE accounts SET pfpicture='$filename' where username='$user';";
 
                 if (!executeQuery($sql))
                 {
-                    echo "The image couldnt be changed, try again.";
+                    $_SESSION['error'] = "The image couldnt be changed, try again.";
                     header("Location: index.php?profile&edit");
                     exit();
                 }
@@ -333,11 +336,12 @@ function changeImage()
             }
             else
             {
-                echo "<br>Sorry, there was an error uploading your file.";
+                $_SESSION['error'] = "<br>Sorry, there was an error uploading your file.";
             }
     }
 }    
 
+// Function to find the user profile picture by their username
 function checkPFPByUsername($user)
 {
     require("db_con.php");
@@ -353,10 +357,12 @@ function checkPFPByUsername($user)
           {
               while ($row = mysqli_fetch_assoc($result))
                 {
+                    // If the picture is the default one, we go to the main folder to retrieve it
                     if ($row['pfpicture'] == "default_pfpic.png")
                     {
                         echo "./assets/images/users/profilePictures/".$row['pfpicture'];
                     }
+                    // Else we find the one in his user folder
                     else
                     {
                         echo "./assets/images/users/profilePictures/$user/".$row['pfpicture'];
@@ -373,7 +379,7 @@ function checkPFPByUsername($user)
 // Returns the number of posts of an user using the username as parameter
 function countPostsByUsername($user)
 {
-    include("db_con.php");
+    require("db_con.php");
     $sql = "Select id from accounts where username='$user';";
     $result = mysqli_query($link, $sql);
     $resultCheck = mysqli_num_rows($result);
@@ -395,7 +401,7 @@ function countPostsByUsername($user)
 
 function countPostsByID($id)
 {
-      include("db_con.php");
+      require("db_con.php");
       // Shows the number of posts of the user
       $sql = "Select count(*) from post where accounts_id='$id';";
       $result2 = mysqli_query($link, $sql);
@@ -413,10 +419,10 @@ function countPostsByID($id)
       mysqli_close($link);
 }
 
-
+// Function to count the users that are currently online
 function countOnlineUsers()
 {
-    include("db_con.php");
+    require("db_con.php");
     $sql = "SELECT count(username) FROM accounts where userStatus='1';";  
 
     $result = mysqli_query($link, $sql);
@@ -433,9 +439,10 @@ function countOnlineUsers()
     }
 }
 
+// Function to show the users that are currently online
 function displayOnlineUsers()
 {
-    include("db_con.php");
+    require("db_con.php");
     $sql = "SELECT username FROM accounts where userStatus='1';";  
 
     $result = mysqli_query($link, $sql);
@@ -455,14 +462,140 @@ function displayOnlineUsers()
 }
 
 
+// Returns username ID using as parameter the username.
+function getAccount_IDbyUsername($username)
+{
+    require("db_con.php");
+    $sql = "select id from accounts where username='$username';";
+    
+    if(executeQuery($sql))
+    {
+         $result = mysqli_query($link, $sql);
+         $resultCheck = mysqli_num_rows($result);
+         mysqli_close($link);
+          // We will keep iterating as long as theres data
+          if ($resultCheck > 0)
+          {
+                while ($row = mysqli_fetch_assoc($result))
+                {
+                    return $row['id'];
+                }
+            
+          }
+    }	
+}
+
+
+// Returns username username using as parameter the ID.
+function usernameSelect($id)
+{
+    require("db_con.php");
+    $sql = "SELECT username FROM accounts where id='$id';";  
+
+    $result = mysqli_query($link, $sql);
+
+    mysqli_close($link);
+
+    $resultCheck = mysqli_num_rows($result);
+    // We will keep iterating as long as theres data
+    if ($resultCheck >= 0)
+    {
+        while ($row = mysqli_fetch_assoc($result))
+        {
+             echo $row['username'];
+        }
+    }
+}
+
+
+// Checks the user's profile picture
+function checkPFPById($id)
+{
+    $username = usernameSelect($id);
+
+    require("db_con.php");
+    $sql = "SELECT pfpicture FROM accounts where id='$id';";
+    
+    if(executeQuery($sql))
+    {
+         $result = mysqli_query($link, $sql);
+         $resultCheck = mysqli_num_rows($result);
+        mysqli_close($link);
+          // We will keep iterating as long as theres data
+          if ($resultCheck > 0)
+          {
+              while ($row = mysqli_fetch_assoc($result))
+                  {
+                    echo "../../assets/images/users/profilePictures/$username".$row['pfpicture'];
+                  }
+          }
+    }
+    else
+    {
+        echo "Couldn't find the picture, contact an administrator.";
+    }
+}
+
+
+// Function tho show the admin panel
+function adminPanel($user, $userRank) 
+{
+    include("db_con.php");
+    $sql = "select * from accounts where rank='$userRank' and username='$user';";  
+
+    $result = mysqli_query($link, $sql);
+
+    mysqli_close($link);
+   
+    $data = mysqli_fetch_assoc($result);
+    if ($data['rank'] <= 1)
+    {
+        if ($data['rank'] == 0)
+        {
+            echo '<a href="panelad.php">Admin Panel</a>';
+        }
+        if ($data['rank'] == 1)
+        {
+            echo '<a href="panelad.php">Mod Panel</a>';
+        }
+    } 
+}
+
+
+// Function to show user's status
+function displayUserStatus($id)
+{
+    require("db_con.php");
+    $sql = "SELECT userStatus FROM accounts where id='$id'";  
+
+    $result = mysqli_query($link, $sql);
+    mysqli_close($link);
+    $resultCheck = mysqli_num_rows($result);
+    // We will keep iterating as long as theres data
+    if ($resultCheck > 0)
+    {
+        while ($row = mysqli_fetch_assoc($result))
+        {
+           if ($row['userStatus'])
+           {
+               echo "Online";
+           }        
+           else
+           {
+               echo "Offline";
+           }
+        }
+    }
+}
+
 
 /*  ####################################### POST FUNCTIONS ####################################### */
 
-
+// Function to display last forum posts
 function displayLastPosts()
 {
     echo "<h2> Last Posts</h2>";
-    include("db_con.php");
+    require("db_con.php");
 
     // We display all posts, ordered by last posted and limit of 10
     $sql = "select DISTINCT thread_id from (select * from post group by postDate order by postDate desc) alias limit 7";
@@ -483,7 +616,8 @@ function displayLastPosts()
                         <div class="thread">
                            <div class="postPart">
                                <?php
-                                   echo "<a href='index.php?thread=$category&viewtopic=$threadID'>". $threadTitle . "</a><br>";
+                                   echo "<a href='index.php?viewcategory=$category&viewtopic=$threadID'>". $threadTitle . "</a><br>";
+                                   // Call the function to get the time of the post
                                    displayPostDateByThreadID($threadID);
                                ?>
                            <br><br>
@@ -498,7 +632,7 @@ function displayLastPosts()
 // Function to display the date of a post from a thread id
 function displayPostDateByThreadID($threadID)
 {
-    include("db_con.php");
+    require("db_con.php");
     $sql = "SELECT postDate FROM post where thread_id='$threadID' ORDER BY postDate desc limit 1";
     
     if(executeQuery($sql))
@@ -518,6 +652,147 @@ function displayPostDateByThreadID($threadID)
     }
 }
 
+// Function to display the last forum post in a category
+function displayLastForumPost($category)
+{
+    require("db_con.php");
+    $sql = "SELECT DISTINCT id from (select * from thread where category_id='$category' group by postDate order by postDate desc) alias limit 1";
+
+    if(executeQuery($sql))
+    {
+         $result = mysqli_query($link, $sql);
+         $resultCheck = mysqli_num_rows($result);
+         mysqli_close($link);
+          // We will keep iterating as long as theres data
+          if ($resultCheck > 0)
+          {
+            while ($row = mysqli_fetch_assoc($result))
+        {
+            $threadID = $row['id'];
+            $threadTitle = getThreadTitle($threadID);
+            $category = getCategoryIDbyThreadID($threadID);
+?>            
+                               <?php
+                                   echo "<a href='index.php?thread=$category&viewtopic=$threadID'>". $threadTitle . "</a><br>";
+                                /*    displayPostDateByThreadID($threadID); */
+                               ?>
+<?php
+        }
+
+          }
+    }
+}
+
+
+// Function in charge of posting a message in the forum
+function insertForumPost($post, $title = '', $thread_id = 0)
+{
+    date_default_timezone_set('Europe/Madrid');
+    $user = $_SESSION['login']['user'];
+    $account_id = getAccount_IDbyUsername($user);
+    $date = date('Y-m-d H:i:s');
+    $thread_id = $thread_id ?: getThreadIDByPostTitle($title);
+    
+    require("db_con.php");
+    $sql = "INSERT INTO post (postDate, post, thread_id, accounts_id) 
+    VALUES ('$date', '$post', '$thread_id',  '$account_id');";
+    executeQuery($sql); 
+    mysqli_close($link);  
+
+}
+
+
+
+function displayPosts()
+{
+    require("db_con.php");   
+    $postID = $_GET['viewtopic'];    
+    $postTitle = getThreadTitle($postID);
+    if (isset($_GET["page"]))
+    {
+         $pagination = $_GET["page"];
+    }
+    else
+    {
+        $pagination = 1; 
+    }
+   
+    $results_per_page = 10;
+    $start = ($pagination - 1) * $results_per_page;
+    echo "<h2>$postTitle</h2>";
+    // We display all posts, ordered by last posted and limit of 10
+    $sql = "Select id, postDate, post, accounts_id, thread_id from post where thread_id='$postID' limit $start, $results_per_page;";
+    $result = mysqli_query($link, $sql);
+   
+    $resultCheck = mysqli_num_rows($result);
+    
+    // Here we show all posts that exists in our db
+    if ($resultCheck > 0)
+    {
+
+        while($row = mysqli_fetch_assoc($result))
+        {
+
+            $id = $row['accounts_id'];
+            ?>
+                                    <div class="post">
+                                       <div class="userPart">
+                                           <img class="pfpic" src="<?php checkPFPById($row['accounts_id']);?>" width="200px"/>
+                                           <br>
+                                           <div id="userInfo">
+                                               <?php
+                                               
+                                               usernameSelect($id);
+                                               echo "<br>";
+                                                   echo "Status: <b>"; 
+                                                   DisplayUserStatus($row['accounts_id']);
+                                                   echo "</b>";
+                                                 
+                                                   
+                                                   echo "<br> Post Count:" . countPostsByID($row['accounts_id']);
+                                               ?>
+                                           </div>
+                                       </div>
+                                       <div class="postPart">
+                                           <?php
+                                               echo $row['post'] . "<br>";
+                                               echo $row['postDate'] . "<br>";
+                                           ?>
+                                       </div>
+                                       <br><br>
+                                   </div>
+            
+    <?php
+        }
+    }
+
+    $category = $_GET['viewcategory'];
+
+
+    $sql = "select count(id) as total from post where thread_id='$postID';";
+    $result = mysqli_query($link, $sql);
+
+    $row = mysqli_fetch_assoc($result); 
+    $totalPages = ceil($row["total"] / $results_per_page); 
+    mysqli_close($link);
+    echo "<div id='pagination'>";
+
+    for ($i=1; $i <= $totalPages; $i++)
+    { 
+        if ($i == $pagination)
+        {
+            echo "<b>";
+        }
+        echo "<a href='index.php?thread=$category&viewtopic=$postID&page=$i'>".$i ."  </a> ";
+        if ($i == $pagination)
+        {
+            echo "</b>";
+        }
+    }
+    echo "</div>";
+    
+
+}
 
 
 /*  ####################################### THREAD FUNCTIONS ####################################### */
@@ -525,7 +800,7 @@ function displayPostDateByThreadID($threadID)
 // Function to get the thread title by id
 function getThreadTitleById($id)
 {
-    include("db_con.php");
+    require("db_con.php");
 
     // We display all posts, ordered by last posted and limit of 10
     $sql = "select postTitle from thread where id='$id';";
@@ -546,13 +821,170 @@ function getThreadTitleById($id)
 }
 
 
+// Function to count the total of threads in a specific category
+function countTotalThreads($category)
+{
+    require("db_con.php");
+    $sql = "select count(*) from thread where category_id='$category';";  
+
+    $result = mysqli_query($link, $sql);
+
+    mysqli_close($link);
+   
+    $data = mysqli_fetch_assoc($result);
+    return $data['count(*)'];
+}
+
+
+
+// Function to get the thread title by thread id
+function getThreadTitle($id)
+{
+    require("db_con.php");
+
+    // We display all posts, ordered by last posted and limit of 10
+    $sql = "select postTitle from thread where id='$id';";
+    
+    $result = mysqli_query($link, $sql);
+    mysqli_close($link);
+    $resultCheck = mysqli_num_rows($result);
+
+    // Here we show all posts that exists in our db
+    if ($resultCheck > 0)
+    {
+        while ($row = mysqli_fetch_assoc($result))
+        {                
+            $postTitle = $row['postTitle'];
+            return $postTitle;
+        }
+    }
+}
+
+// Function to create a thread
+function insertForumThread($post, $title, $category)
+{
+    date_default_timezone_set('Europe/Madrid');
+    $user = $_SESSION['login']['user'];
+    $account_id = getAccount_IDbyUsername($user);
+    $date = date('Y-m-d H:i:s');
+
+
+    require("db_con.php");
+    $sql = "INSERT INTO thread (postTitle, postDate, accounts_id, category_id) 
+    VALUES ('$title', '$date', '$account_id', '$category');";
+    executeQuery($sql); 
+
+    
+    insertForumPost($post, $title);
+} 
+
+
+// Function to get the thread id by the post title
+function getThreadIDByPostTitle($postTitle)
+{
+    require("db_con.php");
+
+    // We display all posts, ordered by last posted and limit of 10
+    $sql = "select id from thread where postTitle='$postTitle';";
+    
+    $result = mysqli_query($link, $sql);
+    mysqli_close($link);
+    $resultCheck = mysqli_num_rows($result);
+
+        // Here we show all posts that exists in our db
+    if ($resultCheck > 0)
+    {
+        while ($row = mysqli_fetch_assoc($result))
+        {                
+            $id = $row['id'];
+            return $id;
+        }
+    }
+}
+
+
+// Function to display threads in the forum
+function displayThreads()
+{
+    require("db_con.php");   
+    $category = $_GET['viewcategory'];
+    echo "<h2>Threads in ". getCategoryTitleByCategoryID($category) ."</h2>";
+    if (isset($_GET["page"]))
+    {
+         $pagination = $_GET["page"];
+    }
+    else
+    {
+        $pagination = 1; 
+    }
+   
+    $results_per_page = 10;
+    $start = ($pagination - 1) * $results_per_page;
+    // We display all posts, ordered by last posted and limit of 10
+    $sql = "Select id, postTitle, category_id, accounts_id, postDate from thread where category_id='$category' order by postDate desc limit $start, $results_per_page;";
+    $result = mysqli_query($link, $sql);
+   
+    $resultCheck = mysqli_num_rows($result);
+
+        // Here we show all posts that exists in our db
+    if ($resultCheck > 0)
+    {
+        while ($row = mysqli_fetch_assoc($result))
+        {
+?>
+            <div class="thread">
+                <div id="postTiOw">
+                        <?php
+                            echo "<a href='index.php?viewcategory=$category&viewtopic={$row["id"]}'>  {$row['postTitle']} </a><br>";
+                            echo "by <b>"; 
+                            usernameSelect($row['accounts_id']);
+                            echo "</b>";
+                        ?>
+                </div>
+                <div id="postDate">
+                        <?php
+                            echo $row['postDate']. "<br>";
+                        ?>
+                </div>
+            </div>
+<?php
+        }
+    }
+
+    $category = $_GET['viewcategory'];
+
+
+    $sql = "select count(id) as total from thread where category_id='$category';";
+    $result = mysqli_query($link, $sql);
+
+    $row = mysqli_fetch_assoc($result); 
+    $totalPages = ceil($row["total"] / $results_per_page); 
+    mysqli_close($link);
+    echo "<div id='pagination'>";
+
+    for ($i=1; $i <= $totalPages; $i++)
+    { 
+        if ($i == $pagination)
+        {
+            echo "<b>";
+        }
+        echo "<a href='index.php?thread=$category&page=$i'>".$i ."  </a> ";
+        if ($i == $pagination)
+        {
+            echo "</b>";
+        }
+    }
+    echo "</div>";
+    
+}
+
 /*  ####################################### CATEGORIES FUNCTIONS ####################################### */
 
 
 // Function to get the category id by thread_id
 function getCategoryIDbyThreadID($threadID)
 {
-    include("db_con.php");
+    require("db_con.php");
 
     // We display all posts, ordered by last posted and limit of 10
     $sql = "select category_id from thread where id='$threadID';";
@@ -572,7 +1004,53 @@ function getCategoryIDbyThreadID($threadID)
     }
 }
 
+// Function to get the category title by the category ID
+function getCategoryTitleByCategoryID($categoryID)
+{
+    require("db_con.php");
+    $sql = "select categoryTitle from category where id='$categoryID';";
+    
+    if(executeQuery($sql))
+    {
+         $result = mysqli_query($link, $sql);
+         $resultCheck = mysqli_num_rows($result);
+         mysqli_close($link);
+          // We will keep iterating as long as theres data
+          if ($resultCheck > 0)
+          {
+                while ($row = mysqli_fetch_assoc($result))
+                {
+                    return $row['categoryTitle'];
+                }
+            
+          }
+    }
+}
+
+// Function to display the category title
+function displayCategoryTitle()
+{
+    require("db_con.php");
+    $category = $_GET['viewcategory'];
+    $sql = "Select * from category where id='$category'";
 
 
+    $result = mysqli_query($link, $sql);
+    mysqli_close($link);
+    $resultCheck = mysqli_num_rows($result);
+
+    // Here we show all posts that exists in our db
+    if ($resultCheck > 0)
+    {
+        while ($row = mysqli_fetch_assoc($result))
+        {
+            $categoryID = $row['id'];
+            $title = getCategoryTitleByCategoryID($categoryID);
+
+            return "$title";
+        }
+    }
+
+}
 
 ?>
