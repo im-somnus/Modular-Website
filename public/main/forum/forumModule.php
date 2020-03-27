@@ -99,7 +99,7 @@ echo '</td>
 echo ' </td>
         </tr>
         <tr>
-            <td><a href="index.php?viewcategory9">Character Guides</a></td>
+            <td><a href="index.php?viewcategory=9">Character Guides</a></td>
             <td>';
             echo countTotalThreads(9);
 echo '</td>
@@ -108,7 +108,7 @@ echo '</td>
 echo ' </td>
         </tr>
         <tr>
-            <td><a href="index.php?viewcategory10">Farming Strategies</a></td>
+            <td><a href="index.php?viewcategory=10">Farming Strategies</a></td>
             <td>';
             echo countTotalThreads(10);
 echo '</td>
@@ -117,7 +117,7 @@ echo '</td>
 echo ' </td>
         </tr>
         <tr>
-            <td><a href="index.php?viewcategory11">Crafting guides</a></td>
+            <td><a href="index.php?viewcategory=11">Crafting guides</a></td>
             <td>';
             echo countTotalThreads(11);
 echo '</td>

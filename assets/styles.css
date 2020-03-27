@@ -314,8 +314,15 @@ tr:nth-child(even)
 #pagination
 {
   text-align: right;  
-  padding-right: 10px; 
+  padding-right: 10px;
+  
  
+}
+
+#page
+{
+  border: 1px solid black;
+  padding: 2px;
 }
 
 #pagination a:link

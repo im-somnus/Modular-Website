@@ -53,6 +53,18 @@ function validateUserInput($user, $pass)
     }
 }
 
+// Validate post's and thread's user input
+Function validateForumInput($post)
+{
+    // ValidatePost
+    $pattern = '/[ºª\"\'!·$%&Za-zçñ0-9_-]{1-2001}$/';
+
+    if (!preg_match($pattern, $post))
+    {
+        $_SESSION['error'] = "Post couldn't be posted, try again";
+        return 0;
+    }
+}
 
 
 /* ####################################### QUERY/SQL FUNCTIONS ####################################### */
@@ -461,6 +473,7 @@ function displayOnlineUsers()
              echo $row['username'] . ", ";
         }
     }
+
 }
 
 
@@ -504,7 +517,7 @@ function usernameSelect($id)
     {
         while ($row = mysqli_fetch_assoc($result))
         {
-             echo $row['username'];
+             return $row['username'];
         }
     }
 }
@@ -513,8 +526,7 @@ function usernameSelect($id)
 // Checks the user's profile picture
 function checkPFPById($id)
 {
-    $username = usernameSelect($id);
-
+      
     require("db_con.php");
     $sql = "SELECT pfpicture FROM accounts where id='$id';";
     
@@ -526,10 +538,20 @@ function checkPFPById($id)
           // We will keep iterating as long as theres data
           if ($resultCheck > 0)
           {
-              while ($row = mysqli_fetch_assoc($result))
-                  {
-                    echo "../../../assets/images/users/profilePictures/$username" . $row['pfpicture'];
-                  }
+                while ($row = mysqli_fetch_assoc($result))
+                {
+                    $username = usernameSelect($id);
+                        // If the picture is the default one, we go to the main folder to retrieve it
+                        if ($row['pfpicture'] == "default_pfpic.png")
+                        {
+                            echo "./assets/images/users/profilePictures/".$row['pfpicture'];
+                        }
+                        // Else we find the one in his user folder
+                        else
+                        {
+                            echo "./assets/images/users/profilePictures/$username/".$row['pfpicture'];
+                        }
+                }
           }
     }
     else
@@ -675,7 +697,7 @@ function displayLastForumPost($category)
             $category = getCategoryIDbyThreadID($threadID);
 ?>            
                                <?php
-                                   echo "<a href='index.php?thread=$category&viewtopic=$threadID'>". $threadTitle . "</a><br>";
+                                   echo "<a href='index.php?viewcategory=$category&viewtopic=$threadID'>". $threadTitle . "</a><br>";
                                 /*    displayPostDateByThreadID($threadID); */
                                ?>
 <?php
@@ -685,6 +707,37 @@ function displayLastForumPost($category)
     }
 }
 
+// Function to check the user cooldown
+function checkUserCooldown()
+{
+    require("db_con.php");
+    $user = $_SESSION['login']['user'];
+    $sql = "SELECT postCooldown from accounts where username='$user';";
+    
+    $result = mysqli_query($link, $sql);
+    mysqli_close($link);  
+    $resultCheck = mysqli_num_rows($result);
+    
+    // Here we show all posts that exists in our db
+    if ($resultCheck > 0)
+    {
+
+        while($row = mysqli_fetch_assoc($result))
+        {
+            return $row['postCooldown'];
+        }
+    }
+
+}
+
+// Function to update user's cooldown after posting
+function updateUserCooldown($user)
+{
+    require("db_con.php");
+    $date = date('Y-m-d H:i:s');
+    $sql = "UPDATE accounts SET postCooldown='$date' where username='$user';";
+    executeQuery($sql);
+}
 
 // Function in charge of posting a message in the forum
 function insertForumPost($post, $title = '', $thread_id = 0)
@@ -695,11 +748,30 @@ function insertForumPost($post, $title = '', $thread_id = 0)
     $date = date('Y-m-d H:i:s');
     $thread_id = $thread_id ?: getThreadIDByPostTitle($title);
     
-    require("db_con.php");
-    $sql = "INSERT INTO post (postDate, post, thread_id, accounts_id) 
-    VALUES ('$date', '$post', '$thread_id',  '$account_id');";
-    executeQuery($sql); 
-    mysqli_close($link);  
+    $cooldown = strtotime(checkUserCooldown());
+    $now = strtotime($date);
+
+    $time = round(abs($cooldown - $now) / 60,2);
+    
+        if ($time >= 0)
+        {
+            require("db_con.php");
+            $post = mysqli_real_escape_string($link, $post);
+            $sql = "INSERT INTO post (postDate, post, thread_id, accounts_id) 
+            VALUES ('$date', '$post', '$thread_id',  '$account_id');";
+            executeQuery($sql);  
+            
+            updateUserCooldown($user);
+    
+            $_SESSION['success'] = "Your post has been successfully posted.";
+
+            header('Location: '.$_SERVER['REQUEST_URI']);
+
+        }
+        else
+        {
+            $_SESSION['error'] = "You have to wait 10 seconds before posting again.";
+        }
 
 }
 
@@ -710,6 +782,8 @@ function displayPosts()
     require("db_con.php");   
     $postID = $_GET['viewtopic'];    
     $postTitle = getThreadTitle($postID);
+
+    // Add pagination to the post display
     if (isset($_GET["page"]))
     {
          $pagination = $_GET["page"];
@@ -736,14 +810,14 @@ function displayPosts()
         {
 
             $id = $row['accounts_id'];
+            
             ?>
                                     <div class="post">
                                        <div class="userPart">
-                                           <img class="pfpic" src="<?php checkPFPById($row['accounts_id']);?>" width="200px"/>
+                                           <img class="pfpic" src="<?php checkPFPById($id);?>" />
                                            <br>
                                            <div id="userInfo">
                                                <?php
-                                               
                                                usernameSelect($id);
                                                echo "<br>";
                                                    echo "Status: <b>"; 
@@ -785,7 +859,7 @@ function displayPosts()
         {
             echo "<b>";
         }
-        echo "<a href='index.php?thread=$category&viewtopic=$postID&page=$i'>".$i ."  </a> ";
+        echo "<a href='index.php?viewcategory=$category&viewtopic=$postID&page=$i'><span id='page'>".$i ."</a> </span>";
         if ($i == $pagination)
         {
             echo "</b>";
@@ -870,14 +944,30 @@ function insertForumThread($post, $title, $category)
     $account_id = getAccount_IDbyUsername($user);
     $date = date('Y-m-d H:i:s');
 
+    // Checking the current date against the database user's cooldown
+    $cooldown = strtotime(checkUserCooldown());
+    $now = strtotime($date);
 
-    require("db_con.php");
-    $sql = "INSERT INTO thread (postTitle, postDate, accounts_id, category_id) 
-    VALUES ('$title', '$date', '$account_id', '$category');";
-    executeQuery($sql); 
+    // Get the difference between those dates in minutes
+    $time = round(abs($cooldown - $now) / 60,2);
 
-    
-    insertForumPost($post, $title);
+    // If 10 seconds has passed
+    if ($time >= 0.17)
+    {
+        require("db_con.php");
+
+        $title = mysqli_real_escape_string($link, $title);
+        $sql = "INSERT INTO thread (postTitle, postDate, accounts_id, category_id) 
+        VALUES ('$title', '$date', '$account_id', '$category');";
+        executeQuery($sql); 
+
+        insertForumPost($post, $title);
+    }  
+    else
+    {
+        $_SESSION['error'] = "You have to wait 10 seconds before making a new thread.";
+        header('Location: '.$_SERVER['REQUEST_URI']);
+    }
 } 
 
 
@@ -962,6 +1052,7 @@ function displayThreads()
     $row = mysqli_fetch_assoc($result); 
     $totalPages = ceil($row["total"] / $results_per_page); 
     mysqli_close($link);
+
     echo "<div id='pagination'>";
 
     for ($i=1; $i <= $totalPages; $i++)
@@ -970,14 +1061,13 @@ function displayThreads()
         {
             echo "<b>";
         }
-        echo "<a href='index.php?thread=$category&page=$i'>".$i ."  </a> ";
+        echo "<a href='index.php?viewcategory=$category&page=$i'><span id='page'>".$i ."</a> </span>";
         if ($i == $pagination)
         {
             echo "</b>";
         }
     }
     echo "</div>";
-    
 }
 
 /*  ####################################### CATEGORIES FUNCTIONS ####################################### */

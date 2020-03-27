@@ -14,7 +14,7 @@
     <div class="postFormWrapper">
    
             <div class="postForm">
-                <form id registerForm method="post" action="index.php?viewcategory='. $category .'&viewtopic='. $topic .'">
+                <form id="registerForm" method="post" action="index.php?viewcategory='. $category .'&viewtopic='. $topic .'">
                     Post: <br>
                     <textarea class="post" name="post"></textarea><br>
                     <input type="submit" name="postSubmit" value="Submit">

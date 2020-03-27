@@ -26,7 +26,7 @@
         <div>
             <a href="index.php?overview">Overview</a>
             <a href="index.php?videos">Videos</a>
-            <a href="assets\files\game.exe">Download</a>
+            <a href="assets\files\game.rar">Download</a>
         </div>
     </li>
 <li class="separator"></li>

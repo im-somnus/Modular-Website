@@ -13,7 +13,7 @@ $category = $_GET['viewcategory'];
     echo '<br>Create new topic <br>';
     echo '
     <div class="postFormWrapper">';
-    echo'<form id registerForm method="post" action="index.php?viewcategory='. $category .'">
+    echo'<form id="registerForm" method="post" action="index.php?viewcategory='. $category .'">
             Subject:
             <input id="postTitle" type="text" name="title"><br>
             Post: <textarea class="post" name="post"></textarea><br>
