@@ -465,15 +465,24 @@ function displayOnlineUsers()
     echo "<h2>Who's online?</h2>";
     echo "Total number of users online: " . countOnlineUsers() . "<br><br> <b>Users:</b><br><br> ";
     $resultCheck = mysqli_num_rows($result);
+    $counter = 0;
+
     // We will keep iterating as long as theres data
     if ($resultCheck >= 0)
     {
-        while ($row = mysqli_fetch_assoc($result))
+        while ($row = mysqli_fetch_array($result))
         {
-             echo $row['username'] . ", ";
+            if (++$counter == $resultCheck)
+            {
+                echo $row['username'];
+            }
+            else
+            {
+                echo $row['username'] . ", ";
+            }
         }
     }
-
+  
 }
 
 
