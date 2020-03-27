@@ -53,6 +53,7 @@ function validateUserInput($user, $pass)
     }
 }
 
+
 // Validate post's and thread's user input
 Function validateForumInput($post)
 {
@@ -254,6 +255,7 @@ function checkPoints($user)
         exit();
     }
 }
+
 
 
 // Function in charge of changing the user's profile picture
@@ -759,10 +761,10 @@ function insertForumPost($post, $title = '', $thread_id = 0)
     
     $cooldown = strtotime(checkUserCooldown());
     $now = strtotime($date);
-
+    
     $time = round(abs($cooldown - $now) / 60,2);
     
-        if ($time >= 0)
+        if ($time >= 0.17)
         {
             require("db_con.php");
             $post = mysqli_real_escape_string($link, $post);
@@ -806,7 +808,7 @@ function displayPosts()
     $start = ($pagination - 1) * $results_per_page;
     echo "<h2>$postTitle</h2>";
     // We display all posts, ordered by last posted and limit of 10
-    $sql = "Select id, postDate, post, accounts_id, thread_id from post where thread_id='$postID' limit $start, $results_per_page;";
+    $sql = "SELECT id, postDate, post, accounts_id, thread_id from post where thread_id='$postID' limit $start, $results_per_page;";
     $result = mysqli_query($link, $sql);
    
     $resultCheck = mysqli_num_rows($result);
