@@ -12,6 +12,9 @@ function dump($v)
 
 /* ####################################### GENERIC FUNCTIONS ####################################### */
 
+
+
+
 // Check if an user has the rank to access a page (nobody but administrator rank can access admin panel for example)  
 function rankCheck($rank)
 {
@@ -38,19 +41,18 @@ function validateUserInput($user, $pass)
         header("location: ../../../index.php");
         exit();
     }
-    else
+
+    // Check if password meets the next pattern;
+    $pattern = "/[@$%&A-Za-zçñ0-9_-]{3,20}$/";
+
+    if (!preg_match($pattern, $pass))
     {
-        // Check if password meets the next pattern;
-        $pattern = "/[@$%&A-Za-zçñ0-9_-]{3,20}$/";
+        $_SESSION['error'] = "Password does not meet the requirements, try again";
 
-        if (!preg_match($pattern, $pass))
-        {
-            $_SESSION['error'] = "Password does not meet the requirements, try again";
-
-            header("location: ../../../index.php");
-            exit();
-        }
+        header("location: ../../../index.php");
+        exit();
     }
+    
 }
 
 
@@ -455,37 +457,30 @@ function countOnlineUsers()
     }
 }
 
-// Function to show the users that are currently online
-function displayOnlineUsers()
-{
-    require("db_con.php");
-    $sql = "SELECT username FROM accounts where userStatus='1';";  
-
-    $result = mysqli_query($link, $sql);
-
-    mysqli_close($link);
-    echo "<h2>Who's online?</h2>";
-    echo "Total number of users online: " . countOnlineUsers() . "<br><br> <b>Users:</b><br><br> ";
-    $resultCheck = mysqli_num_rows($result);
-    $counter = 0;
-
-    // We will keep iterating as long as theres data
-    if ($resultCheck >= 0)
+    // Function to show the users that are currently online
+    function displayOnlineUsers()
     {
-        while ($row = mysqli_fetch_array($result))
+        require("db_con.php");
+        $sql = "SELECT username FROM accounts where userStatus='1';";  
+
+        $result = mysqli_query($link, $sql);
+
+        mysqli_close($link);
+        echo "<h2>Who's online?</h2>";
+        echo "Total number of users online: " . countOnlineUsers() . "<br><br> <b>Users:</b><br><br> ";
+        $resultCheck = mysqli_num_rows($result);
+
+        if ($resultCheck >= 0)
         {
-            if (++$counter == $resultCheck)
+            $usernamesOnline = [];
+            while ($row = mysqli_fetch_array($result))
             {
-                echo $row['username'];
+                $usernamesOnline[] = $row['username'];
             }
-            else
-            {
-                echo $row['username'] . ", ";
-            }
+            echo implode(', ', $usernamesOnline);
         }
+
     }
-  
-}
 
 
 // Returns username ID using as parameter the username.
