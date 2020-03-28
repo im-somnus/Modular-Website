@@ -1,4 +1,5 @@
 <?php
+keepOnlineStatus($_SESSION['login']['user']);
     echo '
         <div class="post">
             <h1>Under Maintenance</h1>
