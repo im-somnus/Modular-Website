@@ -10,10 +10,9 @@ function dump($v)
     echo "<pre>";
 }
 
+
+
 /* ####################################### GENERIC FUNCTIONS ####################################### */
-
-
-
 
 // Check if an user has the rank to access a page (nobody but administrator rank can access admin panel for example)  
 function rankCheck($rank)

@@ -1,6 +1,5 @@
 
 <?php
-
 $category = $_GET['viewcategory'];
 
 ?>
