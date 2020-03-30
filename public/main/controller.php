@@ -1,16 +1,15 @@
-        <header>
+<div class="container">
+<header>
 			<div>
 				<div class="menu">
-					<?php
-							include("public/header/downloadModule.php"); 
-					?>
+					
 				</div>
 			    <div id="logo">
 					<?php
 							include("public/header/logoModule.php"); 
 					?>
 				</div>
-				<div id="login">
+				<div class="windowLogin">
 						<?php
 								include("public/header/private/loginModule.php");
 						?>
@@ -25,19 +24,22 @@
             </div>
         </nav>
         <main>
-			<div class="menu">
+			<div class="window">
 				<?php
 						include("public/main/private/alertMessageModule.php");
 				?>
 			</div>
-			<div class="menu">
+			<div class="windowMain">
 				<?php
 						include("public/main/mainModule.php");
 				?>
 			</div>
         </main>
 		<footer>
-			<?php
-				include("public/footer/footerModule.php"); 
-			?>
+			<div class="windowFooter">
+				<?php
+					include("public/footer/footerModule.php"); 
+				?>
+			</div>
 		</footer>
+</div>
