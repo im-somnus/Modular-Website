@@ -1,3 +1,6 @@
+<?php
+    ob_start();
+?>
 <div class="wrapper">  
   <!--Navbar with dropdown menu-->
     <nav id="myNavbar" class="navbar navbar-default" role="navigation">
