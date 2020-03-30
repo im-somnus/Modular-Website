@@ -1,5 +1,5 @@
 <div class="container">
-<header>
+		<header>
 			<div>
 				<div class="menu">
 					
@@ -10,21 +10,20 @@
 					?>
 				</div>
 				<div class="windowLogin">
-						<?php
-								include("public/header/private/loginModule.php");
-						?>
+						
+							<?php
+									include("public/header/private/loginModule.php");
+							?>
 				</div>
 			</div>
 		</header>
 		<nav>
-            <div class="menu">
                 <?php
                         include("public/nav/navbarModule.php");
                 ?>
-            </div>
         </nav>
         <main>
-			<div class="window">
+			<div class="windowAlert">
 				<?php
 						include("public/main/private/alertMessageModule.php");
 				?>

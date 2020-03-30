@@ -1,27 +1,79 @@
+*
+{
+  font-size: 16px;
+}
+
+
 body
 {
- /*  background: url("images/background/background.jpg") no-repeat center center fixed; 
+  background: url("images/background/background.jpg") no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover; */
+  background-size: cover;
 
   background-color: rgb(83, 82, 82);
 }
 
-
-
-
-header > div
+@media screen and (min-width: 768px)
 {
-    display: flex;
+
+  header > div
+  {
+      display: flex;
+  }
+
+  header > div > div
+  {
+      flex: 1;
+      width: 50px;
+      height: 200px;
+  }
 }
 
-header > div > div
+@media screen and (max-width: 768px)
 {
-    flex: 1;
-    height: 200px;
+
+  #logoPicture
+  {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    opacity: 0.6;
+    
+  }
+
+  header
+  {
+    position: relative; 
+    overflow:hidden; 
+    z-index: 2;
+  }
+
+
+  #loginModule
+  {
+    
+    position: relative;
+    z-index: 2;
+  
+  }
+
+  #credentials 
+  {
+    color: rgb(156,139,82);
+    margin: 3%;
+
+  }
+
+  #profilePicturelogin
+  {
+    float: center;
+  }
 }
+
 
 
 .thread
@@ -73,60 +125,6 @@ header > div > div
     margin:auto;
 }
 
-.rightCornerPanel
-{
-  text-align:center;
-}
-
-#userPanel
-{
-  width: 100%;
-  margin-left: 20%;
-  margin-right: 20%;
-  margin-top: 20px;
-}
-
-#credentials
-{
-  width: 35%;
-  float: left;
-} 
-
-#profilePicturelogin
-{
-  margin-top: 5%;
-  width: 65%;
-  float: right;
-}
-
-.clearfix
-{
-  clear:both
-}
-
-
-
-#downloadButton
-{
-  position: relative;
-}
-
-#downloadButton
-{
-  margin: 0;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-/*
- #downloadButton .a
-{
-   
-}
-
-
-
-*/
 
 ul
 {
@@ -233,8 +231,6 @@ tr:nth-child(even)
 {
   text-align: right;  
   padding-right: 10px;
-  
- 
 }
 
 #page
@@ -253,13 +249,10 @@ tr:nth-child(even)
   color: black; 
 }
 
-
 #pagination a:hover
 {
   color: blue; 
 }
-
-
 
 .faIcon a:link
 {
@@ -279,8 +272,25 @@ tr:nth-child(even)
   color: black;
 }
 
+/* 
+################################# MAIN MODULE ###############################################
+*/
 
 
+
+.message
+{
+  float: left;
+
+
+}
+
+.postDate
+{
+  float: right;
+}
+
+     
 /* 
 ################################# LOGO MODULE ###############################################
 */
@@ -292,30 +302,60 @@ tr:nth-child(even)
   text-align: center;
   padding-top: 30px;
   z-index: 9999;
-
 }
+
+/* 
+################################# LOGIN MODULE ###############################################
+*/
+
+#loginModule
+{
+  display: table-cell;
+  
+  height: 200px;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+  text-align: center; 
+}
+
+
+
+#credentials 
+{
+    float: left;
+    margin-left: 5%;
+  
+    color: rgb(156,139,82);
+      
+}
+
 
 /* 
 ################################# WINDOW CLASSº ###############################################
 */
 
-
-
 .windowLogin
 {
   margin-top: 20px;
-  padding: 0;
   background-color: rgba(22,25,25,0.8);
   border: 1px solid rgba(46,44,44);
+  
+ 
 }
 
 .windowNavBar
 {
-
   background-color: rgba(22,25,25,0.8);
   border: 1px solid rgba(46,44,44);
 }
 
+.windowAlert
+{
+  background-color: rgba(22,25,25,0.8);
+  border: 1px solid rgba(46,44,44);
+  text-align: center; 
+}
 
 .windowMain
 {
@@ -327,11 +367,7 @@ tr:nth-child(even)
 {
   background-color: rgba(22,25,25,0.8);
   border: 1px solid rgba(46,44,44);
-
 }
-
-
-
 
 /* 
 ################################# NAV BAR MODULE ###############################################
@@ -349,10 +385,12 @@ tr:nth-child(even)
   {
       margin-top: 0;
   }
+
   .dropdown-toggle
   {
       margin-bottom: 4px;
   }
+
   .navbar .dropdown-toggle, .nav-tabs .dropdown-toggle
   {
       margin-bottom: 0;
@@ -369,27 +407,21 @@ tr:nth-child(even)
   {
     text-align: center;
   }
-
 }
-
-
 
 /* Adding space between each dropdown button */
   .navbar-nav > li
   {
-    padding-left:28px;
-    padding-right:28px;
+    padding-left:20px;
+    padding-right:20px;
   }
   
-
 /* Hovering over the navbar will make the font whiter */
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover
 {
     color: rgb(200, 200, 200);
     background-color: rgb(22,25,25);
-    
 }
-
 
 /* Removing border radius */
 .navbar
@@ -416,23 +448,12 @@ tr:nth-child(even)
 
 .navbar-nav .open .dropdown-menu
  {
-
   border: 1px solid rgba(46,44,44);
   color: white;
-  
 }
 
 .navbar-nav > li > .dropdown-menu
 {
   background-color: rgb(200, 200, 200);
   border: 1px solid rgba(46,44,44);
-
 }
-
-
-
-/* 
-################################# END NAV BAR ###############################################
-*/
-
-

@@ -642,16 +642,17 @@ function displayLastPosts()
             $threadTitle = getThreadTitleById($threadID);
             $category = getCategoryIDbyThreadID($threadID);
 ?>
-                        <div class="thread">
-                           <div class="postPart">
+                        
+                           <div class="windowMain">
                                <?php
-                                   echo "<a href='index.php?viewcategory=$category&viewtopic=$threadID'>". $threadTitle . "</a><br>";
+                                    echo "<p class='message'><a href='index.php?viewcategory=$category&viewtopic=$threadID'>". $threadTitle . "</a><br></p>";
                                    // Call the function to get the time of the post
-                                   displayPostDateByThreadID($threadID);
+                                   echo "<p class='postDate'>" .
+                                   displayPostDateByThreadID($threadID) . "</p><div style='clear: both'></div>";
                                ?>
                            <br><br>
                         </div>
-                       </div>
+                     
 <?php
         }
     }
@@ -770,7 +771,7 @@ function insertForumPost($post, $title = '', $thread_id = 0)
     
             $_SESSION['success'] = "Your post has been successfully posted.";
 
-            /* header('Location: '.$_SERVER['REQUEST_URI']); */
+            header('Location: '.$_SERVER['REQUEST_URI']);
 
         }
         else
@@ -971,7 +972,7 @@ function insertForumThread($post, $title, $category)
     else
     {
         $_SESSION['error'] = "You have to wait 10 seconds before making a new thread.";
-        /* header('Location: '.$_SERVER['REQUEST_URI']); */
+        header('Location: '.$_SERVER['REQUEST_URI']);
     }
 } 
 

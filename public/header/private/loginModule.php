@@ -31,9 +31,9 @@
    {
         $user = $_SESSION['login']['user'];
         $userRank = $_SESSION['rank'];
-
+        
 ?>
-        <div id="userPanel">
+        <div id="loginModule">
             <div id="credentials">
                 <p><b><?php echo $user ?></b></p>  
                 <p>Points: <b><?php echo checkPoints($user) ?></b></p>
@@ -44,8 +44,7 @@
             <div id="profilePicturelogin">
                 <img src="<?php echo checkPFPByUsername($user, $userRank); ?>" width="30%"/>
             </div>
-            <br><a href='public/main/private/logout.php' id="logoutButton"><button>Logout</button></a>
-            <div class="clearfix"></div>
+            <br><a href='public/main/private/logout.php' id="logoutButton">Logout</a>
          </div>
 <?php
    }    
