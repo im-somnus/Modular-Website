@@ -770,7 +770,7 @@ function insertForumPost($post, $title = '', $thread_id = 0)
     
             $_SESSION['success'] = "Your post has been successfully posted.";
 
-            header('Location: '.$_SERVER['REQUEST_URI']);
+            /* header('Location: '.$_SERVER['REQUEST_URI']); */
 
         }
         else
@@ -971,7 +971,7 @@ function insertForumThread($post, $title, $category)
     else
     {
         $_SESSION['error'] = "You have to wait 10 seconds before making a new thread.";
-        header('Location: '.$_SERVER['REQUEST_URI']);
+        /* header('Location: '.$_SERVER['REQUEST_URI']); */
     }
 } 
 

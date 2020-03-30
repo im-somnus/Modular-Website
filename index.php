@@ -11,13 +11,18 @@
 	<title>Index</title>	
 	
 	<!-- BOOTSTRAP -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-	<link href="assets/styles.css" media="all" rel="stylesheet" type="text/css"/>	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="assets/styles.css" media="all" rel="stylesheet" type="text/css"/>	
 
+	
 </head>
 	<body>
+		<div class="container wrapper">
 			<?php
 				include("public/main/controller.php");
 			?>
+		</div>
 	</body>
 </html>
