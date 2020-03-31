@@ -7,7 +7,8 @@
         {
 ?>
             <div class="rightCornerPanel">	
-            <h3>Log in</h3>
+                <h1>Login</h1>
+                <div class="rightCornerPanelInside">
                   <form action="public/header/private/validateLogin.php" method="post">
                     Username <input type="text" name="user" placeholder="Username" required>
                             <br>		
@@ -19,6 +20,9 @@
                         <input type="submit" name="Register" value="Register"> 
                     </form>
                 </div>
+            </div>
+
+
 <?php
         }   
         else
