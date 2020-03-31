@@ -61,7 +61,7 @@ body
 
   #credentials 
   {
-    color: rgb(156,139,82);
+   
     margin: 3%;
   }
 
@@ -325,7 +325,6 @@ tr:nth-child(even)
     float: left;
     margin-left: 5%;
   
-    color: rgb(156,139,82);
       
 }
 
