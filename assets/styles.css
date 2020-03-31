@@ -11,7 +11,9 @@ body
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
+  overflow-y: scroll;
+  overflow-x: hidden;
+  
   color: rgb(150, 150, 150);
   background-color: rgb(83, 82, 82);
 }
@@ -458,3 +460,8 @@ tr:nth-child(even)
   background-color: rgb(200, 200, 200);
   border: 1px solid rgba(46,44,44);
 }
+
+
+/* 
+################################# FOOTER MODULE ###############################################
+*/
