@@ -1,8 +1,8 @@
 *
 {
   font-size: 16px;
+  color: rgb(150, 150, 150);
 }
-
 
 body
 {
@@ -11,6 +11,7 @@ body
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+
 
   background-color: rgb(83, 82, 82);
 }
@@ -42,7 +43,6 @@ body
     width: 100%;
     height: auto;
     opacity: 0.6;
-    
   }
 
   header
@@ -52,20 +52,17 @@ body
     z-index: 2;
   }
 
-
   #loginModule
   {
     
     position: relative;
     z-index: 2;
-  
   }
 
   #credentials 
   {
     color: rgb(156,139,82);
     margin: 3%;
-
   }
 
   #profilePicturelogin
@@ -74,29 +71,14 @@ body
   }
 }
 
-
-
 .thread
 {
-
     padding: 0px;
     margin-top: 10px;
     margin-bottom: 10px;
 } 
 
-#postTiOw
-{
- 
-  margin-left: 10px;
-  display: inline-block;
-}
 
-#postDate
-{
-  float:right;
-  margin-right: 10%;
-
-}
 
 .post
 {
@@ -125,7 +107,6 @@ body
     margin:auto;
 }
 
-
 ul
 {
   list-style-type: none;
@@ -141,10 +122,6 @@ li a, .dropdown > a
   padding: 15px 20px;
   text-decoration: none;
 }
-
-
-
-
 
 .right
 {
@@ -187,7 +164,6 @@ nav
   text-decoration: none;
 }
 
-
 textarea, #postTitle
 {
   resize: none;
@@ -201,7 +177,6 @@ textarea, #postTitle
   margin: 10px;
 }
 
-
 table
 {
   font-family: arial, sans-serif;
@@ -212,21 +187,17 @@ table
 
 th,td
 {
-
   padding: 10px;
   text-align: left;
-  
 }
-
 
 tr:nth-child(even)
 {
   background-color: #dddddd;
 }
 
-/* Pagination section
+/* Pagination section */
 
-*/
 #pagination
 {
   text-align: right;  
@@ -243,7 +214,7 @@ tr:nth-child(even)
   text-decoration: none;
   color: black; 
 }
-
+ 
 #pagination a:visited
 {
   color: black; 
@@ -273,20 +244,46 @@ tr:nth-child(even)
 }
 
 /* 
-################################# MAIN MODULE ###############################################
+################################# POST MODULE ###############################################
 */
 
 
 
-.message
+/* 
+################################# THREAD MODULE ###############################################
+*/
+
+.lastPostTitle
 {
-  float: left;
+  margin: 20px;
+  display: inline-block;
 }
+
 
 .postDate
 {
+  margin: 30px;
   float: right;
 }
+
+     
+/* 
+################################# MAIN MODULE ###############################################
+*/
+
+
+.h2Titles
+{
+  margin: 20px;
+  
+}
+
+.postDateMain
+{
+  margin: 20px;
+  float: right;
+}
+
 
      
 /* 
@@ -338,8 +335,6 @@ tr:nth-child(even)
   margin-top: 20px;
   background-color: rgba(22,25,25,0.8);
   border: 1px solid rgba(46,44,44);
-  
- 
 }
 
 .windowNavBar

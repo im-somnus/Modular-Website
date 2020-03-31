@@ -506,8 +506,29 @@ function getAccount_IDbyUsername($username)
 }
 
 
-// Returns username username using as parameter the ID.
+// Echoes username username using as parameter the ID.
 function usernameSelect($id)
+{
+    require("db_con.php");
+    $sql = "SELECT username FROM accounts where id='$id';";  
+
+    $result = mysqli_query($link, $sql);
+
+    mysqli_close($link);
+
+    $resultCheck = mysqli_num_rows($result);
+    // We will keep iterating as long as theres data
+    if ($resultCheck >= 0)
+    {
+        while ($row = mysqli_fetch_assoc($result))
+        {
+             echo $row['username'];
+        }
+    }
+}
+
+// Returns username username using as parameter the ID.
+function returnUsernameSelect($id)
 {
     require("db_con.php");
     $sql = "SELECT username FROM accounts where id='$id';";  
@@ -528,6 +549,7 @@ function usernameSelect($id)
 }
 
 
+
 // Checks the user's profile picture
 function checkPFPById($id)
 {
@@ -545,7 +567,7 @@ function checkPFPById($id)
           {
                 while ($row = mysqli_fetch_assoc($result))
                 {
-                    $username = usernameSelect($id);
+                    $username = returnUsernameSelect($id);
                         // If the picture is the default one, we go to the main folder to retrieve it
                         if ($row['pfpicture'] == "default_pfpic.png")
                         {
@@ -623,7 +645,7 @@ function displayUserStatus($id)
 // Function to display last forum posts
 function displayLastPosts()
 {
-    echo "<h2> Last Posts</h2>";
+    echo "<h2 class='h2Titles'> Last Posts</h2>";
     require("db_con.php");
 
     // We display all posts, ordered by last posted and limit of 10
@@ -643,15 +665,20 @@ function displayLastPosts()
             $category = getCategoryIDbyThreadID($threadID);
 ?>
                         
-                           <div class="windowMain">
-                               <?php
-                                    echo "<p class='message'><a href='index.php?viewcategory=$category&viewtopic=$threadID'>". $threadTitle . "</a><br></p>";
-                                   // Call the function to get the time of the post
-                                   echo "<p class='postDate'>" .
-                                   displayPostDateByThreadID($threadID) . "</p><div style='clear: both'></div>";
-                               ?>
-                           <br><br>
+
+                        <div class="windowMain">
+                            <div class="lastPostTitle">
+                                    <?php
+                                        echo "<a href='index.php?viewcategory=$category&viewtopic=$threadID'>". $threadTitle . "</a><br>";
+                                    ?>
+                            </div>
+                            <div class="postDateMain">
+                                    <?php
+                                        displayPostDateByThreadID($threadID) . "</p><div style='clear: both'></div>";
+                                    ?>
+                            </div>
                         </div>
+                          
                      
 <?php
         }
@@ -829,7 +856,7 @@ function displayPosts()
                                                    echo "Status: <b>"; 
                                                    DisplayUserStatus($row['accounts_id']);
                                                    echo "</b>";
-                                                 
+                                                
                                                    
                                                    echo "<br> Post Count:" . countPostsByID($row['accounts_id']);
                                                ?>
@@ -1006,7 +1033,7 @@ function displayThreads()
 {
     require("db_con.php");   
     $category = $_GET['viewcategory'];
-    echo "<h2>Threads in ". getCategoryTitleByCategoryID($category) ."</h2>";
+    echo "<h2 class='h2Titles'>Threads in ". getCategoryTitleByCategoryID($category) ."</h2>";
     if (isset($_GET["page"]))
     {
          $pagination = $_GET["page"];
@@ -1030,8 +1057,8 @@ function displayThreads()
         while ($row = mysqli_fetch_assoc($result))
         {
 ?>
-            <div class="thread">
-                <div id="postTiOw">
+            <div class="windowMain">
+                <div class="lastPostTitle">
                         <?php
                             echo "<a href='index.php?viewcategory=$category&viewtopic={$row["id"]}'>  {$row['postTitle']} </a><br>";
                             echo "by <b>"; 
@@ -1039,7 +1066,7 @@ function displayThreads()
                             echo "</b>";
                         ?>
                 </div>
-                <div id="postDate">
+                <div class="postDate">
                         <?php
                             echo $row['postDate']. "<br>";
                         ?>
