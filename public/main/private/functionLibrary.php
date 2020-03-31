@@ -456,31 +456,67 @@ function countOnlineUsers()
     }
 }
 
-    // Function to show the users that are currently online
-    function displayOnlineUsers()
-    {
-        require("db_con.php");
-        $sql = "SELECT username FROM accounts where userStatus='1';";  
+// Function to show the users that are currently online
+function displayOnlineUsers()
+{
+    require("db_con.php");
+    $sql = "SELECT username, rank FROM accounts where userStatus='1';";  
 
-        $result = mysqli_query($link, $sql);
+    $result = mysqli_query($link, $sql);
+    mysqli_close($link);
 
-        mysqli_close($link);
+    echo "<div id='onlinePanel'>";
         echo "<h2>Who's online?</h2>";
+        echo "<hr>";
         echo "Total number of users online: " . countOnlineUsers() . "<br><br> <b>Users:</b><br><br> ";
-        $resultCheck = mysqli_num_rows($result);
 
+        $resultCheck = mysqli_num_rows($result);
+        $counter = 0;
+
+        // We will keep iterating as long as theres data
         if ($resultCheck >= 0)
         {
-            $usernamesOnline = [];
             while ($row = mysqli_fetch_array($result))
             {
-                $usernamesOnline[] = $row['username'];
+                $rank = $row['rank'];
+
+                if (++$counter == $resultCheck)
+                {
+                    if ($rank == 2)
+                    {
+                        echo $row['username'];
+                    }
+                    elseif ($rank == 1)
+                    {
+                        echo "<font color='green';>" . $row['username'] . "</font>";
+                    }
+                    elseif ($rank == 0)
+                    {
+                        echo "<font color='red';>" . $row['username'] . "</font>";
+                    }
+                }
+                else
+                {
+                    if ($rank == 2)
+                    {
+                        echo $row['username'] . ", ";
+                    }
+                    elseif ($rank == 1)
+                    {
+                        echo "<font color='green';>" . $row['username'] . "</font>, ";
+                    }
+                    elseif ($rank == 0)
+                    {
+                        echo "<font color='red';>" . $row['username'] . "</font>, ";
+                    }
+                }
             }
-            echo implode(', ', $usernamesOnline);
         }
-
-    }
-
+   
+    echo "<br><br>";
+    echo "Legend: <font color='red';> Administrator</font>, <font color='green';> Moderator</font>, User";
+    echo "</div>";
+}
 
 // Returns username ID using as parameter the username.
 function getAccount_IDbyUsername($username)

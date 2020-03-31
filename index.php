@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	include("public/main/private/functionLibrary.php");
+	
 ?>
 <!DOCTYPE html>
 <html lang="en">
