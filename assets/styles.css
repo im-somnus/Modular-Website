@@ -286,7 +286,6 @@ tr:nth-child(even)
 
 #onlinePanel
 {
-  
   margin: 20px;
 }
 
@@ -332,6 +331,15 @@ tr:nth-child(even)
 
 
 /* 
+################################# ALERTS MODULE ###############################################
+*/
+
+#alerts
+{
+  margin: 20px;
+}
+
+/* 
 ################################# WINDOW CLASSº ###############################################
 */
 
@@ -353,6 +361,7 @@ tr:nth-child(even)
   background-color: rgba(22,25,25,0.8);
   border: 1px solid rgba(46,44,44);
   text-align: center; 
+  margin-top: 20px; 
 }
 
 .windowMain
@@ -365,6 +374,7 @@ tr:nth-child(even)
 {
   background-color: rgba(22,25,25,0.8);
   border: 1px solid rgba(46,44,44);
+  margin-top: 20px; 
 }
 
 /* 
