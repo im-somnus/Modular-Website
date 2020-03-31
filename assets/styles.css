@@ -295,13 +295,7 @@ tr:nth-child(even)
 ################################# LOGO MODULE ###############################################
 */
 
-.logoModule
-{
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-  padding-top: 30px;
-}
+
 
 /* 
 ################################# LOGIN MODULE ###############################################
