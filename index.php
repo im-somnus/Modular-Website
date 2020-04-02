@@ -16,7 +16,7 @@
 	<link href="assets/styles.css" media="all" rel="stylesheet" type="text/css"/>	
 </head>
 	<body>
-		<div class="container wrapper">
+		<div class="container-fluid">
 			<?php
 				include("public/main/controller.php");
 			?>

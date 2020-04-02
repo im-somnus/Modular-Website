@@ -73,14 +73,6 @@ body
   }
 }
 
-.thread
-{
-    padding: 0px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-} 
-
-
 
 .post
 {
@@ -109,31 +101,7 @@ body
     margin:auto;
 }
 
-ul
-{
-  list-style-type: none;
-  margin-left: auto;
-  margin-right: auto;
-}
-  
-li a, .dropdown > a
-{
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 15px 20px;
-  text-decoration: none;
-}
 
-.right
-{
-    float: right;
-}
-
-footer
-{
-  margin-top: 10px;
-}
 
 main
 {
@@ -145,26 +113,7 @@ nav
   margin-top: 10px;
 }
 
-/* Create two equal columns that floats next to each other */
-.column
-{
-  float: left;
-  width: 20%;
-}
 
-.column li
-{
-  list-style-type: none;
-}
-
-/* Clear floats after the columns */
-.row:after
-{
-  content: "";
-  display: table;
-  clear: both;
-  text-decoration: none;
-}
 
 textarea, #postTitle
 {
@@ -179,54 +128,13 @@ textarea, #postTitle
   margin: 10px;
 }
 
-table
-{
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-  table-layout: fixed;
-}
 
-th,td
-{
-  padding: 10px;
-  text-align: left;
-}
 
-tr:nth-child(even)
-{
-  background-color: #dddddd;
-}
 
-/* Pagination section */
 
-#pagination
-{
-  text-align: right;  
-  padding-right: 10px;
-}
 
-#page
-{
-  padding: 2px;
-}
 
-#pagination a:link
-{
-  text-decoration: none;
-  color: black; 
-}
- 
-#pagination a:visited
-{
-  color: black; 
-}
-
-#pagination a:hover
-{
-  color: blue; 
-}
-
+/*  No sé lo que es, remover
 .faIcon a:link
 {
   text-decoration: none;
@@ -243,13 +151,48 @@ tr:nth-child(even)
 {
   text-decoration: none;
   color: black;
-}
+} */
 
 /* 
 ################################# POST MODULE ###############################################
 */
 
 
+/* 
+################################# POST/THREAD PAGINATION ###############################################
+*/
+
+
+#pagination
+{
+  margin-top: 20px;
+  text-align: right;  
+  padding-right: 10px;
+
+}
+
+#page
+{
+  padding: 3px;
+  border: 1px solid rgba(92,88,88);;
+}
+
+#pagination a:link
+{
+  text-decoration: none;
+
+}
+ 
+#pagination a:visited
+{
+  color: rgb(32,66,155)
+}
+
+
+#pagination a:hover
+{
+  color: rgb(200, 200, 200);
+}
 
 /* 
 ################################# THREAD MODULE ###############################################
@@ -268,7 +211,26 @@ tr:nth-child(even)
   float: right;
 }
 
+tr:nth-child(even)
+{
+  background-color: rgba(22,25,25,0.8);
+}
+
+table
+{
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
      
+
+th,td
+{
+  padding: 10px;
+  text-align: left;
+}
+
+
 /* 
 ################################# MAIN MODULE ###############################################
 */
@@ -315,14 +277,13 @@ tr:nth-child(even)
 }
 
 
-
 #credentials 
 {
     float: left;
     margin-left: 5%;
-  
-      
+
 }
+
 
 
 /* 
@@ -334,6 +295,25 @@ tr:nth-child(even)
   margin: 20px;
 }
 
+
+/* 
+################################# PROFILE MODULE ###############################################
+*/
+
+.profileInfo
+{
+  float: left;
+  margin-left: 5%;
+}
+
+.profileExtra
+{
+  display: table-cell;
+
+}
+
+
+
 /* 
 ################################# WINDOW CLASSº ###############################################
 */
@@ -342,33 +322,41 @@ tr:nth-child(even)
 {
   margin-top: 20px;
   background-color: rgba(22,25,25,0.8);
-  border: 1px solid rgba(46,44,44);
+  border: 1px solid rgb(46,44,44);;
 }
 
 .windowNavBar
 {
   background-color: rgba(22,25,25,0.8);
-  border: 1px solid rgba(46,44,44);
+  border: 1px solid rgb(46,44,44);;
 }
 
 .windowAlert
 {
   background-color: rgba(22,25,25,0.8);
-  border: 1px solid rgba(46,44,44);
+  border: 1px solid rgb(46,44,44);;
   text-align: center; 
   margin-top: 20px; 
+}
+
+.windowProfile
+{
+  background-color: rgba(22,25,25,0.8);
+  border: 1px solid rgb(46,44,44);;
+  margin: 10px;
+  padding: 10px;
 }
 
 .windowMain
 {
   background-color: rgba(22,25,25,0.8);
-  border: 1px solid rgba(46,44,44);
+  border: 1px solid rgb(46,44,44);;
 }
 
 .windowFooter
 {
-  background-color: rgba(22,25,25,0.8);
-  border: 1px solid rgba(46,44,44);
+  background-color: rgba(22,25,25,0.7);
+  border: 1px solid rgb(46,44,44);;
   margin-top: 20px; 
 }
 
@@ -451,17 +439,62 @@ tr:nth-child(even)
 
 .navbar-nav .open .dropdown-menu
  {
-  border: 1px solid rgba(46,44,44);
+  border: 1px solid rgb(46,44,44);;
   color: white;
 }
 
 .navbar-nav > li > .dropdown-menu
 {
   background-color: rgb(200, 200, 200);
-  border: 1px solid rgba(46,44,44);
+  border: 1px solid rgb(46,44,44);;
 }
 
 
 /* 
 ################################# FOOTER MODULE ###############################################
 */
+
+/* Create two equal columns that floats next to each other */
+.column
+{
+  float: left;
+}
+
+.column li
+{
+  list-style-type: none;
+}
+
+/* Clear floats after the columns */
+.row:after
+{
+  content: "";
+  display: table;
+  clear: both;
+  text-decoration: none;
+}
+
+ul
+{
+  list-style-type: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+  
+li a, .dropdown > a
+{
+  display: inline-block;
+  text-align: center;
+  padding: 15px 20px;
+  text-decoration: none;
+}
+
+.right
+{
+    float: right;
+}
+
+footer
+{
+  margin-top: 10px;
+}
