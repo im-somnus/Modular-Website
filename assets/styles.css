@@ -18,6 +18,11 @@ body
   background-color: rgb(83, 82, 82);
 }
 
+a:hover
+{
+  color: rgb(200, 200, 200);
+}
+
 @media screen and (min-width: 768px)
 {
 
@@ -80,6 +85,9 @@ body
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px;
+
+   
+
 } 
 
 #userInfo
@@ -98,7 +106,9 @@ body
 .postPart
 {
     width: 50%;
-    margin:auto;
+    margin: auto;
+    word-wrap: break-word;
+
 }
 
 
@@ -173,8 +183,8 @@ textarea, #postTitle
 
 #page
 {
-  padding: 3px;
-  border: 1px solid rgba(92,88,88);;
+  padding: 2px;
+  border: 2px solid rgba(92,88,88);;
 }
 
 #pagination a:link
@@ -189,10 +199,7 @@ textarea, #postTitle
 }
 
 
-#pagination a:hover
-{
-  color: rgb(200, 200, 200);
-}
+
 
 /* 
 ################################# THREAD MODULE ###############################################
@@ -341,19 +348,19 @@ th,td
 {
   margin-top: 20px;
   background-color: rgba(22,25,25,0.8);
-  border: 1px solid rgb(46,44,44);;
+  border: 1px solid rgb(46,44,44);
 }
 
 .windowNavBar
 {
   background-color: rgba(22,25,25,0.8);
-  border: 1px solid rgb(46,44,44);;
+  border: 1px solid rgb(46,44,44);
 }
 
 .windowAlert
 {
   background-color: rgba(22,25,25,0.8);
-  border: 1px solid rgb(46,44,44);;
+  border: 1px solid rgb(46,44,44);
   text-align: center; 
   margin-top: 20px; 
 }
@@ -361,7 +368,7 @@ th,td
 .windowProfile
 {
   background-color: rgba(22,25,25,0.8);
-  border: 1px solid rgb(46,44,44);;
+  border: 1px solid rgb(46,44,44);
   margin: 10px;
   padding: 10px;
 }
@@ -369,13 +376,20 @@ th,td
 .windowMain
 {
   background-color: rgba(22,25,25,0.8);
-  border: 1px solid rgb(46,44,44);;
+  border: 1px solid rgb(46,44,44);
+}
+
+.windowPost
+{
+  background-color: rgba(22,25,25,0.8);
+  border: 1px solid rgb(46,44,44);
+  margin-bottom: 10px;
 }
 
 .windowFooter
 {
   background-color: rgba(22,25,25,0.7);
-  border: 1px solid rgb(46,44,44);;
+  border: 1px solid rgb(46,44,44);
   margin-top: 20px; 
 }
 
@@ -458,14 +472,14 @@ th,td
 
 .navbar-nav .open .dropdown-menu
  {
-  border: 1px solid rgb(46,44,44);;
+  border: 1px solid rgb(46,44,44);
   color: white;
 }
 
 .navbar-nav > li > .dropdown-menu
 {
   background-color: rgb(200, 200, 200);
-  border: 1px solid rgb(46,44,44);;
+  border: 1px solid rgb(46,44,44);
 }
 
 

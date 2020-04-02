@@ -6,7 +6,7 @@ $category = $_GET['viewcategory'];
     <div> 
 
 <?php
-
+    echo '<div class="windowMain">';
     echo '<div class="post">';
     echo "<b>". displayCategoryTitle() ."</b>";
     echo '<br>Create new topic <br>';
@@ -18,7 +18,8 @@ $category = $_GET['viewcategory'];
             Post: <textarea class="post" name="post"></textarea><br>
             <input type="submit" name="postSubmit" value="Submit">
         </form>
-    </div>';
+    </div></div>';
+    
 ?>
         </div>
 <?php

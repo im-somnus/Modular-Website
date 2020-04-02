@@ -637,14 +637,16 @@ function adminPanel($user, $userRank)
     $data = mysqli_fetch_assoc($result);
     if ($data['rank'] <= 1)
     {
-        if ($data['rank'] == 0)
-        {
-            echo '<a href="panelad.php">Admin Panel</a>';
-        }
-        if ($data['rank'] == 1)
-        {
-            echo '<a href="panelad.php">Mod Panel</a>';
-        }
+           
+
+            if ($data['rank'] == 0)
+            {
+                echo '<a href="public/main/private/adm/admModule.php">Admin Panel</a>';
+            }
+            if ($data['rank'] == 1)
+            {
+                echo '<a href="public/main/private/adm/admModule.php">Mod Panel</a>';
+            }
     } 
 }
 
@@ -864,7 +866,7 @@ function displayPosts()
    
     $results_per_page = 10;
     $start = ($pagination - 1) * $results_per_page;
-    echo "<h2>$postTitle</h2>";
+    echo "<h2 class='h2Titles'>$postTitle</h2>";
     // We display all posts, ordered by last posted and limit of 10
     $sql = "SELECT id, postDate, post, accounts_id, thread_id from post where thread_id='$postID' limit $start, $results_per_page;";
     $result = mysqli_query($link, $sql);
@@ -880,7 +882,9 @@ function displayPosts()
 
             $id = $row['accounts_id'];
             
-            ?>
+            ?>  
+                           
+                                <div class="windowPost">
                                     <div class="post">
                                        <div class="userPart">
                                            <img class="pfpic" src="<?php checkPFPById($id);?>" />
@@ -899,13 +903,17 @@ function displayPosts()
                                            </div>
                                        </div>
                                        <div class="postPart">
+                                           
                                            <?php
                                                echo $row['post'] . "<br>";
+                                               echo "<br>";
                                                echo $row['postDate'] . "<br>";
                                            ?>
                                        </div>
                                        <br><br>
+                                     </div>
                                    </div>
+                           
             
     <?php
         }

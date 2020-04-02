@@ -46,9 +46,15 @@ else
             }
         }
 
-     displayPosts();
-     echo "<br>";
-     include('private/writePosts.php');   
+    
+        displayPosts();
+    
+
+    echo "<br>";
+
+    
+        include('private/writePosts.php');  
+
      
 }
 ?>

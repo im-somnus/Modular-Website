@@ -6,7 +6,7 @@
     <div> 
 
 <?php
-
+ echo '<div class="windowMain">';
     echo '<div class="post">';
     echo "<b>". displayCategoryTitle() ."</b>";
     echo '<br> Create new post <br>';
@@ -21,7 +21,7 @@
                 </form>
             </div>
         </div>
-</div>';
+        </div></div>';
 
 ?>
     </div>
