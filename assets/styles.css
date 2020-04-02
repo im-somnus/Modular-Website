@@ -268,7 +268,7 @@ th,td
 #loginModule
 {
   display: table-cell;
-  
+ 
   height: 200px;
   padding: 0;
   margin: 0;
@@ -284,6 +284,25 @@ th,td
 
 }
 
+.loginModuleForm
+{
+  margin: 20px;
+}
+
+.loginForm
+{
+  margin-left: 20px;
+}
+
+.registerModuleForm
+{
+  margin: 20px;
+}
+
+.registerForm
+{
+  margin-left: 20px;
+}
 
 
 /* 

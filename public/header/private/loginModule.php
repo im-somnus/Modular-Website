@@ -6,9 +6,9 @@
         if (!isset($_POST['Register']))
         {
 ?>
-            <div class="rightCornerPanel">	
+            <div class="loginModuleForm">	
                 <h1>Login</h1>
-                <div class="rightCornerPanelInside">
+                <div class="loginForm">
                   <form action="public/header/private/validateLogin.php" method="post">
                     Username <input type="text" name="user" placeholder="Username" required>
                             <br>		

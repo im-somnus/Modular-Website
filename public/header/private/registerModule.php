@@ -14,8 +14,9 @@
             if (!isset($_POST['Submit']))
             {
 ?>
-                <div class="rightCornerPanel">	
-                    <h3>Create Account </h3>
+                <div class="registerModuleForm">	
+                    <h1>Create Account </h1>
+                    <div class="registerForm">
                     <form action="public/header/private/validateRegister.php" method="post">
                             Username <input type="text" name="user" required><br>
                             Password <input type="password" name="pass" required><br>
@@ -24,6 +25,7 @@
                         <form method="post">
                             <input type="submit" name="Back" value="Back">
                         </form>
+                    </div>
                 </div>
 <?php 
             }
