@@ -29,9 +29,15 @@
     elseif (isset($_GET['videos']))
         include('game/videosModule.php');
 
+     // admin panel
+    elseif (isset($_GET['admPan']))
+        include('private/adm/admModule.php');
+
     // Login
     elseif (isset($_GET['login']))
         echo "You must be logged in to view this content.";
+
+    
     else
     {   
         // Call function to display last posts and who's online
