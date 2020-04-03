@@ -27,6 +27,17 @@ function rankCheck($rank)
     }
 }
 
+// Check if an user has the rank to access a page (nobody but administrator rank can access admin panel for example)  
+function admRankCheck($rank)
+{
+    // If session is not set, or session is not equal to the value we passed as parameter.
+    if(!isset($_SESSION["rank"]) || $_SESSION["rank"] > $rank || !isset($_SESSION['login']))
+    {        
+        header("Location: index.php");
+        exit();
+    }
+}
+
 
 // Validate the user input from login/register modules.
 function validateUserInput($user, $pass)
@@ -369,23 +380,31 @@ function checkPFPByUsername($user)
          $result = mysqli_query($link, $sql);
          $resultCheck = mysqli_num_rows($result);
          mysqli_close($link);
-          // We will keep iterating as long as theres data
-          if ($resultCheck > 0)
-          {
-              while ($row = mysqli_fetch_assoc($result))
+        // We will keep iterating as long as theres data
+        if ($resultCheck > 0)
+        {
+            while ($row = mysqli_fetch_assoc($result))
+            {
+                // If the picture is the default one, we go to the main folder to retrieve it
+                if ($row['pfpicture'] == "default_pfpic.png")
                 {
-                    // If the picture is the default one, we go to the main folder to retrieve it
-                    if ($row['pfpicture'] == "default_pfpic.png")
-                    {
-                        echo "./assets/images/users/profilePictures/".$row['pfpicture'];
-                    }
-                    // Else we find the one in his user folder
-                    else
+                    echo "./assets/images/users/profilePictures/".$row['pfpicture'];
+                }
+                // Else we find the one in his user folder
+                else
+                {
+                    if (file_exists("./assets/images/users/profilePictures/$user/".$row['pfpicture']))
                     {
                         echo "./assets/images/users/profilePictures/$user/".$row['pfpicture'];
                     }
+                    else
+                    {
+                        echo "./assets/images/users/profilePictures/default_pfpic.png";
+                    }
                 }
-          }
+            }
+        }
+          
     }
     else
     {
@@ -604,16 +623,23 @@ function checkPFPById($id)
                 while ($row = mysqli_fetch_assoc($result))
                 {
                     $username = returnUsernameSelect($id);
-                        // If the picture is the default one, we go to the main folder to retrieve it
-                        if ($row['pfpicture'] == "default_pfpic.png")
-                        {
-                            echo "./assets/images/users/profilePictures/".$row['pfpicture'];
-                        }
-                        // Else we find the one in his user folder
-                        else
+                    // If the picture is the default one, we go to the main folder to retrieve it
+                    if ($row['pfpicture'] == "default_pfpic.png")
+                    {
+                        echo "./assets/images/users/profilePictures/".$row['pfpicture'];
+                    }
+                    // Else we find the one in his user folder
+                    else
+                    {
+                        if (file_exists("./assets/images/users/profilePictures/$username/".$row['pfpicture']))
                         {
                             echo "./assets/images/users/profilePictures/$username/".$row['pfpicture'];
                         }
+                        else
+                        {
+                            echo "./assets/images/users/profilePictures/default_pfpic.png";
+                        }
+                    }
                 }
           }
     }
@@ -641,11 +667,11 @@ function adminPanel($user, $userRank)
 
             if ($data['rank'] == 0)
             {
-                echo '<a href="public/main/private/adm/admModule.php">Admin Panel</a>';
+                echo '<a href="index.php?admPan">Admin Panel</a>';
             }
             if ($data['rank'] == 1)
             {
-                echo '<a href="public/main/private/adm/admModule.php">Mod Panel</a>';
+                echo '<a href="index.php?admPan">Mod Panel</a>';
             }
     } 
 }
