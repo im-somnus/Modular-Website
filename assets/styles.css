@@ -348,7 +348,7 @@ th,td
 {
   margin-top: 20px;
   background-color: rgba(22,25,25,0.8);
-  border: 1px solid rgb(46,44,44);
+  border: 2px solid rgb(46,44,44);
 }
 
 .windowNavBar
@@ -459,7 +459,7 @@ th,td
 .navbar
 {
   background-color: rgba(22,25,25,0.95);
-  border: 1px solid rgb(46,44,44);
+  border: 2px solid rgb(46,44,44);
   margin-top: 20px;
   padding: 0px;
 }
