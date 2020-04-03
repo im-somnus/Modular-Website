@@ -4,6 +4,7 @@ keepOnlineStatus($_SESSION['login']['user']);
 
     if (isset($_GET['edit']) && $_GET['edit'] == 1)
     {
+        
 ?>
        <div class="windowProfile">
         <form action="" method="post" enctype="multipart/form-data">
@@ -15,6 +16,7 @@ keepOnlineStatus($_SESSION['login']['user']);
 <?php
         changeImage();
     }
+    echo "<h2 class='h2Titles'>" . $_SESSION['login']['user'] . "'s Profile</h2>";
 ?>
      <div class="windowProfile">
          <div class="profileInfo">
