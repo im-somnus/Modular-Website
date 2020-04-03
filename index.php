@@ -1,7 +1,10 @@
 <?php
 	session_start();
 	include("public/main/private/functionLibrary.php");
-	
+	if (isset($_SESSION['login']))
+	{
+		keepOnlineStatus($_SESSION['login']['user']);
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
