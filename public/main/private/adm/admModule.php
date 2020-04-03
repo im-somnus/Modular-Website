@@ -1,20 +1,23 @@
 <?php
-session_start();
-include("../functionLibrary.php");
-rankCheck(1);
+include("admFunctionLibrary.php");
+admRankCheck(1);
 ?>
 
-<a href="index.php"><button>Back to Index</button></a>
+
+
 <?php
+
 
     if ( empty( $_POST) )
     {
        if ($_SESSION['rank'] < 1)
        {
+
+        echo "<h2 class='h2Titles'> Admin Panel</h2>";
 ?>
 
 
-            <div>
+            <div class="windowMain">
                 <h2>Account Management</h2>
                 <form action="" method="post"> 
                     <input type="submit" value="Show Accounts" name="showAcc"><p>
@@ -25,14 +28,13 @@ rankCheck(1);
             </div>
  <?php 
        }
+       echo "<h2 class='h2Titles'> Mod Panel</h2>";
 ?>
-            <div>
+            <div class="windowMain">
                 <h2>Post Management</h2>
                 <form action="" method="post"> 
 
                     <input type="submit" value="Show/Remove Posts" name="showPost"><p>
-                   <!--  <input type="submit" value="Make Posts" name="mkPost"><p>
-                    <input type="submit" value="Modify Posts" name="modPost"><p> -->
                 </form>
             </div>
             
@@ -44,38 +46,38 @@ rankCheck(1);
 // users
         if (isset($_POST["mkAcc"]))
         {
-          header("location: makeAccounts.php");
+          makeAccounts();
         }
         
         elseif ( isset($_POST["rmAcc"]))
         {
-            header("location: removeAccounts.php");
+            /* removeAccounts(); */
         }
 
         elseif (isset($_POST["modAcc"]))
         {
-            header("location: modifyAccounts.php");
+          /*   modifyAccounts(); */
         }
         
         elseif (isset($_POST["showAcc"]))
         {      
-            header("location: showAccounts.php");
+           /*  showAccounts(); */
         }
 
 // posts
         elseif ( isset($_POST["showPost"]))
         {
-            header("location: removePosts.php");
+          /*   removePosts(); */
         }
 
         elseif ( isset($_POST["mkPost"]))
         {
-            header("location: makePosts.php");
+            /*makePosts(); */
         }
 
         elseif (isset($_POST["modPost"]))
         {
-            header("location: modifyPosts.php");
+            /*modifyPosts(); */
         }
         
     }
@@ -83,3 +85,4 @@ rankCheck(1);
 
 ?>
 
+<a href="index.php"><button>Back to Index</button></a>
