@@ -35,8 +35,7 @@
 
     // Login
     elseif (isset($_GET['login']))
-        echo "You must be logged in to view this content.";
-
+        $_SESSION['error'] = "You must be loggerd in to view this content";
     
     else
     {   
