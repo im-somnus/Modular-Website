@@ -2,6 +2,8 @@
 rankCheck(2);
 keepOnlineStatus($_SESSION['login']['user']);
 
+echo "<h2 class='h2Titles'>" . $_SESSION['login']['user'] . "'s Profile</h2>";
+
     if (isset($_GET['edit']) && $_GET['edit'] == 1)
     {
         
@@ -16,7 +18,7 @@ keepOnlineStatus($_SESSION['login']['user']);
 <?php
         changeImage();
     }
-    echo "<h2 class='h2Titles'>" . $_SESSION['login']['user'] . "'s Profile</h2>";
+    
 ?>
      <div class="windowProfile">
          <div class="profileInfo">
