@@ -924,7 +924,7 @@ function displayPosts()
                                                    echo "</b>";
                                                 
                                                    
-                                                   echo "<br> Post Count:" . countPostsByID($row['accounts_id']);
+                                                   echo "<br> Post Count: <b>" . countPostsByID($row['accounts_id']) . "</b>";
                                                ?>
                                            </div>
                                        </div>
