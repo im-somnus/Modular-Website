@@ -11,10 +11,20 @@ echo "<h2 class='h2Titles'>" . $_SESSION['login']['user'] . "'s Profile</h2>";
        <div class="windowProfile">
         <form action="" method="post" enctype="multipart/form-data">
                 Select an image to upload:
-                <input type="file" name="fileToUpload" id="fileToUpload">
-                <input type="submit" value="Upload Image" name="submit">
+                <div style="height:0px;overflow:hidden">
+                <input type="file" id="fileToUpload" name="fileToUpload" />
+                    </div>
+                    <button type="button" onclick="chooseFile();">Choose file</button>
+                    <input type="submit" value="Upload Image" name="submit">
             </form>
-       </div>
+            </div>
+            <script>
+                function chooseFile()
+                 {
+                    document.getElementById("fileToUpload").click();
+                }
+            </script>
+
 <?php
         changeImage();
     }
