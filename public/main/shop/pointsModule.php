@@ -1,12 +1,17 @@
-<?php
-    echo '
-        <div class="post">
-            <h1>Point system</h1>
-            <p>Point system was designed in a way so that users can exchange their in-game earned points for rewards</p>
-            
-            <p>Points can either be earned in-game by playing, completing missions, questing, beating challenges, etc. They can also be bought through the donation system.</p>
-            <p>We don\'t like <b>P2W</b> games, so in order to avoid falling into that trap, all the rewards you can buy with real life money will not give any advantage whatsoever.</p>
+<div class="donationCenter">
+            <h2 class='h2Titles'> Point System</h2>
+    <div class="windowShop">
 
-            <p>More info, <b>SoonTM</b> 2050</p>
-        </div>';
-?>
+        <h3>What are Trade Points?</h3>
+        - Trade Points are the main forum currency, they are non-refundable.<br>
+        <h3>How do I obtain Trade Points?</h3>
+        - Donations: you can donate to the site. Trade Points are automatically added to your account after you do so.<br>
+        - Contests: official and unofficial forum contests may reward the winners with Trade Points<br>
+        <h3>What am I allowed to do with Trade Points?</h3>
+        - Items: trade it for in-game stuff from the shop center.<br>
+        <h3> What should I not do with Trade Points?</h3>
+        - Selling Trade Points for real money is strictly prohibited and will lead to account suspension and partial or complete loss of your Trade Points.<br>
+        - The sale of you Forum accounts is prohibited.<br>   
+        <br>
+    </div>
+</div>
