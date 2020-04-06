@@ -201,4 +201,139 @@ $resultCheck = mysqli_num_rows($result);
     }
 }
 
+function showAccounts()
+{
+    require("../db_con.php");
+
+// Check the data against the database
+$sql = "Select * from accounts";
+$result = mysqli_query($link, $sql);
+mysqli_close($link);
+
+$resultCheck = mysqli_num_rows($result);
+
+    if (!isset($_POST['Delete']))
+    {
+?>
+    <!-- Table displaying Accounts info-->
+                <div>
+                  
+                
+                <table border='1' style="border-collapse: collapse;">
+                    <tr>
+                        <th>id</th>
+                        <th>username</th>
+                        <th>rank</th>
+                        <th>points</th>
+                        <th>pfpicture</th>
+                        <th>userStatus</th>
+                        <th>lastActivity</th>
+                        <th>postCooldown</th>
+                    </tr>
+<?php
+    // We will keep iterating as long as theres data
+    if ($resultCheck > 0)
+    {
+        while ($row = mysqli_fetch_assoc($result))
+            {
+                $id = $row['id'];
+                $username=$row["username"];
+                $rank = $row['rank'];
+                $points = $row['points'];
+                $pfpicture = $row['pfpicture'];
+                $userStatus = $row['userStatus'];
+                if ($userStatus == 1)
+                {
+                    $userStatus = "Online";
+                }
+                else
+                {
+                    $userStatus = "..................";
+                }
+
+                $lastActivity = $row['lastActivity'];
+                $postCooldown = $row['postCooldown'];
+                echo "
+                <TR>
+                    <td>$id</td>
+                    <TD>$username</TD>
+                    <td>$rank</td>
+                    <td>$points</td>
+                    <td>$pfpicture</td>
+                    <td>$userStatus</td>
+                    <td>$lastActivity</td>
+                    <td>$postCooldown</td>
+                </TR>"; 
+            }
+    }
+?>
+                 </table>
+                 </div>
+<?php
+    }
+    
+}
+
+
+
+function modifyAccounts()
+{
+    
+    require("../db_con.php");
+    if (empty($_POST['user']))
+    {
+    ?>
+        <div>
+            <h2>Modify Account</h2>
+            <a href="admModule.php"><input type="button" value="Back"/></a> <br> <br>
+            <form method="post">
+            <input type="submit" value="Submit"><br><br>
+            Account <input type="text" name="user" required/><br>
+            Password <input type="text" name="pass" required/><br>
+            Rank    <input type="text" name="rank" required/><br>
+            Points <input type="text" name="points" required/><br><br>
+            Old id <input type="number" name="id" required/><br>
+            
+            </form>
+        </div>
+    <?php
+    showAccounts();
+    }
+    else
+    {    
+        $user = $_POST['user'];
+        $pass = $_POST['pass'];
+        $rank = $_POST['rank'];
+        $points = $_POST['points'];
+        $id = $_POST['id'];
+
+        if ($rank > 2)
+        {
+            $_SESSION['error'] = "Rank cannot be higher than 2";
+            header("location: modifyAccounts.php");
+        }
+        else
+        {
+            // Validate admin input
+            validateAdminInput($user, $pass);
+
+            $sql = "UPDATE accounts SET username='$user', password=password('$pass'),
+                rank='$rank', points='$points' where id='$id';";
+
+            // Verifying the query from the function verifyQuery
+            if (!executeQuery($sql))
+            {
+                $_SESSION['error'] = "ERROR! The username cannot be modified.";
+                header("location: modifyAccounts.php");
+            }
+
+            $_SESSION['success'] = "User information updated.";
+            header("location: modifyAccounts.php");
+        }
+        
+    }
+}
+
+
+
 ?>
