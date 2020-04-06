@@ -17,10 +17,9 @@ if (empty( $_POST))
         <div class="windowMain">
             <h2>Account Management</h2>
             <form action="" method="post"> 
-                <input type="submit" value="Show Accounts" name="showAcc"><p>
                 <input type="submit" value="Make Accounts" name="mkAcc"><p>
+                <input type="submit" value="Show/Remove Accounts" name="showAcc"><p>
                 <input type="submit" value="Modify Accounts" name="modAcc"><p>
-                <input type="submit" value="Remove Accounts" name="rmAcc"><p>
             </form>
         </div>
 <?php 
@@ -45,11 +44,6 @@ else
         {
             header("location: makeAccounts.php");
         }
-        
-        elseif ( isset($_POST["rmAcc"]))
-        {
-            header("location: removeAccounts.php");
-        }
 
         elseif (isset($_POST["modAcc"]))
         {
@@ -58,7 +52,7 @@ else
         
         elseif (isset($_POST["showAcc"]))
         {      
-            header("location: showAccounts.php");
+            header("location: showRemoveAccounts.php");
         }
 
 // posts
@@ -75,4 +69,6 @@ else
 
 
 ?>
+
+
 
