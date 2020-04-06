@@ -3,7 +3,11 @@ session_start();
 require("admFunctionLibrary.php");
 require("../functionLibrary.php");
 admRankCheck(1);
+?>
 
+<a href="../../../../index.php"><input type="button" value="Index"/></a> 
+
+<?php
 
 if (empty( $_POST))
 {

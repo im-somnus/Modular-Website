@@ -335,5 +335,97 @@ function modifyAccounts()
 }
 
 
+function removePosts()
+{
+    
+    require("../db_con.php");
+            
+    // Check the data against the database
+    $sql = "Select * from post";
+    $result = mysqli_query($link, $sql);
+
+
+    $resultCheck = mysqli_num_rows($result);
+
+        if (!isset($_POST['Delete']))
+        {
+    ?>
+        <!-- Table displaying Accounts info-->
+                    <div>
+                        <h2>Remove posts</h2>
+                        <a href="admModule.php"><input type="button" value="Back"/></a> <br> <br>
+                        <form action="" method=post>
+                        <input id='boton' type='submit' value='Delete' name='Delete'><br><br>
+                    <table border='1' style="border-collapse: collapse;">
+                        <tr>
+                            <th>id</th>
+                            <th>postDate</th>
+                            <th>post</th>
+                            <th>thread_id</th>
+                            <th>accounts_id</th>
+                            <th>delete</th>
+                        </tr>
+    <?php
+        // We will keep iterating as long as theres data
+        if ($resultCheck > 0)
+        {
+            while ($row = mysqli_fetch_assoc($result))
+                {
+                    $id = $row['id'];
+                    $postDate=$row["postDate"];
+                    $post = $row['post'];
+                    $thread_id = $row['thread_id'];
+                    $accounts_id = $row['accounts_id'];
+                    echo "
+                    <TR>
+                        <td>$id</td>
+                        <TD>$postDate</TD>
+                        <td>$post</td>
+                        <td>$thread_id</td>
+                        <td>$accounts_id</td>
+                        <TD><INPUT type='checkbox' name='borrar[$id]'></TD>
+                    </TR>"; 
+                }
+        }
+    ?>
+                        </form>
+                    </table>
+                    </div>
+    <?php
+        }
+        else
+        {
+            if (!empty($_POST['borrar']))
+            {
+                $delete = $_POST["borrar"];
+                
+
+                // CREANDO LA CONSULTA DE BORRADO CON TODAS LAS EMPRESAS SELECCIONADAS
+                foreach ($delete as $i => $value) 
+                {
+                        if ($value == "on")
+                        {
+                            $sql = "DELETE FROM post WHERE id=$i;";
+        
+                            // Verifying the query from the function verifyQuery
+                            if (!executeQuery($sql))
+                            {
+                                $_SESSION['error'] = "Post/s couldnt be removed.<br>";
+                                header("location: removePosts.php");
+                            }
+
+                            $_SESSION['success'] = "Post was removed.";
+
+                            header("location: removePosts.php");
+                        }
+                }
+
+                
+
+            }
+
+            
+        }
+}
 
 ?>
