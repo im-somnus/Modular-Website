@@ -31,7 +31,7 @@
 
      // admin panel
     elseif (isset($_GET['admPan']))
-        include('private/adm/admModule.php');
+        header("location: public/main/private/adm/admModule.php ");
 
     // Login
     elseif (isset($_GET['login']))

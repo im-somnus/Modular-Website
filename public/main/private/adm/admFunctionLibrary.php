@@ -1,27 +1,53 @@
 <?php
 
+// Validate the user input from login/register modules.
+function validateAdminInput($user, $pass)
+{
+    $pattern = "/^[A-Za-z0-9][A-Za-z0-9_-]{3,21}$/";
+    // Check if username meets the minimum requirements.
+    if (!preg_match($pattern, $user))
+    {
+        $_SESSION['error'] = "Username does not meet the requirements, try again";
+
+        header("location: makeAccounts.php");
+        exit();
+    }
+
+    // Check if password meets the next pattern;
+    $pattern = "/[@$%&A-Za-zçñ0-9_-]{3,20}$/";
+
+    if (!preg_match($pattern, $pass))
+    {
+        $_SESSION['error'] = "Password does not meet the requirements, try again";
+
+        header("location: makeAccounts.php");
+        exit();
+    }
+    
+}
+
+
 // admin function to make an account
 function makeAccounts()
 {
-    require("public/main/private/db_con.php");
-    include_once("public/main/private/functionLibrary.php");
+    require("../db_con.php");
         
-    if (empty($_POST['user']))
+    if (!isset($_POST['user']))
     {
-    ?>
+?>
     <div>
         <h2>Make Account</h2>
-        <a href="panelad.php"><input type="button" value="Back"/></a> <br> <br>
+        <a href="admModule.php"><input type="button" value="Back"/></a> <br> <br>
         <form method="post">
         
         Account <input type="text" name="user" required/><br>
         Password <input type="text" name="pass" required/><br>
         Rank    <input type="text" name="rank" required/><br>
         Money    <input type="text" name="points" required/><br>
-        <input type="submit" value="Submit">
+        <input type="submit" value="submit">
         </form>
     </div>
-    <?php
+<?php
     }      
     else
     {    
@@ -33,15 +59,15 @@ function makeAccounts()
         if ($rank > 2)
         {
             $_SESSION['error'] = "Rank cannot be higher than 2";
-            header( "refresh: 1; url=makeAccounts.php" );
+            header("location: makeAccounts.php");
         }
         else
         {
-            // Validate if that user input was valid before doing any queries.
-            validateUserInput($user, $pass);
-            
+            // Validate admin input
+            validateAdminInput($user, $pass);
+
             $sql = "INSERT INTO accounts (username, password, rank, points)
-                            VALUES ('$user', md5('$pass'), '$rank', '$points')";
+                            VALUES ('$user', md5('$pass'), '$rank', '$points');";
 
                 // Verifying the query from the function executeQuery
                 if (!executeQuery($sql))
@@ -49,21 +75,19 @@ function makeAccounts()
                     // Store the error in the session variable to display in main
                     $_SESSION['error'] = "ERROR! The username you entered is already in use.";
 
-                    header("location: ../../../index.php?admPan");
-                    exit();
+                    header("location: makeAccounts.php");
                 }
             
 
                 $_SESSION['success'] = "You have successfully created your account.";
 
-                $path = "../../../assets/images/users/profilePictures/";
+                $path = "../../../../assets/images/users/profilePictures/";
                 $mkdirPath = $path . $user . "/";
                 if (!file_exists($mkdirPath))
                 {
-                    mkdir($mkdirPath, 0777, true);
+                    mkdir($mkdirPath);
                 }
-
-                header("location: ../../../index.php");
+                header("location: makeAccounts.php");
         }
     }
 }
