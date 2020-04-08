@@ -317,7 +317,7 @@ function modifyAccounts()
             // Validate admin input
             validateAdminInput($user, $pass);
 
-            $sql = "UPDATE accounts SET username='$user', password=password('$pass'),
+            $sql = "UPDATE accounts SET username='$user', password=md5('$pass'),
                 rank='$rank', points='$points' where id='$id';";
 
             // Verifying the query from the function verifyQuery
