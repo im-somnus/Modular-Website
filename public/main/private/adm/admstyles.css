@@ -1,0 +1,573 @@
+*
+{
+  font-size: 16px;
+}
+
+body
+{
+  background: url("../../../../assets/images/background/background.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  
+  color: rgb(150, 150, 150);
+  background-color: rgb(83, 82, 82);
+
+  
+}
+
+
+
+tr td:last-child
+{
+  width:1%;
+  white-space:nowrap;
+}
+
+
+#index
+{
+  margin: 50px;
+}
+
+a:hover
+{
+  color: rgb(200, 200, 200);
+}
+
+@media screen and (min-width: 768px)
+{
+
+  header > div
+  {
+      display: flex;
+  }
+
+  header > div > div
+  {
+      flex: 1;
+      width: 50px;
+      height: 200px;
+  }
+}
+
+
+
+@media screen and (max-width: 768px)
+{
+
+  #logoPicture
+  {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    opacity: 0.6;
+  }
+
+  header
+  {
+    position: relative; 
+    overflow:hidden; 
+    z-index: 2;
+  }
+
+  #loginModule
+  {
+    
+    position: relative;
+    z-index: 2;
+  }
+
+  #credentials 
+  {
+   
+    margin: 3%;
+  }
+
+  #profilePicturelogin
+  {
+    float: center;
+  }
+}
+
+
+.post
+{
+    min-height: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+
+   
+
+} 
+
+#userInfo
+{ 
+ margin-left: 10px;
+} 
+
+.pfpic
+{
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+.postPart
+{
+    width: 50%;
+    margin: auto;
+    word-wrap: break-word;
+
+}
+
+
+
+main
+{
+  margin-top: 10px;
+}
+
+nav
+{
+  margin-top: 10px;
+}
+
+
+
+textarea, #postTitle
+{
+  resize: none;
+  width: 80%;
+  margin: 10px;
+}
+
+.postFormWrapper
+{
+  text-align: center;
+  margin: 10px;
+}
+
+
+
+
+
+
+
+/*  No sé lo que es, remover
+.faIcon a:link
+{
+  text-decoration: none;
+  color: black;
+}
+
+.faIcon a:active
+{
+  text-decoration: none;
+  color: red;
+}
+
+.faIcon a:visited
+{
+  text-decoration: none;
+  color: black;
+} */
+
+
+
+
+/* 
+################################# POST MODULE ###############################################
+*/
+
+
+
+/* 
+################################# POST/THREAD PAGINATION ###############################################
+*/
+
+
+#pagination
+{
+  margin-top: 20px;
+  text-align: right;  
+  padding-right: 10px;
+
+}
+
+#page
+{
+  padding: 2px;
+  border: 2px solid rgba(92,88,88);;
+}
+
+#pagination a:link
+{
+  text-decoration: none;
+
+}
+ 
+#pagination a:visited
+{
+  color: rgb(32,66,155)
+}
+
+
+
+
+/* 
+################################# THREAD MODULE ###############################################
+*/
+
+.lastPostTitle
+{
+  margin: 20px;
+  display: inline-block;
+}
+
+
+.postDate
+{
+  margin: 30px;
+  float: right;
+}
+
+tr:nth-child(even)
+{
+  background-color: rgba(22,25,25,0.8);
+}
+
+th,td
+{
+  padding: 10px;
+  text-align: left;
+}
+
+/* 
+################################# SHOP MODULE ###############################################
+*/
+
+.donationCenter
+{
+  color: rgb(122,121,121);
+  margin-bottom: 30px;
+
+}
+
+h2, h3
+{
+  color: rgb(160, 160, 160);
+}
+
+h3
+{
+  margin-bottom: 15px;
+}
+
+/* 
+################################# MAIN MODULE ###############################################
+*/
+
+.h2Titles
+{
+  margin: 20px;
+  
+}
+
+.postDateMain
+{
+  margin: 20px;
+  float: right;
+}
+
+#onlinePanel
+{
+  margin: 20px;
+}
+
+
+     
+/* 
+################################# LOGO MODULE ###############################################
+*/
+
+
+
+/* 
+################################# LOGIN MODULE ###############################################
+*/
+
+#loginModule
+{
+  display: table-cell;
+ 
+  height: 200px;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+  text-align: center; 
+}
+
+
+#credentials 
+{
+    float: left;
+    margin-left: 5%;
+
+}
+
+.loginModuleForm
+{
+  margin: 20px;
+}
+
+.loginForm
+{
+  margin-left: 20px;
+}
+
+.registerModuleForm
+{
+  margin: 20px;
+}
+
+.registerForm
+{
+  margin-left: 20px;
+}
+
+
+/* 
+################################# ALERTS MODULE ###############################################
+*/
+
+#alerts
+{
+  margin: 20px;
+}
+
+
+/* 
+################################# PROFILE MODULE ###############################################
+*/
+
+.profileInfo
+{
+  float: left;
+  margin-left: 5%;
+}
+
+.profileExtra
+{
+  display: table-cell;
+
+}
+
+
+
+/* 
+################################# WINDOW CLASSº ###############################################
+*/
+
+.windowLogin
+{
+  margin-top: 20px;
+  background-color: rgba(22,25,25,0.8);
+  border: 2px solid rgb(46,44,44);
+}
+
+.windowNavBar
+{
+  background-color: rgba(22,25,25,0.8);
+  border: 1px solid rgb(46,44,44);
+}
+
+.windowAlert
+{
+  background-color: rgba(22,25,25,0.8);
+  border: 1px solid rgb(46,44,44);
+  text-align: center; 
+  margin-top: 20px; 
+}
+
+.windowProfile
+{
+  background-color: rgba(22,25,25,0.8);
+  border: 1px solid rgb(46,44,44);
+  margin: 10px;
+  padding: 10px;
+}
+
+.windowMain
+{
+  background-color: rgba(22,25,25,0.8);
+  border: 1px solid rgb(46,44,44);
+}
+
+.windowPost
+{
+  background-color: rgba(22,25,25,0.8);
+  border: 1px solid rgb(46,44,44);
+  margin-bottom: 10px;
+}
+
+.windowFooter
+{
+  background-color: rgba(22,25,25,0.7);
+  border: 1px solid rgb(46,44,44);
+  margin-top: 20px; 
+}
+
+.windowShop
+{
+  background-color: rgba(22,25,25,0.8);
+  border: 1px solid rgb(46,44,44);
+  margin: 10px;
+  padding: 10px;
+}
+
+/* 
+################################# NAV BAR MODULE ###############################################
+*/
+
+/* Query for devices under 768pxs */
+@media screen and (min-width: 768px)
+{
+  .dropdown:hover .dropdown-menu, .btn-group:hover .dropdown-menu
+  {
+      display: block;
+  }
+
+  .dropdown-menu
+  {
+      margin-top: 0;
+  }
+
+  .dropdown-toggle
+  {
+      margin-bottom: 4px;
+  }
+
+  .navbar .dropdown-toggle, .nav-tabs .dropdown-toggle
+  {
+      margin-bottom: 0;
+  }
+
+  .navbar .navbar-nav
+  {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+  }
+  
+  .navbar .navbar-collapse
+  {
+    text-align: center;
+  }
+}
+
+/* Adding space between each dropdown button */
+  .navbar-nav > li
+  {
+    padding-left:20px;
+    padding-right:20px;
+  }
+  
+/* Hovering over the navbar will make the font whiter */
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover
+{
+    color: rgb(200, 200, 200);
+    background-color: rgb(22,25,25);
+}
+
+/* Removing border radius */
+.navbar
+{
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+/* Container for the background color */
+.navbar
+{
+  background-color: rgba(22,25,25,0.95);
+  border: 2px solid rgb(46,44,44);
+  margin-top: 20px;
+  padding: 0px;
+}
+
+/* Changes the color when clicked of each dropdown button*/
+.navbar-default .navbar-nav > li > a:hover
+{
+  color: white;
+}
+
+.navbar-nav .open .dropdown-menu
+ {
+  border: 1px solid rgb(46,44,44);
+  color: white;
+}
+
+.navbar-nav > li > .dropdown-menu
+{
+  background-color: rgb(200, 200, 200);
+  border: 1px solid rgb(46,44,44);
+}
+
+
+/* 
+################################# FOOTER MODULE ###############################################
+*/
+
+/* Create two equal columns that floats next to each other */
+.column
+{
+  float: left;
+}
+
+.column li
+{
+  list-style-type: none;
+}
+
+/* Clear floats after the columns */
+.row:after
+{
+  content: "";
+  display: table;
+  clear: both;
+  text-decoration: none;
+}
+
+ul
+{
+  list-style-type: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+  
+li a, .dropdown > a
+{
+  display: inline-block;
+  text-align: center;
+  padding: 15px 20px;
+  text-decoration: none;
+}
+
+.right
+{
+    float: right;
+}
+
+footer
+{
+  margin-top: 10px;
+}
