@@ -569,3 +569,10 @@ footer .right
     float: right;
 }
 
+
+li a, .dropdown > a
+{
+
+  text-align: center;
+
+}
