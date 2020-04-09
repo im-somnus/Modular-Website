@@ -18,8 +18,9 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="index.php"  class="dropdown-toggle">Home<b class="caret"></b></a>
+                    <a href="index.php" data-toggle="dropdown" class="dropdown-toggle">Home<b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                        <li><a href="index.php">Home</a></li>
                         <li>
                             <?php
                                 if (!isset($_SESSION['login']))
@@ -41,8 +42,9 @@
 
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="index.php?overview" class="dropdown-toggle">Game<b class="caret"></b></a>
+                    <a href="index.php?overview" data-toggle="dropdown" class="dropdown-toggle">Game<b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                    <li><a href="index.php?overview">Overview</a></li>
                     <li><a href="index.php?videos">Videos</a></li>
                     <li><a href="assets\files\game.rar">Download</a></li>
                     </ul>
@@ -50,31 +52,33 @@
             
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="index.php?forum" class="dropdown-toggle">Forum<b class="caret"></b></a>
+                    <a href="index.php?forum" data-toggle="dropdown" class="dropdown-toggle">Forum<b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                        <li><a href="index.php?forum">Forum</a></li>
                         <li><a href="index.php?code">Code of Conduct</a></li>
                     </ul>
             </ul>
             
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="index.php?news" class="dropdown-toggle">News<b class="caret"></b></a>
+                    <a href="index.php?news" data-toggle="dropdown" class="dropdown-toggle">News<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="index.php?updates">Updates</a></li>
+                        <li><a href="index.php?code">Updates</a></li>
                         <li><a href="https://gitlab.com/Somnus/pintegrado/" target="_blank">Gitlab Repository</a></li>
                     </ul>
             </ul>
             
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="index.php?shop"  class="dropdown-toggle">Shop<b class="caret"></b></a>
+                    <a href="index.php?shop" data-toggle="dropdown" class="dropdown-toggle">Shop<b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                        <li><a href="index.php?shop">Online store</a></li>
                         <li><a href="index.php?buy">Buy points!</a></li>
                         <li><a href="index.php?points">Point system</a></li>
                     </ul>
             </ul>
         </div>
-    </div>  
+    </div>
     
     </nav>
  
@@ -93,3 +97,5 @@
     </script>
   
   </div>
+
+  
