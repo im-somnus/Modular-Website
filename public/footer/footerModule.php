@@ -23,6 +23,7 @@
             }
         ?>
         </li>
+        <li> </li>
       </ol>
   </div>
   <div class="column">
@@ -48,7 +49,7 @@
   </div>
   <div class="column">
       <ol>
-        <li><a href="index.php?shop">Online store</a></b></li>
+        <li><b><a href="index.php?shop">Online store</a></b></li>
         <li><a href="index.php?buy">Buy points!</a></li>
         <li><a href="index.php?points">Point system</a></li>
       </ol>

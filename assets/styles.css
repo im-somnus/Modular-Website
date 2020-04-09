@@ -522,18 +522,19 @@ h3
 */
 
 /* Create two equal columns that floats next to each other */
-.column
+footer .column
 {
   display: inline-block;
+  margin: 15px;
 }
 
-.column li
+footer .column li
 {
   list-style-type: none;
 }
 
 /* Clear floats after the columns */
-.row:after
+footer .row:after
 {
   content: "";
   display: table;
@@ -541,34 +542,30 @@ h3
   text-decoration: none;
 }
 
-.row
+footer .row
 {
   text-align: center;
-  margin-right: 10px;;
-
+  margin-right: 10px;
+ 
 }
 
-ul
+footer li a
 {
-  list-style-type: none;
-  margin-right: auto;
-}
-  
-li a, .dropdown > a
-{
-  display: inline-block;
-  text-align: center;
-  padding: 10px;
   text-decoration: none;
   color: rgb(160, 160, 160);
 }
 
-.right
+footer li
+{
+  margin-bottom: 30px;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+footer .right
 {
     float: right;
 }
 
-footer
-{
-  margin-top: 10px;
-}
