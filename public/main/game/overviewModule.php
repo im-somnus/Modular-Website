@@ -1,7 +1,8 @@
-<?php
-    echo '
-        <div class="post">
-            <h1>Under Maintenance</h1>
-            <p>Our game will be fun, but how will you know if we dont\'t show you something here, huh?</p>
-        </div>';
-?>
+<div class="donationCenter">
+            <h2 class='h2Titles'> Overview</h2>
+    <div class="windowShop">
+    <p>The game is basically a clicking game. Click the cubes that fall in order to obtain points</p>
+    <p>These points can be traded in the <a href="index.php?shop">shop</a> for stuff, including skins and more!</p>
+    
+    </div>
+</div>

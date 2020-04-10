@@ -29,15 +29,15 @@
   <div class="column">
       <ol>
         <li><b><a href='index.php?overview'>Game</a></b></li>
-        <li><a href="index.php?videos">Videos</a></li>
         <li><a href="assets\files\game.rar">Download</a></li>
+        <br>
       </ol>
   </div>
   <div class="column">
       <ol>
         <li><b><a href="index.php?forum">Forum</a></b></li>
-        <li><a href="index.php?thread">Index</a></li>
         <li> <a href="index.php?code">Code of Conduct</a></li>
+        <br>
       </ol>
   </div>
   <div class="column">

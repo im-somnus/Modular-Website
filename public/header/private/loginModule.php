@@ -10,11 +10,12 @@
                 <h1>Login</h1>
                 <div class="loginForm">
                   <form action="public/header/private/validateLogin.php" method="post">
-                    Username <input type="text" name="user" placeholder="Username" required>
+                  Username <input type="text" name="user" required>
                             <br>		
-                        Password <input type="password" name="pass" placeholder="Password" required>
-                            <br>
+                         Password <input type="password" name="pass" required>
+                            <br>  <br>
                         <input type="submit" name="Login" value="Log in"> 
+                  
                     </form>
                     <form method="post">
                         <input type="submit" name="Register" value="Register"> 

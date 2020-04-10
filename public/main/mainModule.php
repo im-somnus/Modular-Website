@@ -35,7 +35,10 @@
 
     // Login
     elseif (isset($_GET['login']))
+    {
         $_SESSION['error'] = "You must be loggerd in to view this content";
+        header("location: index.php");
+    }
     
     else
     {   

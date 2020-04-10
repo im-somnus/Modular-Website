@@ -34,8 +34,12 @@ a:hover
   header > div > div
   {
       flex: 1;
-      width: 50px;
-      height: 200px;
+
+  }
+
+  .registerModuleForm, .loginModuleForm
+  {
+    width: 250px;
   }
 }
 
@@ -135,6 +139,35 @@ textarea, #postTitle
 ################################# POST MODULE ###############################################
 */
 
+.navigationPanel
+{
+  margin-left: 20px;
+  margin-bottom: 20px;
+  margin-top: -20px;
+  font-size: 10px;
+}
+
+.navigationPanel a
+{
+  font-size: 12px;
+}
+
+textarea, #postTitle, input[type=text], input[type=password]
+{
+  background-color: rgba(22,25,25,0.1);
+  color: rgb(160, 160, 160);
+  border: 5px solid rgba(0,0,0,0.1); 
+  border: 2px solid rgba(92,88,88);
+  margin:0;  
+  padding:0;  
+
+}
+
+#postFormStyle
+{
+  background-color: rgba(22,25,25,0.5);
+  border: 1px solid rgb(46,44,44);
+}
 
 /* 
 ################################# CATEGORIES MODULE ###############################################
@@ -191,7 +224,7 @@ textarea, #postTitle
 
 tr:nth-child(even)
 {
-  background-color: rgba(22,25,25,0.8);
+  background-color: rgba(22,25,25,0.7);
 }
 
 table
@@ -277,19 +310,26 @@ h3
   margin: 20px;
 }
 
-.loginForm
-{
-  margin-left: 20px;
-}
-
 .registerModuleForm
 {
   margin: 20px;
 }
-
-.registerForm
+  
+button, input[type="submit"]
 {
-  margin-left: 20px;
+	background: none;
+	color: inherit;
+  border: 1px solid rgb(46,44,44);
+  padding: 5px;
+  margin-bottom: 5px;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+button, input[type="submit"]:hover
+{
+  color: rgb(31,106,183);  
 }
 
 
@@ -309,7 +349,7 @@ h3
 
 #profile
 {
-  background-color: rgba(22,25,25,0.8);
+  background-color: rgba(22,25,25,0.7);
   border: 1px solid rgb(46,44,44);
   margin: 10px;
   padding: 10px;
@@ -325,7 +365,7 @@ h3
 
 .uploadProfile
 {
-  background-color: rgba(22,25,25,0.8);
+  background-color: rgba(22,25,25,0.7);
   border: 1px solid rgb(46,44,44);
   margin: 10px;
   padding: 30px;
@@ -346,19 +386,19 @@ h3
 .windowLogin
 {
   margin-top: 20px;
-  background-color: rgba(22,25,25,0.8);
+  background-color: rgba(22,25,25,0.7);
   border: 2px solid rgb(46,44,44);
 }
 
 .windowNavBar
 {
-  background-color: rgba(22,25,25,0.8);
+  background-color: rgba(22,25,25,0.7);
   border: 1px solid rgb(46,44,44);
 }
 
 .windowAlert
 {
-  background-color: rgba(22,25,25,0.8);
+  background-color: rgba(22,25,25,0.7);
   border: 1px solid rgb(46,44,44);
   text-align: center; 
   margin-top: 20px; 
@@ -366,7 +406,7 @@ h3
 
 .windowProfile
 {
-  background-color: rgba(22,25,25,0.8);
+  background-color: rgba(22,25,25,0.7);
   border: 1px solid rgb(46,44,44);
   margin: 10px;
   padding: 10px;
@@ -374,13 +414,13 @@ h3
 
 .windowMain
 {
-  background-color: rgba(22,25,25,0.8);
+  background-color: rgba(22,25,25,0.7);
   border: 1px solid rgb(46,44,44);
 }
 
 .windowPost
 {
-  background-color: rgba(22,25,25,0.8);
+  background-color: rgba(22,25,25,0.7);
   border: 1px solid rgb(46,44,44);
   margin-bottom: 10px;
 }
@@ -395,7 +435,7 @@ h3
 
 .windowShop
 {
-  background-color: rgba(22,25,25,0.8);
+  background-color: rgba(22,25,25,0.7);
   border: 1px solid rgb(46,44,44);
   margin: 10px;
   padding: 10px;
