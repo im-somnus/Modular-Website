@@ -20,6 +20,7 @@
                     <form action="public/header/private/validateRegister.php" method="post">
                             Username <input type="text" name="user" required><br>
                             Password <input type="password" name="pass" required><br>
+                            <br>
                             <input type="submit" name="Submit" value="Submit">
                     </form>
                         <form method="post">

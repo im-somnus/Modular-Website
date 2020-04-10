@@ -45,7 +45,6 @@
                     <a href="index.php?overview" data-toggle="dropdown" class="dropdown-toggle">Game<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     <li><a href="index.php?overview">Overview</a></li>
-                    <li><a href="index.php?videos">Videos</a></li>
                     <li><a href="assets\files\game.rar">Download</a></li>
                     </ul>
             </ul>
@@ -63,7 +62,8 @@
                 <li class="dropdown">
                     <a href="index.php?news" data-toggle="dropdown" class="dropdown-toggle">News<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="index.php?code">Updates</a></li>
+                        <li><a href="index.php?news">News</a></li>
+                        <li><a href="index.php?updates">Updates</a></li>
                         <li><a href="https://gitlab.com/Somnus/pintegrado/" target="_blank">Gitlab Repository</a></li>
                     </ul>
             </ul>
