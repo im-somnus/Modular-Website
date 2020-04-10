@@ -8,9 +8,11 @@ echo "<h2 class='h2Titles'>" . $_SESSION['login']['user'] . "'s Profile</h2>";
     {
         
 ?>
-       <div class="windowProfile">
-        <form action="" method="post" enctype="multipart/form-data">
+       
+           <div class="uploadProfile">
+           <form action="" method="post" enctype="multipart/form-data">
                 Select an image to upload:
+                <br><br>
                 <div style="height:0px;overflow:hidden">
                 <input type="file" id="fileToUpload" name="fileToUpload" />
                     </div>
@@ -30,7 +32,7 @@ echo "<h2 class='h2Titles'>" . $_SESSION['login']['user'] . "'s Profile</h2>";
     }
     
 ?>
-     <div class="windowProfile">
+     <div id="profile">
          <div class="profileInfo">
             <p><b><?php echo $user ?></b></p>  
             <p>Points: <b><?php echo checkPoints($user) ?></b></p>
@@ -49,9 +51,12 @@ echo "<h2 class='h2Titles'>" . $_SESSION['login']['user'] . "'s Profile</h2>";
 <?php                
             }
 ?>
-        </div>  
-        <div id="profileExtra">
-            <img src="<?php echo checkPFPByUsername($user); ?>" width="30%"/>
-        </div>
-        <br><a href='public/main/private/logout.php'><button>Logout</button></a>
+         </div>  
+            <div id="profileInfo">
+                <img src="<?php echo checkPFPByUsername($user); ?>" width="30%"/>
+            </div>
+    </div>
+    <br>
+    <div id="logoutProfile">
+          <a href='public/main/private/logout.php'><button>Logout</button></a>
     </div>

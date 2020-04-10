@@ -5,7 +5,7 @@ keepOnlineStatus($_SESSION['login']['user']);
 echo "<h2 class='h2Titles'> Forum Categories</h2>";
 
 echo '
-<div>
+<div id="categoriesBox">
     <div>
         <table>
         <tr>

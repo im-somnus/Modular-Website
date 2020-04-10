@@ -878,8 +878,9 @@ function displayPosts()
 {
     require("db_con.php");   
     $postID = $_GET['viewtopic'];    
+    $category = $_GET['viewcategory'];
     $postTitle = getThreadTitle($postID);
-
+   
     // Add pagination to the post display
     if (isset($_GET["page"]))
     {
@@ -893,6 +894,9 @@ function displayPosts()
     $results_per_page = 10;
     $start = ($pagination - 1) * $results_per_page;
     echo "<h2 class='h2Titles'>$postTitle</h2>";
+    echo '<div class="navigationPanel">
+    <a href="index.php?forum">Forum Categories</a> >> <a href="">'. getCategoryTitleByCategoryID($category).'</a> >> <a href="">'. getThreadTitle($postID) .'</a>
+</div>';
     // We display all posts, ordered by last posted and limit of 10
     $sql = "SELECT id, postDate, post, accounts_id, thread_id from post where thread_id='$postID' limit $start, $results_per_page;";
     $result = mysqli_query($link, $sql);
@@ -1104,6 +1108,9 @@ function displayThreads()
     require("db_con.php");   
     $category = $_GET['viewcategory'];
     echo "<h2 class='h2Titles'>Threads in ". getCategoryTitleByCategoryID($category) ."</h2>";
+    echo '<div class="navigationPanel">
+        <a href="index.php?forum">Forum Categories</a> >> <a href="">'. getCategoryTitleByCategoryID($category).'</a>
+    </div>';
     if (isset($_GET["page"]))
     {
          $pagination = $_GET["page"];

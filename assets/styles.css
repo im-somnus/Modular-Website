@@ -51,35 +51,33 @@ a:hover
     top: 0;
     width: 100%;
     height: auto;
-    opacity: 0.6;
+    opacity: 0.9;
+    z-index: -9;
   }
 
   header
   {
     position: relative; 
     overflow:hidden; 
-    z-index: 2;
   }
 
   #loginModule
   {
-    
     position: relative;
     z-index: 2;
   }
 
   #credentials 
   {
-   
     margin: 3%;
   }
 
   #profilePicturelogin
   {
     float: center;
+    width: 90%;
   }
 }
-
 
 .post
 {
@@ -87,9 +85,6 @@ a:hover
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px;
-
-   
-
 } 
 
 #userInfo
@@ -110,10 +105,7 @@ a:hover
     width: 50%;
     margin: auto;
     word-wrap: break-word;
-
 }
-
-
 
 main
 {
@@ -124,8 +116,6 @@ nav
 {
   margin-top: 10px;
 }
-
-
 
 textarea, #postTitle
 {
@@ -141,50 +131,30 @@ textarea, #postTitle
 }
 
 
-
-
-
-
-
-/*  No sé lo que es, remover
-.faIcon a:link
-{
-  text-decoration: none;
-  color: black;
-}
-
-.faIcon a:active
-{
-  text-decoration: none;
-  color: red;
-}
-
-.faIcon a:visited
-{
-  text-decoration: none;
-  color: black;
-} */
-
-
-
-
 /* 
 ################################# POST MODULE ###############################################
 */
 
+
+/* 
+################################# CATEGORIES MODULE ###############################################
+*/
+
+#categoriesBox th, td
+{
+  padding-left: 20px;
+}
 
 
 /* 
 ################################# POST/THREAD PAGINATION ###############################################
 */
 
-
 #pagination
 {
   margin-top: 20px;
   text-align: right;  
   padding-right: 10px;
-
 }
 
 #page
@@ -196,16 +166,12 @@ textarea, #postTitle
 #pagination a:link
 {
   text-decoration: none;
-
 }
  
 #pagination a:visited
 {
   color: rgb(32,66,155)
 }
-
-
-
 
 /* 
 ################################# THREAD MODULE ###############################################
@@ -216,7 +182,6 @@ textarea, #postTitle
   margin: 20px;
   display: inline-block;
 }
-
 
 .postDate
 {
@@ -235,11 +200,11 @@ table
   width: 100%;
   table-layout: fixed;
 }
-     
 
 th,td
 {
   padding: 10px;
+  padding-left: 20px;
   text-align: left;
 }
 
@@ -251,7 +216,6 @@ th,td
 {
   color: rgb(122,121,121);
   margin-bottom: 30px;
-
 }
 
 h2, h3
@@ -271,7 +235,6 @@ h3
 .h2Titles
 {
   margin: 20px;
-  
 }
 
 .postDateMain
@@ -285,13 +248,9 @@ h3
   margin: 20px;
 }
 
-
-     
 /* 
 ################################# LOGO MODULE ###############################################
 */
-
-
 
 /* 
 ################################# LOGIN MODULE ###############################################
@@ -300,7 +259,6 @@ h3
 #loginModule
 {
   display: table-cell;
- 
   height: 200px;
   padding: 0;
   margin: 0;
@@ -308,12 +266,10 @@ h3
   text-align: center; 
 }
 
-
 #credentials 
 {
     float: left;
     margin-left: 5%;
-
 }
 
 .loginModuleForm
@@ -337,6 +293,7 @@ h3
 }
 
 
+
 /* 
 ################################# ALERTS MODULE ###############################################
 */
@@ -346,23 +303,40 @@ h3
   margin: 20px;
 }
 
-
 /* 
 ################################# PROFILE MODULE ###############################################
 */
 
+#profile
+{
+  background-color: rgba(22,25,25,0.8);
+  border: 1px solid rgb(46,44,44);
+  margin: 10px;
+  padding: 10px;
+  display: table;
+}
+
 .profileInfo
 {
-  float: left;
-  margin-left: 5%;
-}
-
-.profileExtra
-{
   display: table-cell;
-
+  width: 50%;
+  text-align: center;
 }
 
+.uploadProfile
+{
+  background-color: rgba(22,25,25,0.8);
+  border: 1px solid rgb(46,44,44);
+  margin: 10px;
+  padding: 30px;
+  text-align: center;
+}
+
+#logoutProfile
+{
+  text-align: center;
+  margin-bottom: 50px;
+}
 
 
 /* 
@@ -516,63 +490,107 @@ h3
   border: 1px solid rgb(46,44,44);
 }
 
-
 /* 
 ################################# FOOTER MODULE ###############################################
 */
 
-/* Create two equal columns that floats next to each other */
-footer .column
+
+@media screen and (min-width: 768px)
 {
-  display: inline-block;
-  margin: 15px;
+  /* Create two equal columns that floats next to each other */
+  footer .column
+  {
+    display: inline-block;
+  }
+
+  footer .column li
+  {
+    list-style-type: none;
+  }
+
+  /* Clear floats after the columns */
+  footer .row:after
+  {
+    content: "";
+    display: table;
+    clear: both;
+    text-decoration: none;
+  }
+
+  footer .row
+  {
+    text-align: center;
+    margin-right: 30px;
+  }
+
+  footer li a
+  {
+    text-decoration: none;
+    color: rgb(160, 160, 160);
+  }
+
+  footer li
+  {
+    margin-bottom: 30px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  footer .right
+  {
+      float: right;
+  }
+
+  li a, .dropdown > a
+  {
+    text-align: center;
+  }
 }
 
-footer .column li
+
+@media screen and (max-width: 768px)
 {
-  list-style-type: none;
-}
+    /* Create two equal columns that floats next to each other */
+    footer .column
+    {
+      display: block;
+      margin-top: 50px;
+      margin-right: 30px;
+      
+    }
 
-/* Clear floats after the columns */
-footer .row:after
-{
-  content: "";
-  display: table;
-  clear: both;
-  text-decoration: none;
-}
+    footer .column li
+    {
+      list-style-type: none;
+    }
 
-footer .row
-{
-  text-align: center;
-  margin-right: 10px;
- 
-}
+    footer .row
+    {
+      text-align: center;
+    }
 
-footer li a
-{
-  text-decoration: none;
-  color: rgb(160, 160, 160);
-}
+    footer li a
+    {
+      text-decoration: none;
+      color: rgb(160, 160, 160);
+    }
 
-footer li
-{
-  margin-bottom: 30px;
-  margin-top: 30px;
-  margin-left: auto;
-  margin-right: auto;
+    footer li
+    {
+      margin-top: 15px;
+      margin-left: auto;
+      margin-right: auto;
+      
+    }
 
-}
+    footer .right
+    {
+        float: right;
+    }
 
-footer .right
-{
-    float: right;
-}
-
-
-li a, .dropdown > a
-{
-
-  text-align: center;
-
+    li a, .dropdown > a
+    {
+      text-align: center;
+    }
 }
