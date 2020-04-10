@@ -895,7 +895,7 @@ function displayPosts()
     $start = ($pagination - 1) * $results_per_page;
     echo "<h2 class='h2Titles'>$postTitle</h2>";
     echo '<div class="navigationPanel">
-    <a href="index.php?forum">Forum Categories</a> >> <a href="">'. getCategoryTitleByCategoryID($category).'</a> >> <a href="">'. getThreadTitle($postID) .'</a>
+    <a href="index.php?forum">Forum Categories</a> >> <a href="index.php?viewcategory='.$category.'">'  . getCategoryTitleByCategoryID($category).'</a> >>  <a href="index.php?viewcategory='.$category.'&viewtopic='.$postID.'">' . getThreadTitle($postID) .'</a>
 </div>';
     // We display all posts, ordered by last posted and limit of 10
     $sql = "SELECT id, postDate, post, accounts_id, thread_id from post where thread_id='$postID' limit $start, $results_per_page;";
@@ -1109,7 +1109,7 @@ function displayThreads()
     $category = $_GET['viewcategory'];
     echo "<h2 class='h2Titles'>Threads in ". getCategoryTitleByCategoryID($category) ."</h2>";
     echo '<div class="navigationPanel">
-        <a href="index.php?forum">Forum Categories</a> >> <a href="">'. getCategoryTitleByCategoryID($category).'</a>
+        <a href="index.php?forum">Forum Categories</a> >> <a href="index.php?viewcategory='.$category.'">'. getCategoryTitleByCategoryID($category).'</a>
     </div>';
     if (isset($_GET["page"]))
     {
