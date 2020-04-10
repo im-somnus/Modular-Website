@@ -937,13 +937,14 @@ function displayPosts()
                                            <?php
                                                echo $row['post'] . "<br>";
                                                echo "<br>";
-                                               echo $row['postDate'] . "<br>";
+                                               echo "<div id='postDate'>".$row['postDate'] . "</div><br>";
                                            ?>
                                        </div>
                                        <br><br>
                                      </div>
                                    </div>
                            
+                                   
             
     <?php
         }

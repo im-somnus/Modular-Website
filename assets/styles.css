@@ -88,7 +88,7 @@ a:hover
     min-height: 200px;
     margin-top: 10px;
     margin-bottom: 10px;
-    padding: 10px;
+    padding: 10px;  
 } 
 
 #userInfo
@@ -103,13 +103,37 @@ a:hover
   width: 100px;
   height: 100px;
 }
+@media screen and (max-width: 768px)
+{
+    .userPart
+  {
+    width: 30%;
+    margin: auto;
+    margin-bottom: 50px;
+  }
+
+}
+
 
 .postPart
 {
-    width: 50%;
-    margin: auto;
-    word-wrap: break-word;
+  margin: 10px;
+  padding: 0px;
+  margin-top: 50px;
+  margin-bottom: 0px;
+  word-wrap: break-word;
 }
+
+#postDate
+{
+  margin-top: 50px;
+  margin-bottom: -70px;
+  padding-bottom: 0px;
+  text-align: right; 
+  
+}
+
+
 
 main
 {
@@ -120,6 +144,9 @@ nav
 {
   margin-top: 10px;
 }
+
+
+/* write post module */
 
 textarea, #postTitle
 {
