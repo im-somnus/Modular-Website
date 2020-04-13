@@ -46,6 +46,7 @@ if (empty( $_POST))
                 <input type="submit" value="Modify Accounts" name="modAcc"><p>
             </form>
         </div>
+
 <?php 
    }
    echo "<h2 class='h2Titles'> Mod Panel</h2>";
