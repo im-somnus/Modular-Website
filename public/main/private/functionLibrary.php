@@ -238,6 +238,28 @@ function logout($user)
     exit();
 }
 
+// Function to get the account id from thread id
+function getAccountIDbyThreadID($id)
+{
+    require("db_con.php");
+    $sql = "SELECT accounts_id FROM thread where id='$id';";
+    
+    if(executeQuery($sql))
+    {
+         $result = mysqli_query($link, $sql);
+         $resultCheck = mysqli_num_rows($result);
+
+          // We will keep iterating as long as theres data
+          if ($resultCheck > 0)
+          {
+            while ($row = mysqli_fetch_assoc($result))
+            {
+                return $row['accounts_id'];     
+            }
+          }
+    }
+}
+
 
 /*  ####################################### USER PROFILE FUNCTIONS ####################################### */
 
@@ -255,10 +277,10 @@ function checkPoints($user)
           // We will keep iterating as long as theres data
           if ($resultCheck > 0)
           {
-              while ($row = mysqli_fetch_assoc($result))
-                  {
-                      echo $row['points'];     
-                  }
+            while ($row = mysqli_fetch_assoc($result))
+            {
+                echo $row['points'];     
+            }
           }
     }
     else
@@ -727,6 +749,7 @@ function displayLastPosts()
             $threadID = $row['thread_id'];
             $threadTitle = getThreadTitleById($threadID);
             $category = getCategoryIDbyThreadID($threadID);
+           
 ?>
                         
 
@@ -734,14 +757,19 @@ function displayLastPosts()
                             <div class="lastPostTitle">
                                     <?php
                                         echo "<a href='index.php?viewcategory=$category&viewtopic=$threadID'>". $threadTitle . "</a><br>";
+                                        echo "by <b>"; 
+                                        echo returnUsernameSelect(getAccountIDbyThreadID($threadID));
+                                        echo "</b>";
+
                                     ?>
                             </div>
-                            <div class="postDateMain">
+                            <div class="postDate">
                                     <?php
                                         displayPostDateByThreadID($threadID) . "</p><div style='clear: both'></div>";
                                     ?>
                             </div>
                         </div>
+
                           
                      
 <?php
