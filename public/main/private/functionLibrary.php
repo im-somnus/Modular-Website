@@ -785,7 +785,7 @@ function displayLastPosts()
 
                                     ?>
                             </div>
-                            <div class="postDate">
+                            <div class="postDateMain">
                                     <?php
                                         displayPostDateByThreadID($threadID) . "</p><div style='clear: both'></div>";
                                     ?>
@@ -986,10 +986,13 @@ function displayPosts()
                                        <div class="postPart">
                                            
                                            <?php
-                                               echo $row['post'] . "<br>";
-                                               echo "<br>";
-                                               echo "<div id='postDate'>".$row['postDate'] . "</div><br>";
+                                               echo $row['post'];
                                            ?>
+                                       </div>
+                                       <div id='postDate'>
+                                            <?php
+                                               echo $row['postDate'];
+                                            ?>
                                        </div>
                                        <br><br>
                                      </div>
@@ -1223,7 +1226,7 @@ function displayThreads()
                             echo "</b>";
                         ?>
                 </div>
-                <div class="postDate">
+                <div class="postDateMain">
                         <?php
                             echo $row['postDate']. "<br>";
                         ?>
