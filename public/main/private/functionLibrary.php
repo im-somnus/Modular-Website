@@ -261,6 +261,28 @@ function getAccountIDbyThreadID($id)
 }
 
 
+// Function to check user's rank
+function userRank($user)
+{
+    require("db_con.php");
+    $sql = "SELECT rank FROM accounts where username='$user';";
+    
+    if(executeQuery($sql))
+    {
+         $result = mysqli_query($link, $sql);
+         $resultCheck = mysqli_num_rows($result);
+
+          // We will keep iterating as long as theres data
+          if ($resultCheck > 0)
+          {
+            while ($row = mysqli_fetch_assoc($result))
+            {
+                return $row['rank'];     
+            }
+          }
+    }
+}
+
 /*  ####################################### USER PROFILE FUNCTIONS ####################################### */
 
 // Checks the user's points.
@@ -880,6 +902,7 @@ function insertForumPost($post, $title = '', $thread_id = 0)
     
         if ($time >= 0.17)
         {
+           
             require("db_con.php");
             $post = mysqli_real_escape_string($link, $post);
             $sql = "INSERT INTO post (postDate, post, thread_id, accounts_id) 
@@ -1087,23 +1110,51 @@ function insertForumThread($post, $title, $category)
     // Get the difference between those dates in minutes
     $time = round(abs($cooldown - $now) / 60,2);
 
+    // Check user rank
+    $rank = userRank($user);
+
     // If 10 seconds has passed
     if ($time >= 0.17)
     {
-        require("db_con.php");
+        // If the category is an admin restricted one
+        if ($category > 3 && $category < 8)
+        {
+            if ($rank > 1)
+            {
+                $_SESSION['error'] = "You don't have enough permissions to open a thread in this category.";
+            }
+            else
+            {
+                require("db_con.php");
 
-        $title = mysqli_real_escape_string($link, $title);
-        $sql = "INSERT INTO thread (postTitle, postDate, accounts_id, category_id) 
-        VALUES ('$title', '$date', '$account_id', '$category');";
-        executeQuery($sql); 
+                $title = mysqli_real_escape_string($link, $title);
+                $sql = "INSERT INTO thread (postTitle, postDate, accounts_id, category_id) 
+                VALUES ('$title', '$date', '$account_id', '$category');";
+                executeQuery($sql); 
 
-        insertForumPost($post, $title);
+                insertForumPost($post, $title);
+            }
+            
+        }
+        else
+        {
+            require("db_con.php");
+
+            $title = mysqli_real_escape_string($link, $title);
+            $sql = "INSERT INTO thread (postTitle, postDate, accounts_id, category_id) 
+            VALUES ('$title', '$date', '$account_id', '$category');";
+            executeQuery($sql); 
+
+            insertForumPost($post, $title);
+        }
+        
     }  
     else
     {
         $_SESSION['error'] = "You have to wait 10 seconds before making a new thread.";
-        header('Location: '.$_SERVER['REQUEST_URI']);
     }
+    header('Location: '.$_SERVER['REQUEST_URI']);
+    
 } 
 
 
