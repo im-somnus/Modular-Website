@@ -779,9 +779,6 @@ function displayLastPosts()
                             <div class="lastPostTitle">
                                     <?php
                                         echo "<a href='index.php?viewcategory=$category&viewtopic=$threadID'>". $threadTitle . "</a><br>";
-                                        echo "by <b>"; 
-                                        echo returnUsernameSelect(getAccountIDbyThreadID($threadID));
-                                        echo "</b>";
 
                                     ?>
                             </div>
@@ -1226,7 +1223,7 @@ function displayThreads()
                             echo "</b>";
                         ?>
                 </div>
-                <div class="postDateMain">
+                <div class="postDate">
                         <?php
                             echo $row['postDate']. "<br>";
                         ?>
