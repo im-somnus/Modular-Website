@@ -102,8 +102,8 @@ a:hover
 {
   margin-left: 10px;
   margin-top: 10px;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+
 }
 @media screen and (min-width: 768px)
 {
@@ -386,10 +386,12 @@ button, input[type="submit"]:hover
 {
   background-color: rgba(22,25,25,0.7);
   border: 1px solid rgb(46,44,44);
-  margin: 10px;
+
   padding: 10px;
   display: table;
+  width: 100%;
 }
+
 
 .profileInfo
 {
