@@ -647,6 +647,28 @@ function returnUsernameSelect($id)
     }
 }
 
+// Returns username username using as parameter the ID.
+function adminUsernameSelect($id)
+{
+    require("db_con.php");
+    $sql = "SELECT username FROM accounts where id='$id' and rank='0';";  
+
+    $result = mysqli_query($link, $sql);
+
+    mysqli_close($link);
+
+    $resultCheck = mysqli_num_rows($result);
+    // We will keep iterating as long as theres data
+    if ($resultCheck >= 0)
+    {
+        while ($row = mysqli_fetch_assoc($result))
+        {
+             echo "<font color='red'>" . $row['username'] ."</font>";
+        }
+    }
+}
+
+
 
 
 // Checks the user's profile picture
@@ -1334,5 +1356,144 @@ function displayCategoryTitle()
     }
 
 }
+
+
+/*  ####################################### NEWS FUNCTIONS ####################################### */
+
+
+// Function to get update post from update categories
+function getUpdatesPosts()
+{
+    
+    require("db_con.php");
+
+    // We display all posts, ordered by last posted and limit of 10
+    $sql = "select * from post inner join thread on post.thread_id = thread.id where thread.category_id='4' order by thread.postDate desc limit 1;";
+    
+    $result = mysqli_query($link, $sql);
+    mysqli_close($link);
+    $resultCheck = mysqli_num_rows($result);
+
+        // Here we show all posts that exists in our db
+    if ($resultCheck > 0)
+    {
+        while ($row = mysqli_fetch_assoc($result))
+        {   
+            echo "<h2 class='h2Titles'>Last Update</h2>";
+
+?>
+
+                           <div class="windowPost">
+                                    <div class="post">
+                                      
+                                       <div class="update_userPart">
+                                           <img class="pfpic" src="<?php checkPFPById($row['accounts_id']);?>" />
+                                           <br>
+                                           <div id="update_userInfo">
+                                               <?php
+                                               
+                                               adminUsernameSelect($row['accounts_id']);
+                                               echo "<br>";
+                                               ?>
+                                           </div>
+                                       </div>
+                                       <?php
+                                            echo "<br><u><h2 class='h2Update'>".$row['postTitle']."</h2><br></u>";
+                                       ?>
+                                       <div class="update_postPart">
+                                  
+                                           <?php
+                                               
+                                               echo $row['post'];
+                                           ?>
+                                       </div>
+                                       <div id='update_postDate'>
+                                            <?php
+                                               echo $row['postDate'];
+                                            ?>
+                                       </div>
+                                       <br><br>
+                                     </div>
+                                     <?php
+    echo "<div class='windowPostUpdate'><a href='index.php?viewcategory=6&viewtopic=".$row['thread_id']."'>View thread</a></div>";
+
+                                     ?>
+                                   </div>
+<?php
+
+
+        }
+    }
+}
+
+
+
+
+// Function to get update post from update categories
+function getDevelopmentPosts()
+{
+    
+    require("db_con.php");
+    echo "<h2 class='h2Titles'>News</h2>";
+    // We display all posts, ordered by last posted and limit of 10
+    $sql = "select * from post inner join thread on post.thread_id = thread.id where thread.category_id between 5 and 7 order by thread.postDate desc limit 3;";
+    
+    $result = mysqli_query($link, $sql);
+    mysqli_close($link);
+    $resultCheck = mysqli_num_rows($result);
+
+        // Here we show all posts that exists in our db
+    if ($resultCheck > 0)
+    {
+        while ($row = mysqli_fetch_assoc($result))
+        {   
+            
+
+?>
+
+                           <div class="windowPost">
+                                    <div class="post">
+                                      
+                                       <div class="update_userPart">
+                                           <img class="pfpic" src="<?php checkPFPById($row['accounts_id']);?>" />
+                                           <br>
+                                           <div id="update_userInfo">
+                                               <?php
+                                               
+                                               adminUsernameSelect($row['accounts_id']);
+                                               echo "<br>";
+                                               ?>
+                                           </div>
+                                       </div>
+                                       <?php
+                                            echo "<br><u><h2 class='h2Update'>".$row['postTitle']."</h2><br></u>";
+                                       ?>
+                                       <div class="update_postPart">
+                                  
+                                           <?php
+                                               
+                                               echo $row['post'];
+                                           ?>
+                                       </div>
+                                       <div id='update_postDate'>
+                                            <?php
+                                               echo $row['postDate'];
+                                            ?>
+                                       </div>
+                                       <br><br>
+                                     </div>
+                                     <?php
+                                            echo "<div class='windowPostUpdate'><a href='index.php?viewcategory=6&viewtopic=".$row['thread_id']."'>View thread</a></div>";
+
+                                     ?>
+                                   </div>
+<?php
+
+
+        }
+    }
+}
+
+
 
 ?>

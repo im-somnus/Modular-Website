@@ -736,3 +736,61 @@ button, input[type="submit"]:hover
   padding-bottom: 0px;
   text-align: right; 
 }
+
+
+.windowPostUpdate
+{
+  background-color: rgba(22,25,25,0.7);
+
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
+/*
+################################# UPDATES MODULE ###############################################
+*/
+
+
+#updateURL
+{
+  font-size: 20px;
+  margin-top: 20px;
+
+  text-align: left;
+}
+
+.h2Update
+{
+  margin-left: 10px; 
+}
+
+
+.update_userPart
+{
+width: 30%;
+margin: auto;
+margin-bottom: -40px;
+text-align: center;
+}
+
+
+.update_postPart
+{
+margin: 10px;
+padding: 0px;
+margin-top: 50px;
+margin-bottom: 0px;
+word-wrap: break-word;
+}
+
+#update_postDate
+{
+margin-top: 50px;
+margin-bottom: -70px;
+padding-bottom: 0px;
+text-align: right;
+padding-bottom: 20px; 
+
+}

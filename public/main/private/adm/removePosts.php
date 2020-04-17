@@ -22,16 +22,18 @@
 	<link href="admstyles.css" media="all" rel="stylesheet" type="text/css"/>	
 </head>
 	<body>
-		<div class="container">
+		<div class="container-fluid">
             <div class="windowAlert">
 				<?php
 						include("../alertMessageModule.php");
 				?>
 			</div>
 			<div class="windowMain">
+				<div class="tableAdmin">
 				<?php
 				 	removePosts();
 				?>
+				</div>	
 			</div>
 		</div>
 	</body>

@@ -108,7 +108,6 @@ $resultCheck = mysqli_num_rows($result);
     {
 ?>
     <!-- Table displaying Accounts info-->
-                <div>
                     <h2>Remove Accounts</h2>
                 <a href="admModule.php"><input type="button" value="Back"/></a> <br> <br>
                 <form action="" method=post>
@@ -165,7 +164,6 @@ $resultCheck = mysqli_num_rows($result);
 ?>
                     </form>
                  </table>
-                 </div>
 <?php
     }
     else
