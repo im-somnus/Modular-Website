@@ -10,8 +10,10 @@
 <html lang="en">
 <head>
 	<meta name="description" content="Webpage designed for my game project"></meta>
- 	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="utf-8">
+	<meta name="theme-color" content="rgb(83, 82, 82);"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="apple-touch-icon" href="assets/images/others/icon.png">
 	<title>Index</title>	
 	<!-- BOOTSTRAP -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
