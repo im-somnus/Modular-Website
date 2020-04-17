@@ -987,7 +987,7 @@ function displayPosts()
                                 <div class="windowPost">
                                     <div class="post">
                                        <div class="userPart">
-                                           <img class="pfpic" src="<?php checkPFPById($id);?>" />
+                                           <img alt="profile image" class="pfpic" src="<?php checkPFPById($id);?>" />
                                            <br>
                                            <div id="userInfo">
                                                <?php
@@ -1387,7 +1387,7 @@ function getUpdatesPosts()
                                     <div class="post">
                                       
                                        <div class="update_userPart">
-                                           <img class="pfpic" src="<?php checkPFPById($row['accounts_id']);?>" />
+                                           <img alt="profile image" class="pfpic" src="<?php checkPFPById($row['accounts_id']);?>" />
                                            <br>
                                            <div id="update_userInfo">
                                                <?php
@@ -1455,7 +1455,7 @@ function getDevelopmentPosts()
                                     <div class="post">
                                       
                                        <div class="update_userPart">
-                                           <img class="pfpic" src="<?php checkPFPById($row['accounts_id']);?>" />
+                                           <img alt="profile image" class="pfpic" src="<?php checkPFPById($row['accounts_id']);?>" />
                                            <br>
                                            <div id="update_userInfo">
                                                <?php

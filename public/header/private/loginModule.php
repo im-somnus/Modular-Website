@@ -47,7 +47,7 @@
                 <p><?php adminPanel($user, $userRank) ?></p>
             </div>
             <div id="profilePicturelogin">
-                <img src="<?php echo checkPFPByUsername($user, $userRank); ?>" width="30%"/>
+                <img alt="profile image" src="<?php echo checkPFPByUsername($user, $userRank); ?>" width="30%"/>
                 <br>
                 <a href='public/main/private/logout.php' id="logoutButtonLogin">Logout</a>
             

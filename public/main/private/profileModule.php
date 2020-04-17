@@ -53,7 +53,7 @@ echo "<h2 class='h2Titles'>" . $_SESSION['login']['user'] . "'s Profile</h2>";
 ?>
          </div>  
             <div id="profileInfo">
-                <img src="<?php echo checkPFPByUsername($user); ?>" width="30%"/>
+                <img alt="profile image" src="<?php echo checkPFPByUsername($user); ?>" width="30%"/>
             </div>
     </div>
     <br>
