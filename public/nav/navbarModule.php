@@ -64,7 +64,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="index.php?news">News</a></li>
                         <li><a href="index.php?updates">Updates</a></li>
-                        <li><a href="https://gitlab.com/Somnus/pintegrado/" target="_blank">Gitlab Repository</a></li>
+                        <li><a href="https://gitlab.com/Somnus/pintegrado/" rel="noreferrer target="_blank">Gitlab Repository</a></li>
                     </ul>
             </ul>
             

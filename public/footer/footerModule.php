@@ -44,7 +44,7 @@
       <ol>
         <li><b><a href="index.php?news">News</a></b></li>
         <li><a href="index.php?updates">Updates</a></li>
-        <li><a href="https://gitlab.com/Somnus/pintegrado/" target="_blank">Gitlab Repo</a></li>
+        <li><a href="https://gitlab.com/Somnus/pintegrado/" rel="noreferrer target="_blank">Gitlab Repo</a></li>
       </ol>
   </div>
   <div class="column">
