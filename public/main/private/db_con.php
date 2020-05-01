@@ -1,4 +1,10 @@
 <?php
+
+/* 
+    Module in charge of making the connection with the DataBase.
+    It will be REQUIRED by any function that makes a database query/connection, etc.
+*/
+
     // Store db connection variables
     $hostName = "localhost";
     $usrName = "root";

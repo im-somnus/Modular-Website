@@ -2,6 +2,13 @@
 rankCheck(2);
 keepOnlineStatus($_SESSION['login']['user']);
 
+/* 
+    Module in charge of displaying all the forum categories.
+
+    Right now, it's a static (hardcoded) list, but in the future this will be a dynamic list
+        extracted from the database instead of harcoding it (so its much easier to maintain and expand)
+*/
+
 echo "<h2 class='h2Titles'> Forum Categories</h2>";
 
 echo '

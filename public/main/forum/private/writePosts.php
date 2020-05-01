@@ -1,10 +1,11 @@
 <?php
-
+/* 
+    Module in charge of writing posts in the specified thread
+*/
     $category = $_GET['viewcategory'];
     $topic = $_GET['viewtopic'];
 ?>
     <div> 
-
     <div id="postFormStyle">
 <?php
 

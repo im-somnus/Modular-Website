@@ -1,5 +1,7 @@
-
 <?php
+/* 
+     Module in charge of writing threads in the specified category
+*/
 $category = $_GET['viewcategory'];
 
 ?>

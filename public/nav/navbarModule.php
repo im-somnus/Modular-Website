@@ -1,21 +1,28 @@
 <?php
+
+/* 
+    Module in charge of the NAVBAR
+*/
+
+    // Turn on output buffering
     ob_start();
 ?>
 <div class="wrapper">  
-  <!--Navbar with dropdown menu-->
+  <!-- Creating the navbar with a dropdown menu-->
     <nav id="myNavbar" class="navbar navbar-default" role="navigation">
-    <!-- Brand and toggle get grouped for better mobile display -->
+    <!-- Mobile display navbar dropdown menu -->
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
+                <span class="sr-only"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Navbar links toggle -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!-- Navbar Home -->
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="index.php" data-toggle="dropdown" class="dropdown-toggle">Home<b class="caret"></b></a>
@@ -39,25 +46,25 @@
                         </li>
                     </ul>
             </ul>
-
+            <!-- Navbar GAME -->
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="index.php?overview" data-toggle="dropdown" class="dropdown-toggle">Game<b class="caret"></b></a>
+                    <a href="index.php?game" data-toggle="dropdown" class="dropdown-toggle">Game<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                    <li><a href="index.php?overview">Overview</a></li>
-                    <li><a href="assets\files\game.rar">Download</a></li>
+                    <li><a href="index.php?game">Play now!</a></li>
                     </ul>
             </ul>
-            
+            <!-- Navbar FORUM -->           
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="index.php?forum" data-toggle="dropdown" class="dropdown-toggle">Forum<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="index.php?forum">Forum</a></li>
-                        <li><a href="index.php?code">Code of Conduct</a></li>
+                            <!-- Code of conduct will be a post in the forum -->       
+                        <li><a href="index.php?viewcategory=3&viewtopic=13">Code of Conduct</a></li>
                     </ul>
             </ul>
-            
+            <!-- Navbar NEWS -->            
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="index.php?news" data-toggle="dropdown" class="dropdown-toggle">News<b class="caret"></b></a>
@@ -67,7 +74,7 @@
                         <li><a href="https://gitlab.com/Somnus/pintegrado/" rel="noreferrer target="_blank">Gitlab Repository</a></li>
                     </ul>
             </ul>
-            
+            <!-- Navbar SHOP -->            
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="index.php?shop" data-toggle="dropdown" class="dropdown-toggle">Shop<b class="caret"></b></a>
@@ -81,7 +88,9 @@
     </div>
     
     </nav>
- 
+    </ul>
+
+    <!-- Navbar script in charge of hovering behaviour -->     
     <script type="text/javascript">
         $(document).ready(function()
         {

@@ -1,5 +1,13 @@
 <?php
 
+/* 
+    Biggest file in the project. Contains all the functionallity of the website.
+    This file will be called by other files in the server, providing them with functionallity.
+    
+    There's also testing tools for developers, and other helpful functions to make it easier
+        for the devs to work and maintain the site.
+*/
+
 /* ####################################### TESTING TOOLS ####################################### */
 
 // function to dump all variables (test)
@@ -302,6 +310,33 @@ function checkPoints($user)
             while ($row = mysqli_fetch_assoc($result))
             {
                 echo $row['points'];     
+            }
+          }
+    }
+    else
+    {
+        $_SESSION['error'] = "Couldn't display the value, contact an administrator.";
+        exit();
+    }
+}
+
+// Checks the user's points.
+function returnPoints($user)
+{
+    require("db_con.php");
+    $sql = "SELECT points FROM accounts where username='$user';";
+    
+    if(executeQuery($sql))
+    {
+         $result = mysqli_query($link, $sql);
+         $resultCheck = mysqli_num_rows($result);
+
+          // We will keep iterating as long as theres data
+          if ($resultCheck > 0)
+          {
+            while ($row = mysqli_fetch_assoc($result))
+            {
+                return $row['points'];     
             }
           }
     }
@@ -943,7 +978,7 @@ function insertForumPost($post, $title = '', $thread_id = 0)
 }
 
 
-
+// Function to display the post lists inside a specific category
 function displayPosts()
 {
     require("db_con.php");   
@@ -1361,7 +1396,7 @@ function displayCategoryTitle()
 /*  ####################################### NEWS FUNCTIONS ####################################### */
 
 
-// Function to get update post from update categories
+// Function to get update post from update category
 function getUpdatesPosts()
 {
     
@@ -1415,6 +1450,7 @@ function getUpdatesPosts()
                                        <br><br>
                                      </div>
                                      <?php
+                                     
     echo "<div class='windowPostUpdate'><a href='index.php?viewcategory=6&viewtopic=".$row['thread_id']."'>View thread</a></div>";
 
                                      ?>
@@ -1494,6 +1530,54 @@ function getDevelopmentPosts()
     }
 }
 
+/*
+################################################## API #############################################
+*/
 
+// Retrieve the points of the user
+function getPoints($user)
+{
+    require("db_con.php");
+    $sql = "SELECT points FROM accounts where username='$user';";
+    
+    if(executeQuery($sql))
+    {
+         $result = mysqli_query($link, $sql);
+         $resultCheck = mysqli_num_rows($result);
+
+          // We will keep iterating as long as theres data
+          if ($resultCheck > 0)
+          {
+            while ($row = mysqli_fetch_assoc($result))
+            {
+                return $row['points'];     
+            }
+          }
+    }
+    else
+    {
+        $_SESSION['error'] = "Couldn't display the value, contact an administrator.";
+        exit();
+    }
+}
+
+// Update the points of the user in the db by adding the game score to the current points
+function updatePoints($gameScore)
+{
+    require("db_con.php");
+    $user = $_SESSION['user'];
+    $points = getPoints($user) + $gameScore;
+    $sql = "UPDATE accounts SET points='$points' where username='$user';";
+    if (!executeQuery($sql))
+    {
+       
+        $_SESSION['error'] = "Couldn't update your score, contact an administrator.";
+        exit();
+    }
+    else
+    {
+        $_SESSION['success'] = "Game score added to your profile";
+    }
+}
 
 ?>

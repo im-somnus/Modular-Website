@@ -1,4 +1,9 @@
 <?php
+
+/* 
+    Module in charge of displaying the "register an account" form 
+*/
+
     // If session is set, redirect to index (so the user panel is shown)
     if (isset($_SESSION['login']['user']))  
     {

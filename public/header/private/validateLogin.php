@@ -1,4 +1,9 @@
 <?php 
+
+/* 
+    This module is in charge of validating the user data when login in the website.
+*/
+
 session_start();
 include_once("../../../public/main/private/db_con.php");
 include_once("../../../public/main/private/functionLibrary.php");

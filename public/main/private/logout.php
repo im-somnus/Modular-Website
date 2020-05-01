@@ -1,4 +1,8 @@
 <?php
+
+/* 
+    Module in charge of login off users, unsetting the session variables and redirecting them to the index
+*/
     session_start();
     include_once("functionLibrary.php");
 

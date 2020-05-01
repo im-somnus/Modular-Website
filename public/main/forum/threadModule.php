@@ -2,6 +2,12 @@
 rankCheck(2);
 keepOnlineStatus($_SESSION['login']['user']);
 
+/*
+    Module in charge of the threads and posts.
+    
+    In order for the module to work properly
+    First we insert the data in the db and then we update (display) said data 
+*/
 
 if (!isset($_GET['viewtopic']))
 {

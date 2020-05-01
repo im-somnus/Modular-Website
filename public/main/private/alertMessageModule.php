@@ -1,5 +1,10 @@
 <?php 
 
+/* 
+    Module in charge of displaying the alerts of the site.
+    Green for "ok" and red for "failure"
+*/
+
 // If any alert needs to be displayed
 if (isset($_SESSION['error']) || isset($_SESSION['success']))
 {
