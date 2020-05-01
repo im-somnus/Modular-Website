@@ -26,7 +26,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" rel="import"></script>
 	<link href="assets/styles.css" media="all" rel="stylesheet" type="text/css"/>	
 	
-	<script src="public/main/game/functions.js"></script>
+	<script src="public/main/game/gameFunctionLibrary.js"></script>
 
 </head>
 	<body>
@@ -37,7 +37,7 @@
 			?>
 		</div>
 
-		<script src="public/main/game/initialize.js"></script>
+		<script src="public/main/game/gameInitialization.js"></script>
 
 	</body>
 </html>
