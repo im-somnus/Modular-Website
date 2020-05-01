@@ -57,6 +57,7 @@ function start()
 // Function to create the enemies
 function createEnemy()
 {
+	changeSkin();
 	// We create a div element that will act as the enemy
 	var enemy = document.createElement('div');
 	enemy.className = 'enemy';
@@ -205,6 +206,21 @@ function gameOver()
 	
 }
 
+// Function that calls the api to check the user's skin
+function changeSkin()
+{
+	// Retrieve the user from the document
+	var gameOverUser = getID("user").innerHTML;
+
+	// Here we store the api's url
+	var url = `api.php?username=${gameOverUser}&action=checkSkin`;
+
+		// We make use of our api to make the SQL queries to update our score.
+		useAPI(url, function (data)
+		{
+			enemy.style.backgroundImage = data;
+		});
+}
 
 // Api call to update our database's score
 // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
