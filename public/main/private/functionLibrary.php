@@ -291,6 +291,7 @@ function userRank($user)
     }
 }
 
+
 /*  ####################################### USER PROFILE FUNCTIONS ####################################### */
 
 // Checks the user's points.
@@ -309,7 +310,7 @@ function checkPoints($user)
           {
             while ($row = mysqli_fetch_assoc($result))
             {
-                echo $row['points'];     
+                return $row['points'];     
             }
           }
     }
@@ -1580,4 +1581,156 @@ function updatePoints($gameScore)
     }
 }
 
+
+/*
+################################################## Shop module #############################################
+*/
+
+// Function to buy skins from the store
+function buySkin($user, $skin)
+{
+    $shopSkinID = checkShopSkinID($skin);
+    $shopSkinName = checkShopSkinName($skin);
+
+    if (checkUserSkin($user) == $shopSkinID)
+    {
+        $_SESSION['error'] = "You already have that item activated";
+    }
+    
+    else
+    {
+        $userPoints = checkPoints($user);
+        $itemPrice = checkShopSkinPrice($skin);
+
+        if ($userPoints < $itemPrice)
+        {
+            $_SESSION['error'] = "You don't have enough points to buy this item";
+        }
+        else
+        {
+            updateUserPoints($user, $itemPrice);
+            updateUserSkin($user, $shopSkinID);
+
+            $_SESSION['success'] = "You successfully purchased the item $shopSkinName";
+        }
+
+    }
+
+}
+
+// Function that checks if the user is already using a skin
+function checkUserSkin($user)
+{
+    require("db_con.php");
+    $sql = "SELECT skin FROM accounts where username='$user';";
+    
+    if(executeQuery($sql))
+    {
+         $result = mysqli_query($link, $sql);
+         $resultCheck = mysqli_num_rows($result);
+
+          // We will keep iterating as long as theres data
+          if ($resultCheck > 0)
+          {
+            while ($row = mysqli_fetch_assoc($result))
+            {
+                return $row['skin'];     
+            }
+          }
+    }
+    else
+    {
+        $_SESSION['error'] = "Couldn't find the skin, contact an administrator.";
+        exit();
+    }
+}
+
+// Function that checks the shop skin ID
+function checkShopSkinID($skin)
+{
+    require("db_con.php");
+    $sql = "SELECT itemID FROM shop where itemName='$skin';";
+    
+    if(executeQuery($sql))
+    {
+         $result = mysqli_query($link, $sql);
+         $resultCheck = mysqli_num_rows($result);
+
+          // We will keep iterating as long as theres data
+          if ($resultCheck > 0)
+          {
+            while ($row = mysqli_fetch_assoc($result))
+            {
+                return $row['itemID'];     
+            }
+          }
+    }
+}
+
+// Function that checks the shop skin name
+function checkShopSkinNAME($skin)
+{
+    require("db_con.php");
+    $sql = "SELECT itemName FROM shop where itemName='$skin';";
+    
+    if(executeQuery($sql))
+    {
+         $result = mysqli_query($link, $sql);
+         $resultCheck = mysqli_num_rows($result);
+
+          // We will keep iterating as long as theres data
+          if ($resultCheck > 0)
+          {
+            while ($row = mysqli_fetch_assoc($result))
+            {
+                return $row['itemName'];     
+            }
+          }
+    }
+}
+
+// Function that checks the shop skin price
+function checkShopSkinPrice($skin)
+{
+    require("db_con.php");
+    $sql = "SELECT itemPrice FROM shop where itemName='$skin';";
+    
+    if(executeQuery($sql))
+    {
+         $result = mysqli_query($link, $sql);
+         $resultCheck = mysqli_num_rows($result);
+
+          // We will keep iterating as long as theres data
+          if ($resultCheck > 0)
+          {
+            while ($row = mysqli_fetch_assoc($result))
+            {
+                return $row['itemPrice'];     
+            }
+          }
+    }
+}
+
+// Function to substract points from the user (used in the store, mainly)
+function updateUserPoints($user, $points)
+{
+    require("db_con.php");
+    $points = getPoints($user) - $points;
+    $sql = "UPDATE accounts SET points='$points' where username='$user';";
+    executeQuery($sql);
+}
+
+// Function to substract points from the user (used in the store, mainly)
+function updateUserSkin($user, $skinID)
+{
+    require("db_con.php");
+    $sql = "UPDATE accounts SET skin='$skinID' where username='$user';";
+    executeQuery($sql);
+}
+
+
+
+
+
 ?>
+

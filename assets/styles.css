@@ -306,6 +306,12 @@ h3
     text-align: center;
 }
 
+#invader
+{
+  border: 1px solid black;
+  text-align: center;
+  margin: 20px;
+}
 
 
 /*
