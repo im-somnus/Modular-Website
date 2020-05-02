@@ -313,6 +313,12 @@ h3
   margin: 20px;
 }
 
+#default
+{
+  border: 1px solid black;
+  text-align: center;
+  margin: 20px;
+}
 
 /*
 ################################# MAIN MODULE ###############################################
@@ -816,8 +822,6 @@ padding-bottom: 20px;
 
 }
 
-
-
 /*
 ################################# GAME style ###############################################
 */
@@ -829,7 +833,6 @@ padding-bottom: 20px;
   background-color: rgba(22,25,25,0.7);
   border: 1px solid rgb(46,44,44);
 }
-
 
 #restart
 {
@@ -857,14 +860,18 @@ padding-bottom: 20px;
   height: 600px;
 }
 
-
 .enemy
 {
-	border: 2px solid rgb(46,44,44);
+	border: 2px solid rgb(160, 160, 160);;
 	background-color: rgb(160, 160, 160);
 	position: absolute;
 	display: inline-block;
   cursor: pointer;
   width: 60px;
 	height: 60px;
+}
+
+#skin
+{
+  display: none;
 }

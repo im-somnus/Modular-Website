@@ -1611,7 +1611,7 @@ function buySkin($user, $skin)
             updateUserPoints($user, $itemPrice);
             updateUserSkin($user, $shopSkinID);
 
-            $_SESSION['success'] = "You successfully purchased the item $shopSkinName";
+            $_SESSION['success'] = 'You successfully purchased the item "'.  $shopSkinName .'"';
         }
 
     }
@@ -1728,7 +1728,59 @@ function updateUserSkin($user, $skinID)
     executeQuery($sql);
 }
 
+// Function to check the user's skin
+function checkSkin($username)
+{
+    require("public/main/private/db_con.php");
+    
+    $sql = "SELECT skin FROM accounts where username='$username';";
+    
+    if(executeQuery($sql))
+    {
+        $result = mysqli_query($link, $sql);
+        $resultCheck = mysqli_num_rows($result);
 
+        // We will keep iterating as long as theres data
+        if ($resultCheck > 0)
+        {
+            while ($row = mysqli_fetch_assoc($result))
+            {
+                $skin = $row['skin'];
+                $skin = returnItemImageLocation($skin);
+                return $skin; 
+
+            }
+        }
+    }
+    else
+    {
+        $_SESSION['error'] = "Couldnt find any skin, try again.";
+    }
+}
+
+
+// Function that returns image location in the hard drive
+function returnItemImageLocation($skin)
+{
+    require("public/main/private/db_con.php");
+    $sql = "SELECT itemImage FROM shop where itemID='$skin';";
+    
+    if(executeQuery($sql))
+    {
+        $result = mysqli_query($link, $sql);
+        $resultCheck = mysqli_num_rows($result);
+
+        // We will keep iterating as long as theres data
+        if ($resultCheck > 0)
+        {
+            while ($row = mysqli_fetch_assoc($result))
+            {
+                $image = $row['itemImage'];  
+                return $image;   
+            }
+        }
+    }
+}
 
 
 

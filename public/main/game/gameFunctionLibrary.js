@@ -22,7 +22,6 @@ function start()
 	{
 		clearTimeout(enemiesSpawnDelays[i]);
 	}
-
 	// Destory any enemy on screen
 	for (var i = 0; i < enemies.length; i++)
 	{
@@ -57,9 +56,21 @@ function start()
 // Function to create the enemies
 function createEnemy()
 {
-	changeSkin();
+	var skin = getID('skin').innerHTML;
+
 	// We create a div element that will act as the enemy
-	var enemy = document.createElement('div');
+	if (!skin)
+	{
+		var enemy = document.createElement('div');
+		enemy.style.border = "2px solid white";
+	}
+	else
+	{
+		var enemy = document.createElement('img');
+		enemy.style.backgroundColor = "rgba(0,0,0,0)";
+		enemy.src = skin;
+	}
+	
 	enemy.className = 'enemy';
 
 	// https://developer.mozilla.org/en-US/docs/Web/API/Element/mousedown_event
@@ -218,7 +229,8 @@ function changeSkin()
 		// We make use of our api to make the SQL queries to update our score.
 		useAPI(url, function (data)
 		{
-			enemy.style.backgroundImage = data;
+			skin = data;
+			/* alert(skin); */
 		});
 }
 

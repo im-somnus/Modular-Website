@@ -26,8 +26,6 @@ var enemiesSpawnDelays = [];
 var enemyMovementIntervals = [];
 var limitBounds = getID('limitBounds');
 
-
-
 /* 
 ###############################  Event Listeners   ################################
 */

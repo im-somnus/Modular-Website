@@ -1,9 +1,11 @@
 <?php
-	if (isset($_SESSION['login']))
-	{
-		keepOnlineStatus($_SESSION['login']['user']);
-	}
+	rankCheck(2);
+    if (isset($_SESSION['login'])) {
+        keepOnlineStatus($_SESSION['login']['user']);
+    }
 ?>
+
+<div id='skin'><?php echo checkSkin($_SESSION['login']['user']) ?></div>
 
 <!-- GUI for the score and buttons -->
 <div class="gui">

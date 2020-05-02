@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 01, 2020 at 05:56 PM
+-- Generation Time: May 02, 2020 at 06:46 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -43,16 +43,16 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `accounts`
 --
 
 INSERT INTO `accounts` (`id`, `username`, `password`, `rank`, `points`, `pfpicture`, `userStatus`, `lastActivity`, `postCooldown`, `skin`) VALUES
-(3, 'admin', '21232f297a57a5a743894a0e4a801fc3', 0, 7000, 'default_pfpic.png', 1, '2020-05-01 17:56:24', '2020-05-01 17:06:17', 9999),
-(4, 'user', 'ee11cbb19052e40b07aac0ca060c23ee', 2, 0, 'default_pfpic.png', 0, '2020-05-01 17:04:02', '2020-05-01 17:04:02', 9999),
-(5, 'moderator', '0408f3c997f309c03b08bf3a4bc7b730', 1, 0, 'default_pfpic.png', 0, '2020-05-01 17:04:18', '2020-05-01 17:04:18', 9999);
+(3, 'admin', '21232f297a57a5a743894a0e4a801fc3', 0, 494019, 'default_pfpic.png', 1, '2020-05-02 06:44:56', '2020-05-01 21:09:01', 8),
+(4, 'user', 'ee11cbb19052e40b07aac0ca060c23ee', 2, 261, 'default_pfpic.png', 0, '2020-05-01 21:05:18', '2020-05-01 20:19:18', 8),
+(5, 'moderator', '0408f3c997f309c03b08bf3a4bc7b730', 1, 234, 'default_pfpic.png', 0, '2020-05-01 17:04:18', '2020-05-01 17:04:18', 9999);
 
 -- --------------------------------------------------------
 
@@ -103,7 +103,17 @@ CREATE TABLE IF NOT EXISTS `post` (
   PRIMARY KEY (`id`),
   KEY `fk_post_thread1_idx` (`thread_id`),
   KEY `fk_post_accounts1_idx` (`accounts_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `post`
+--
+
+INSERT INTO `post` (`id`, `postDate`, `post`, `thread_id`, `accounts_id`) VALUES
+(6, '2020-05-01 22:19:18', 'asdfasdf', 4, 4),
+(7, '2020-05-01 23:08:22', 'asdf', 5, 3),
+(8, '2020-05-01 23:08:51', 'asdfasdfasdf', 5, 3),
+(9, '2020-05-01 23:09:01', 'asfasdf', 7, 3);
 
 -- --------------------------------------------------------
 
@@ -124,14 +134,15 @@ CREATE TABLE IF NOT EXISTS `shop` (
   `itemDiscountEnds` timestamp NULL DEFAULT NULL,
   `itemRemovedDate` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`itemID`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10000 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `shop`
 --
 
 INSERT INTO `shop` (`itemID`, `itemName`, `itemDescription`, `itemImage`, `itemPrice`, `itemDiscountPercentage`, `itemAddedDate`, `itemDiscountStarts`, `itemDiscountEnds`, `itemRemovedDate`) VALUES
-(8, 'Invader', 'Alien invaders have come to our forum! Defend our honor from the aliens!', 'assets/images/shop/invader.png', 1500, 0, '2020-05-01 17:26:12', NULL, NULL, NULL);
+(8, 'Invader', 'Alien invaders have come to our forum! Defend our honor from the aliens!', 'assets/images/shop/invader.png', 1500, 0, '2020-05-01 17:26:12', NULL, NULL, NULL),
+(9999, 'default', 'default skin', '', 0, 0, '2020-05-02 06:32:31', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -150,7 +161,17 @@ CREATE TABLE IF NOT EXISTS `thread` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_thread_accounts1_idx` (`accounts_id`),
   KEY `fk_thread_category1_idx` (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `thread`
+--
+
+INSERT INTO `thread` (`id`, `postTitle`, `postDate`, `accounts_id`, `category_id`) VALUES
+(4, 'asdf', '2020-05-01 22:19:18', 4, 1),
+(5, 'asdfasdf', '2020-05-01 23:08:22', 3, 4),
+(6, 'asdfasdf', '2020-05-01 23:08:51', 3, 5),
+(7, 'dfasdf', '2020-05-01 23:09:01', 3, 6);
 
 --
 -- Constraints for dumped tables
@@ -169,6 +190,15 @@ ALTER TABLE `post`
 ALTER TABLE `thread`
   ADD CONSTRAINT `fk_thread_accounts1` FOREIGN KEY (`accounts_id`) REFERENCES `accounts` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_thread_category1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+DELIMITER $$
+--
+-- Events
+--
+DROP EVENT `checkUserStatus`$$
+CREATE DEFINER=`root`@`localhost` EVENT `checkUserStatus` ON SCHEDULE EVERY 1 MINUTE STARTS '2020-02-26 01:41:45' ON COMPLETION PRESERVE ENABLE DO UPDATE accounts SET userStatus='0' WHERE lastActivity < CURRENT_TIMESTAMP() - 300$$
+
+DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
