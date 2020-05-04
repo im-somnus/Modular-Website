@@ -1,4 +1,5 @@
 <?php
+rankcheck(2);
 /* 
     This module acts as an online store for the points earned in the game/donated.
     For now it will be hardcoded, in the future it will retrieve whatever is in the database
