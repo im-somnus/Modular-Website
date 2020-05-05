@@ -67,7 +67,7 @@ function createEnemy()
 	else
 	{
 		var enemy = document.createElement('img');
-		enemy.style.backgroundColor = "rgba(0,0,0,0)";
+		enemy.style.background = 'rgba(22,25,25,0.95)';
 		enemy.src = skin;
 	}
 	
