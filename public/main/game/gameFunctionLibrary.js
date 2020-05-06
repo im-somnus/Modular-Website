@@ -58,14 +58,16 @@ function createEnemy()
 {
 	var skin = getID('skin').innerHTML;
 
-	// We create a div element that will act as the enemy
+	// We create an element that will act as the enemy
 	if (!skin)
 	{
+		// If theres no file location from the hidden div echo checkSkin(), we create a div
 		var enemy = document.createElement('div');
 		enemy.style.border = "2px solid white";
 	}
 	else
 	{
+		// IF there's a file location, it means we gotta create the image for it
 		var enemy = document.createElement('img');
 		enemy.style.background = 'rgba(22,25,25,0.95)';
 		enemy.src = skin;
@@ -214,24 +216,6 @@ function gameOver()
 	{
 		clearTimeout(enemiesSpawnDelays[i]);
 	}
-	
-}
-
-// Function that calls the api to check the user's skin
-function changeSkin()
-{
-	// Retrieve the user from the document
-	var gameOverUser = getID("user").innerHTML;
-
-	// Here we store the api's url
-	var url = `api.php?username=${gameOverUser}&action=checkSkin`;
-
-		// We make use of our api to make the SQL queries to update our score.
-		useAPI(url, function (data)
-		{
-			skin = data;
-			/* alert(skin); */
-		});
 }
 
 // Api call to update our database's score

@@ -53,11 +53,6 @@
     exit;
   }
 
-  // If the action was "checkSkin" call the function
-  if ($action === 'checkSkin')
-  {
-    echo checkSkin($username);
-    exit;
-  }
+  
 
 ?>

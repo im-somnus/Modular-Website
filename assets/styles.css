@@ -870,6 +870,8 @@ padding-bottom: 20px;
   width: 60px;
   height: 60px;
   -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none; 
 }
 
 #skin
