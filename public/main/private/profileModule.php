@@ -41,7 +41,7 @@ echo "<h2 class='h2Titles'>" . $_SESSION['login']['user'] . "'s Profile</h2>";
     <div id="profile">
          <div class="profileInfo">
             <p><b><?php echo $user ?></b></p>  
-            <p>Points: <b><?php echo checkPoints($user) ?></b></p>
+            <p>Points: <b><?php echo returnPoints($user) ?></b></p>
             <p><?php echo "Posts: <b>". countPostsByUsername($user); ?></b></p>
 <?php
             // Toggles the display/not display the "select an image to upload" window

@@ -294,32 +294,6 @@ function userRank($user)
 
 /*  ####################################### USER PROFILE FUNCTIONS ####################################### */
 
-// Checks the user's points.
-function checkPoints($user)
-{
-    require("db_con.php");
-    $sql = "SELECT points FROM accounts where username='$user';";
-    
-    if(executeQuery($sql))
-    {
-         $result = mysqli_query($link, $sql);
-         $resultCheck = mysqli_num_rows($result);
-
-          // We will keep iterating as long as theres data
-          if ($resultCheck > 0)
-          {
-            while ($row = mysqli_fetch_assoc($result))
-            {
-                return $row['points'];     
-            }
-          }
-    }
-    else
-    {
-        $_SESSION['error'] = "Couldn't display the value, contact an administrator.";
-        exit();
-    }
-}
 
 // Checks the user's points.
 function returnPoints($user)
@@ -1017,7 +991,7 @@ function displayPosts()
         {
 
             $id = $row['accounts_id'];
-            
+            $name = returnUsernameSelect($id);
             ?>  
                            
                                 <div class="windowPost">
@@ -1032,9 +1006,9 @@ function displayPosts()
                                                    echo "Status: <b>"; 
                                                    DisplayUserStatus($row['accounts_id']);
                                                    echo "</b>";
-                                                
-                                                   
                                                    echo "<br> Post Count: <b>" . countPostsByID($row['accounts_id']) . "</b>";
+                                                   echo "<br> Points: <b>" . returnPoints($name) . "</b>";
+                                    
                                                ?>
                                            </div>
                                        </div>
@@ -1599,7 +1573,7 @@ function buySkin($user, $skin)
     
     else
     {
-        $userPoints = checkPoints($user);
+        $userPoints = returnPoints($user);
         $itemPrice = checkShopSkinPrice($skin);
 
         if ($userPoints < $itemPrice)
