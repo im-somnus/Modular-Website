@@ -726,7 +726,7 @@ function checkPFPById($id)
 }
 
 
-// Function tho show the admin panel
+// Function to show the admin panel
 function adminPanel($user, $userRank) 
 {
     include("db_con.php");
@@ -1440,7 +1440,7 @@ function getUpdatesPosts()
 
 
 
-// Function to get update post from update categories
+// Function to get development post from update categories
 function getDevelopmentPosts()
 {
     
@@ -1694,7 +1694,7 @@ function updateUserPoints($user, $points)
     executeQuery($sql);
 }
 
-// Function to substract points from the user (used in the store, mainly)
+// Function to update user skin in the db (used in the store, mainly)
 function updateUserSkin($user, $skinID)
 {
     require("db_con.php");
