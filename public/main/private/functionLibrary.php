@@ -615,7 +615,7 @@ function getAccount_IDbyUsername($username)
 }
 
 
-// Echoes username username using as parameter the ID.
+// Echoes username using as parameter the ID.
 function usernameSelect($id)
 {
     require("db_con.php");
@@ -636,7 +636,7 @@ function usernameSelect($id)
     }
 }
 
-// Returns username username using as parameter the ID.
+// Returns username using as parameter the ID.
 function returnUsernameSelect($id)
 {
     require("db_con.php");
@@ -657,7 +657,7 @@ function returnUsernameSelect($id)
     }
 }
 
-// Returns username username using as parameter the ID.
+// Returns username using as parameter the ID.
 function adminUsernameSelect($id)
 {
     require("db_con.php");
