@@ -5,10 +5,7 @@ This is a PHP/Javascript website with a working forum, mini-game and a shop.
 ## Introduction (aka bla bla bla section :3)
 This is my school project, it was a requirement in order to get my degree.
 
-Instructions were clear:
-    - A minimum "30 hours" of work into the project.
-    - It has to be fully operational.
-    - Challenging, which I admit, I went a bit overboard..
+Instructions were clear: A minimum "30 hours" of work into the project, it has to be fully operational and challenging, which I admit, I went a bit overboard..
 
 With those instructions in mind, I set myself into a path of self-discovery (There's no other word to describe this experience). I never coded before this project, much less something of this size, the project started the 7th of February of 2020 and finished the 6th of May of 2020. I was coding like crazy, 12 hours a day minimum (what some people might call it "getting in the zone") which added up to over 1000 hours to it, and thats lowballing it. 
 
